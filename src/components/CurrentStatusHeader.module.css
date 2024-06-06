@@ -1,0 +1,204 @@
+.mmu02 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+}
+.mmu02Wrapper,
+.statusContentInner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.statusContentInner {
+  flex: 1;
+  overflow: hidden;
+  padding: 0 0 var(--padding-7xs);
+  box-sizing: border-box;
+  min-width: 315px;
+  max-width: 100%;
+}
+.lastUpdated0500 {
+  flex: 1;
+  position: relative;
+  white-space: pre-wrap;
+  flex-shrink: 0;
+}
+.lastUpdated05006Jun202Wrapper,
+.statusContent {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.lastUpdated05006Jun202Wrapper {
+  width: 263px;
+  flex-shrink: 0;
+  padding: var(--padding-smi) var(--padding-10xs);
+  box-sizing: border-box;
+  text-align: right;
+  font-size: var(--font-size-base);
+}
+.statusContent {
+  align-self: stretch;
+  flex-wrap: wrap;
+  max-width: 100%;
+  row-gap: 20px;
+}
+.indicatorbolljumboIcon {
+  height: 56px;
+  width: 56px;
+  position: relative;
+}
+.charging {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 700;
+  font-family: inherit;
+}
+.parkedSince48 {
+  position: relative;
+  font-size: var(--font-size-xl);
+}
+.duoindicator,
+.statusindicator,
+.textframe {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.textframe {
+  flex-direction: column;
+  gap: var(--gap-3xs);
+  min-width: 175px;
+}
+.duoindicator,
+.statusindicator {
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-direction: row;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.statusindicator {
+  padding: var(--padding-xs) var(--padding-3xs) var(--padding-xs)
+    var(--padding-6xs);
+  gap: var(--gap-3xs);
+  min-width: 141px;
+}
+.duoindicator {
+  flex-wrap: wrap;
+  padding: 0 var(--padding-35xl) 0 0;
+  min-width: 335px;
+}
+.commissionedYr2001,
+.dataConsentYes,
+.manufacturedYr2001,
+.serialNr234324322,
+.slActiveSince,
+.slaActive,
+.type400e {
+  align-self: stretch;
+  position: relative;
+}
+.metadatainfobox {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-11xs);
+}
+.serialNr,
+.serialNumber {
+  position: relative;
+}
+.serialNumber {
+  display: inline-block;
+  min-width: 40px;
+}
+.comm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+}
+.metadatainfoboxParent {
+  width: 254px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--padding-8xs) 0 var(--padding-8xs) var(--padding-12xs);
+  box-sizing: border-box;
+  gap: var(--gap-10xs);
+  text-align: right;
+  font-size: var(--font-size-base);
+  color: var(--color-dimgray);
+}
+.currentinfo,
+.currentstatusheader {
+  align-self: stretch;
+  display: flex;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.currentinfo {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--padding-xl);
+  gap: 51px 49px;
+  font-size: var(--font-size-5xl);
+}
+.currentstatusheader {
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-44xl);
+  gap: var(--gap-3xs);
+  text-align: left;
+  font-size: var(--font-size-13xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}
+@media screen and (max-width: 1025px) {
+  .mmu02 {
+    font-size: var(--font-size-7xl);
+  }
+  .duoindicator {
+    padding-right: var(--padding-8xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .currentinfo {
+    gap: var(--gap-5xl);
+  }
+  .currentstatusheader {
+    padding-left: var(--padding-12xl);
+    padding-right: var(--padding-12xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .charging,
+  .mmu02 {
+    font-size: var(--font-size-lgi);
+  }
+  .parkedSince48 {
+    font-size: var(--font-size-base);
+  }
+  .statusindicator {
+    flex-wrap: wrap;
+  }
+}
