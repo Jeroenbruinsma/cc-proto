@@ -71,6 +71,11 @@ body {
   --padding-145xl: 164px;
   --padding-smi: 13px;
   --padding-7xs: 6px;
+  --padding-sm: 14px;
+  --padding-25xl: 44px;
+  --padding-4xl: 23px;
+  --padding-137xl: 156px;
+  --padding-111xl: 130px;
 
   /* Border radiuses */
   --br-3xs: 10px;
