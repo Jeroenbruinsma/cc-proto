@@ -80,7 +80,7 @@
   overflow: hidden;
   flex-direction: row;
   justify-content: flex-end;
-  padding: 14px 44px;
+  padding: var(--padding-sm) var(--padding-25xl);
 }
 .topheader {
   flex-direction: column;
@@ -2628,7 +2628,7 @@
 }
 .navigation {
   flex-direction: column;
-  padding: 47.5px 0 0;
+  padding: var(--padding-28xl-5) 0 0;
 }
 .hatvikMmu01,
 .kpiBox,
@@ -2644,7 +2644,7 @@
   overflow-x: auto;
   flex-direction: row;
   padding: var(--padding-xl) var(--padding-16xl);
-  gap: 27px;
+  gap: var(--gap-8xl);
   text-align: center;
   font-size: var(--font-size-base);
 }

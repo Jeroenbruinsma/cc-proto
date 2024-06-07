@@ -1,4 +1,5 @@
 import { FunctionComponent, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import CurrentStatusHeader from "./CurrentStatusHeader";
 import MetricBox from "./MetricBox";
 import styles from "./HatvikMMU.module.css";
@@ -8,9 +9,11 @@ export type HatvikMMUType = {
 };
 
 const HatvikMMU: FunctionComponent<HatvikMMUType> = ({ className = "" }) => {
+  const navigate = useNavigate();
+
   const onMetricBoxContainerClick = useCallback(() => {
-    // Please sync "KPI graph page ua" to the project
-  }, []);
+    navigate("/kpi-graph-page-ua");
+  }, [navigate]);
 
   const onMetricBoxContainer2Click = useCallback(() => {
     // Please sync "KPI graph page-performance" to the project
@@ -25,8 +28,8 @@ const HatvikMMU: FunctionComponent<HatvikMMUType> = ({ className = "" }) => {
   }, []);
 
   const onFrameContainerClick = useCallback(() => {
-    // Please sync "Location info and downloads" to the project
-  }, []);
+    navigate("/location-info-and-downloads");
+  }, [navigate]);
 
   const onFrameContainer2Click = useCallback(() => {
     // Please sync "All sevice needs page" to the project
@@ -88,7 +91,7 @@ const HatvikMMU: FunctionComponent<HatvikMMUType> = ({ className = "" }) => {
                     className={styles.dropdownIcon}
                     loading="lazy"
                     alt=""
-                    src="/polygon-1.svg"
+                    src="/polygon-11.svg"
                   />
                 </div>
                 <div className={styles.months}> 12 months</div>
@@ -679,7 +682,7 @@ const HatvikMMU: FunctionComponent<HatvikMMUType> = ({ className = "" }) => {
             <b className={styles.kpiStatistics2}>KPI Statistics</b>
             <div className={styles.sinceDropdown1}>
               <div className={styles.dropdownIcon1}>
-                <img className={styles.icon} alt="" src="/polygon-1.svg" />
+                <img className={styles.icon} alt="" src="/polygon-11.svg" />
               </div>
               <div className={styles.months1}> 12 months</div>
             </div>

@@ -1,0 +1,216 @@
+.kpiStatistics {
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+.lineframeChild,
+.titleplussince {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.titleplussince {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-9xs) 0;
+}
+.lineframeChild {
+  height: 3px;
+  flex: 1;
+  position: relative;
+  border-top: 3px solid var(--color-steelblue);
+}
+.lineframe,
+.subsectionHeader {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.lineframe {
+  height: 0;
+  flex-direction: row;
+  padding: 0;
+  box-sizing: border-box;
+}
+.subsectionHeader {
+  flex-direction: column;
+  gap: var(--gap-3xs);
+}
+.serviceCenterManager,
+.serviceManuals {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 997px;
+}
+.serviceCenterManager {
+  top: 33px;
+  font-size: var(--font-size-smi);
+  text-decoration: underline;
+  font-weight: 700;
+  color: inherit;
+  display: none;
+}
+.repairManualV01043f,
+.serviceManualV01023b {
+  margin-bottom: 0;
+}
+.serviceManualV01023bRepai {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  padding-left: var(--padding-2xl);
+}
+.serviceManualV01023bContainer {
+  position: absolute;
+  top: 59px;
+  left: 0;
+  font-size: var(--font-size-base);
+  display: inline-block;
+  color: var(--color-black);
+  width: 997px;
+}
+.left {
+  height: 135px;
+  width: 300px;
+  position: relative;
+}
+.serviceCenterManager1,
+.serviceReports {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 997px;
+}
+.serviceCenterManager1 {
+  top: 33px;
+  font-size: var(--font-size-smi);
+  text-decoration: underline;
+  font-weight: 700;
+  color: inherit;
+  display: none;
+}
+.serviceReportFeb,
+.serviceReportMay,
+.serviceReportOkt {
+  margin-bottom: 0;
+}
+.serviceReportFeb2024Servic {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  padding-left: var(--padding-2xl);
+}
+.serviceReportFebContainer {
+  position: absolute;
+  top: 59px;
+  left: 0;
+  font-size: var(--font-size-base);
+  display: inline-block;
+  color: var(--color-black);
+  width: 997px;
+}
+.middle {
+  height: 135px;
+  width: 300px;
+  position: relative;
+}
+.dataExportCsv {
+  width: 400px;
+  position: absolute;
+  margin: 0 !important;
+  top: 0;
+  right: -100px;
+  display: inline-block;
+}
+.serviceCenterManager2 {
+  height: 0;
+  width: 997px;
+  position: relative;
+  font-size: var(--font-size-smi);
+  text-decoration: underline;
+  font-weight: 700;
+  color: inherit;
+  display: none;
+  flex-shrink: 0;
+  max-width: 100%;
+  z-index: 1;
+}
+.alarmList,
+.serviceNeeds {
+  margin-bottom: 0;
+}
+.alarmListServiceNeeds {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  padding-left: var(--padding-2xl);
+}
+.alarmListServiceContainer {
+  flex: 1;
+  position: relative;
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+}
+.right {
+  width: 300px;
+  flex-direction: row;
+  padding: var(--padding-40xl) 0 var(--padding-18xl);
+  box-sizing: border-box;
+  position: relative;
+}
+.downloads,
+.downloadsContent,
+.right,
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.wrapper {
+  align-self: stretch;
+  overflow: hidden;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-xl);
+  font-size: var(--font-size-lgi);
+  color: var(--color-steelblue);
+}
+.downloads,
+.downloadsContent {
+  max-width: 100%;
+}
+.downloadsContent {
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap-3xs);
+}
+.downloads {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 var(--padding-44xl) var(--padding-smi);
+  box-sizing: border-box;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}
+@media screen and (max-width: 675px) {
+  .downloads {
+    padding-left: var(--padding-12xl);
+    padding-right: var(--padding-12xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .kpiStatistics {
+    font-size: var(--font-size-base);
+  }
+}
