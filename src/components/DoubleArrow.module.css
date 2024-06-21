@@ -1,0 +1,25 @@
+.singleArrowrightChild,
+.singleArrowrightItem {
+  align-self: stretch;
+  width: 10px;
+  position: relative;
+  max-height: 100%;
+  object-fit: contain;
+  min-height: 18px;
+}
+.singleArrowright {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-3xs);
+}
+.doubleArrow {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-9xs) var(--padding-6xs) var(--padding-10xs)
+    var(--padding-5xs);
+}
