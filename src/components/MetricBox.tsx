@@ -2,9 +2,9 @@ import { FunctionComponent } from "react";
 import styles from "./MetricBox.module.css";
 
 export type MetricBoxType = {
-  className?: string;
-  unitAvailability?: string;
-  metricValue?: string;
+  className: string;
+  unitAvailability: string;
+  metricValue: string;
 
   /** Action props */
   onMetricBoxContainerClick?: () => void;
