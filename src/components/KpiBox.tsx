@@ -20,26 +20,6 @@ const KpiBox: FunctionComponent<KpiBoxType> = ({ className = "", children }) => 
   },[children, page])
   
   
-  
-  const onMetricBoxContainerClick = () =>{}
-  //   navigate("/kpi-graph-page-ua");
-  // }, [navigate]);
-
-  const onMetricBoxContainerClick1 = useCallback(() => {
-    // Please sync "KPI graph page-mtbf" to the project
-  }, []);
-
-  const onMetricBoxContainerClick2 = useCallback(() => {
-    // Please sync "KPI graph page-performance" to the project
-  }, []);
-
-  const onMetricBoxContainerClick3 = useCallback(() => {
-    // Please sync "KPI graph page-util" to the project
-  }, []);
-
-  const onMetricBoxContainerClick4 = useCallback(() => {
-    // Please sync "KPI graph page-bdu" to the project
-  }, []);
   const defaultKpiBoxCount = 5
   
   const displayChildren =  children.filter(( _:any ,i: number) => i > page && i < page + defaultKpiBoxCount)
