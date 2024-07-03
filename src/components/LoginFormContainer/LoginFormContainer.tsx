@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import Login from "./Login";
+import Login from "../Login/Login";
 import styles from "./LoginFormContainer.module.css";
 
 export type LoginFormContainerType = {

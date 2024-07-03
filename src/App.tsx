@@ -1,13 +1,12 @@
 import './global.css'
 
 import './App.css'
-import TopHeader from './components/TopHeader'
-import SubsectionHeader from './components/SubsectionHeader'
-import CurrentStatusHeader from './components/CurrentStatusHeader'
-import Table from './components/Table'
-import Graph from './components/Graph'
-import MetricBox from './components/MetricBox'
-import KpiBox from './components/KpiBox'
+import TopHeader from './components/TopHeader/TopHeader'
+import SubsectionHeader from './components/SubsectionHeader/SubsectionHeader'
+import CurrentStatusHeader from './components/CurrentStatusHeader/CurrentStatusHeader'
+import Graph from './components/Graph/Graph'
+import KpiBox from './components/KpiBox/KpiBox'
+import MetricBox from './components/MetricBox/MetricBox'
 
 function App() {
 
@@ -16,7 +15,6 @@ function App() {
       <TopHeader/>
       <SubsectionHeader/>
       <CurrentStatusHeader/>
-      <Table/>
       <Graph/>
       <KpiBox>
         <MetricBox metricValue='95%' unitAvailability='Unit availability' className=""/>

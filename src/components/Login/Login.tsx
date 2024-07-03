@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import UsernameField from "./UsernameField";
+import UsernameField from "../UsernameField/UsernameField";
 import styles from "./Login.module.css";
 
 export type LoginType = {

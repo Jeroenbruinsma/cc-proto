@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
-import SubsectionHeader from "./SubsectionHeader";
-import StatusIndicator from "./StatusIndicator";
+import SubsectionHeader from "../SubsectionHeader/SubsectionHeader";
+import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import styles from "./CurrentStatusHeader.module.css";
 
 export type CurrentStatusHeaderType = {

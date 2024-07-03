@@ -1,6 +1,6 @@
 import { FunctionComponent, useCallback, useState } from "react";
 import styles from "./KpiBox.module.css";
-import DoubleArrow from "./DoubleArrow";
+import DoubleArrow from "../DoubleArrow/DoubleArrow";
 
 export type KpiBoxType = {
   className?: string;
