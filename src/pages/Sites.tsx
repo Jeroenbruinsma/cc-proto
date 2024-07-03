@@ -2,17 +2,19 @@ import { FunctionComponent } from "react";
 import styles from "./Sites.module.css";
 import TopHeader from "../components/TopHeader/TopHeader";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
+import { useNavigate } from "react-router-dom";
 
 export type TableType = {
   className?: string;
 };
 
 const Sites: FunctionComponent<TableType> = ({ className = "" }) => {
+  const navigate = useNavigate()
   return (
     <>
       <TopHeader />
       <SubsectionHeader />
-      <footer className={[styles.table, className].join(" ")}>
+      <footer className={[styles.table, className].join(" ")} onClick={()=> navigate("/unit/123")}>
         <div className={styles.subsectionHeader}>
           <div className={styles.titleplussince}>
             <b className={styles.kpiStatistics}>Site overview</b>
