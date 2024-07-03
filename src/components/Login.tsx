@@ -7,7 +7,7 @@ export type LoginType = {
   onClose?: () => void;
 };
 
-const Login: FunctionComponent<LoginType> = ({ className = "", onClose }) => {
+const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
   return (
     <div className={[styles.login, className].join(" ")}>
       <h1 className={styles.cavotecConnectInsights}>

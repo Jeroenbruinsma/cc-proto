@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import styles from "./MetricBox.module.css";
 
 export type MetricBoxType = {
-  className: string;
+  className?: string;
   unitAvailability: string;
   metricValue: string;
 

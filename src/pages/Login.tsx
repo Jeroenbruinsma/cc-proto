@@ -1,4 +1,3 @@
-import React from 'react'
 import LoginFormContainer from '../components/LoginFormContainer'
 import ImageContainer from '../components/ImageContainer'
 
