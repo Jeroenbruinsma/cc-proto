@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
-import styles from "./UsernameField.module.css";
+import styles from "./InputField.module.css";
 
-export type UsernameFieldType = {
+export type InputFieldType = {
   className?: string;
   labelText?: string;
 };
 
-const UsernameField: FunctionComponent<UsernameFieldType> = ({
+const InputField: FunctionComponent<InputFieldType> = ({
   className = "",
   labelText,
 }) => {
@@ -22,4 +22,4 @@ const UsernameField: FunctionComponent<UsernameFieldType> = ({
   );
 };
 
-export default UsernameField;
+export default InputField;

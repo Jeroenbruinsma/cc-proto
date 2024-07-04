@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
-import UsernameField from "../UsernameField/UsernameField";
+import InputField from "../InputField/InputField";
 import styles from "./Login.module.css";
+import { useNavigate } from "react-router-dom";
 
 export type LoginType = {
   className?: string;
@@ -8,13 +9,14 @@ export type LoginType = {
 };
 
 const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
+  const navigate = useNavigate()
   return (
     <div className={[styles.login, className].join(" ")}>
       <h1 className={styles.cavotecConnectInsights}>
         Cavotec Connect Insights
       </h1>
-      <UsernameField labelText="Username" />
-      <UsernameField labelText="Password" />
+      <InputField labelText="Username" />
+      <InputField labelText="Password" />
       <div className={styles.insightsLink}>
         <div className={styles.link}>
           <div className={styles.clickMe}>Reset password</div>
@@ -22,7 +24,7 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
       </div>
       <div className={styles.loginButton}>
         <button className={styles.button}>
-          <div className={styles.buttontext}>Login</div>
+          <div className={styles.buttontext} onClick={()=> navigate("/sites")}>Login</div>
         </button>
       </div>
     </div>
