@@ -25,6 +25,13 @@ body {
   --color-steelblue: #0091d3;
   --color-dimgray: #666;
   --color-firebrick: #a51010;
+  --color-steelblue-100: #0392d4;
+  --color-deepskyblue: #1cabed;
+  --color-gainsboro: #d9d9d9;
+  --color-black: #000;
+  --color-darkgray: #9a9a9a;
+  --color-dimgray: #666;
+  --color-limegreen: #00dd16;
 
   /* Gaps */
   --gap-xl: 20px;
