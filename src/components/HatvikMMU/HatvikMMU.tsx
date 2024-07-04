@@ -79,7 +79,7 @@ const HatvikMMU: FunctionComponent<HatvikMMUType> = ({ className = "" }) => {
           </div>
         </div>
       </section>
-      <CurrentStatusHeader />
+      <CurrentStatusHeader equipmentName={`hoi`}/>
       <section className={styles.usedTable}>
         <div className={styles.table}>
           <div className={styles.subsectionHeader}>

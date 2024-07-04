@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 export type TopHeaderType = {
   className?: string;
+  showImage?: boolean
 };
 
-const TopHeader: FunctionComponent<TopHeaderType> = ({ className = "" }) => {
+const TopHeader: FunctionComponent<TopHeaderType> = ({ className = "", showImage = false }) => {
   const navigate = useNavigate()
   return (
     <section className={[styles.topheader, className].join(" ")}>
@@ -34,12 +35,12 @@ const TopHeader: FunctionComponent<TopHeaderType> = ({ className = "" }) => {
           />
         </div>
       </div>
-      <img
-        className={styles.headerImageIcon}
-        loading="lazy"
-        alt=""
-        src="/header-image@2x.png"
-      />
+    {showImage? <img
+      className={styles.headerImageIcon}
+      loading="lazy"
+      alt=""
+      src="/header-image@2x.png"
+    /> : null}
     </section>
   );
 };

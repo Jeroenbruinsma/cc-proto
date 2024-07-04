@@ -5,17 +5,19 @@ import styles from "./CurrentStatusHeader.module.css";
 
 export type CurrentStatusHeaderType = {
   className?: string;
+  equipmentName: string
 };
 
 const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   className = "",
+  equipmentName
 }) => {
   return (
     <section className={[styles.currentstatusheader, className].join(" ")}>
       <div className={styles.statusContent}>
         <div className={styles.statusContentInner}>
           <div className={styles.mmu02Wrapper}>
-            <h1 className={styles.mmu02}>Hatvik_B1_1A_Fjord1</h1>
+            <h1 className={styles.mmu02}>{equipmentName}</h1>
           </div>
         </div>
         <div className={styles.lastUpdated05006Jun202Wrapper}>
@@ -24,7 +26,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
           </div>
         </div>
       </div>
-      <SubsectionHeader />
+      <SubsectionHeader title="Current status" />
       <div className={styles.currentinfo}>
         <div className={styles.duoindicator}>
           <StatusIndicator />
