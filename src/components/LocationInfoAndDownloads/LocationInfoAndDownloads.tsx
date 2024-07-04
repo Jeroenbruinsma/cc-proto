@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
-import LocationInfoSection from "./LocationInfoSection";
-import DownloadsSection from "./DownloadsSection";
+import LocationInfoSection from "../LocationInfoSection/LocationInfoSection";
+import DownloadsSection from "../DownloadsSection/DownloadsSection";
 import styles from "./LocationInfoAndDownloads.module.css";
 
 export type LocationInfoAndDownloadsType = {
