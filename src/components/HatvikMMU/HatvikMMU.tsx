@@ -1,7 +1,7 @@
 import { FunctionComponent, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import CurrentStatusHeader from "./CurrentStatusHeader";
-import MetricBox from "./MetricBox";
+import CurrentStatusHeader from "../CurrentStatusHeader/CurrentStatusHeader";
+import MetricBox from "../MetricBox/MetricBox";
 import styles from "./HatvikMMU.module.css";
 
 export type HatvikMMUType = {
