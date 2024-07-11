@@ -1,28 +1,21 @@
-import './global.css'
-
-import './App.css'
-import TopHeader from './components/TopHeader/TopHeader'
-import CurrentStatusHeader from './components/CurrentStatusHeader/CurrentStatusHeader'
-import KpiBox from './components/KpiBox/KpiBox'
-import MetricBox from './components/MetricBox/MetricBox'
+import "./global.css";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Login from "./pages/Login.tsx";
+import Sites from "./pages/Sites.tsx";
 
 function App() {
-
   return (
     <>
-      <TopHeader/>
-      <CurrentStatusHeader equipmentName='Hatvik_B1_1A_Fjord1'/>
-      
-      <KpiBox>
-        <MetricBox metricValue='95%' unitAvailability='Unit availability' className=""/>
-        <MetricBox metricValue='14,6 days' unitAvailability='Unit MTBF' className=""/>
-        <MetricBox metricValue='98%' unitAvailability='Unit performance' className=""/>
-        <MetricBox metricValue='99%' unitAvailability='Unit utilization' className=""/>
-        <MetricBox metricValue='97%' unitAvailability='BDU availability' className=""/>
-      </KpiBox>
-       
+      <Routes>
+        <Route path="/sites" Component={Sites} />
+        <Route path="/sites/:id" Component={Sites} />
+        <Route path="/unit/:id" Component={App} />
+        <Route path="/login" Component={Login} />
+        <Route path="/" Component={Login} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

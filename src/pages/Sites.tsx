@@ -7,7 +7,7 @@ export type TableType = {
   className?: string;
 };
 
-const Sites: FunctionComponent<TableType> = ({ className = "" }) => {
+const SitesPage: FunctionComponent<TableType> = ({ className = "" }) => {
   const navigate = useNavigate()
   return (
     <>
@@ -25,4 +25,4 @@ const Sites: FunctionComponent<TableType> = ({ className = "" }) => {
   );
 };
 
-export default Sites;
+export default SitesPage;
