@@ -57,7 +57,7 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
+
 }
 .headertext1 {
   width: 91px;
@@ -79,7 +79,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 1;
   margin-left: -82px;
 }
@@ -122,7 +121,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 2;
   margin-left: -82px;
 }
@@ -147,7 +145,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 3;
   margin-left: -82px;
 }
@@ -173,7 +170,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 4;
   margin-left: -82px;
 }
@@ -212,7 +208,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
 }
 .celltext1 {
   flex: 1;
@@ -235,7 +230,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 1;
   margin-left: -82px;
 }
@@ -260,7 +254,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 2;
   margin-left: -82px;
 }
@@ -285,7 +278,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 3;
   margin-left: -82px;
 }
@@ -328,7 +320,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 4;
   margin-left: -82px;
 }
@@ -386,7 +377,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
 }
 .celltext6 {
   flex: 1;
@@ -409,7 +399,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 1;
   margin-left: -82px;
 }
@@ -434,7 +423,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 2;
   margin-left: -82px;
 }
@@ -459,7 +447,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 3;
   margin-left: -82px;
 }
@@ -502,7 +489,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 4;
   margin-left: -82px;
 }
@@ -560,7 +546,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
 }
 .celltext11 {
   flex: 1;
@@ -583,7 +568,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 1;
   margin-left: -82px;
 }
@@ -608,7 +592,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 2;
   margin-left: -82px;
 }
@@ -633,7 +616,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 3;
   margin-left: -82px;
 }
@@ -676,7 +658,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 4;
   margin-left: -82px;
 }
@@ -890,7 +871,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
 }
 .celltext21 {
   flex: 1;
@@ -913,7 +893,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 1;
   margin-left: -82px;
 }
@@ -938,7 +917,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 2;
   margin-left: -82px;
 }
@@ -963,7 +941,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 3;
   margin-left: -82px;
 }
@@ -1006,7 +983,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 4;
   margin-left: -82px;
 }
@@ -1064,7 +1040,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
 }
 .celltext26 {
   flex: 1;
@@ -1087,7 +1062,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 1;
   margin-left: -82px;
 }
@@ -1112,7 +1086,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 2;
   margin-left: -82px;
 }
@@ -1137,7 +1110,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 3;
   margin-left: -82px;
 }
@@ -1180,7 +1152,6 @@
   min-width: 211px;
   max-width: 215px;
   flex-shrink: 0;
-  debug_commit: bf4bc93;
   z-index: 4;
   margin-left: -82px;
 }
