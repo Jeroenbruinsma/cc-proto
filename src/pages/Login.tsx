@@ -3,7 +3,7 @@ import LoginFormContainer from "../components/LoginFormContainer/LoginFormContai
 import left from "../assets/login_side_left.png";
 import right from "../assets/login_side_right.png";
 
-export default function Login() {
+export default function LoginPage() {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <ImageContainer image={left} />
