@@ -2,22 +2,35 @@ import { FunctionComponent } from "react";
 import SubsectionHeader from "../SubsectionHeader/SubsectionHeader";
 import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import styles from "./CurrentStatusHeader.module.css";
-import { equipmentDataType } from "../../pages/UnitDetailsPage";
 import { capitalizeFirstLetter } from "../../helpers";
+import moment from 'moment-timezone'
+import { equipmentDataType, stateType } from "../../types/equipment";
+
 
 export type CurrentStatusHeaderType = {
   className?: string;
   equipmentName: string
-  data: equipmentDataType | undefined
+  metaData: equipmentDataType | undefined
+  stateInfo: stateType | undefined
 };
 
 const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   className = "",
   equipmentName,
-  data
+  metaData,
+  stateInfo
 }) => {
 
-if(!data) return "loading"
+const parseDate = (state: stateType)=> {
+  if(!state?.time) return ""
+  if(!state?.state_start) return ""
+  
+  const start = moment(state.state_start)
+  const end = moment(state?.time)
+  return `Since ${moment.duration(end.diff(start)).humanize()}`
+}
+
+if(!metaData || !stateInfo) return "loading"
   return (
     <section className={[styles.currentstatusheader, className].join(" ")}>
       <div className={styles.statusContent}>
@@ -30,30 +43,20 @@ if(!data) return "loading"
       <SubsectionHeader title="Current status" />
       <div className={styles.currentinfo}>
         <div className={styles.duoindicator}>
-          <StatusIndicator />
-          <StatusIndicator />
-          <div className={styles.statusindicator}>
-            <img
-              className={styles.indicatorbolljumboIcon}
-              alt=""
-              src="/indicatorbolljumbo.svg"
-            />
-            <div className={styles.textframe}>
-              <h3 className={styles.charging}>Scheduled Maintenace</h3>
-              <div className={styles.parkedSince48}>Due for inspection</div>
-            </div>
-          </div>
+          <StatusIndicator text={stateInfo?.state_str || "" } subtext={parseDate(stateInfo)}/>
+          {/* <StatusIndicator text="Scheduled Maintenace" subtext="Due for inspection"/> */}
         </div>
         <div className={styles.metadatainfoboxParent}>
           <div className={styles.metadatainfobox}>
             <div className={styles.serialNr234324322}>
-              Serial nr: {data?.SerialNumber}</div>
+              Serial nr: {metaData?.SerialNumber}</div>
             <div className={styles.manufacturedYr2001}>
-              Installation yr: {data?.YearOfInstallation__c}
+              Installation yr: {metaData?.YearOfInstallation__c}
             </div>
             <div className={styles.slaActive}>
-              SLA Active : {capitalizeFirstLetter(data?.ServiceAgreement__c)}</div>
-            
+              SLA Active : {capitalizeFirstLetter(metaData?.ServiceAgreement__c)}</div>
+              <div className={styles.slaActive}>Name: {metaData?.Name}</div>
+
           </div>
         </div>
       </div>

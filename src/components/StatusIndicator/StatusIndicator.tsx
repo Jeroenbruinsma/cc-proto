@@ -3,10 +3,14 @@ import styles from "./StatusIndicator.module.css";
 
 export type StatusIndicatorType = {
   className?: string;
+  text: string
+  subtext: string 
 };
 
 const StatusIndicator: FunctionComponent<StatusIndicatorType> = ({
   className = "",
+  text,
+  subtext
 }) => {
   return (
     <div className={[styles.statusindicator, className].join(" ")}>
@@ -17,8 +21,8 @@ const StatusIndicator: FunctionComponent<StatusIndicatorType> = ({
         src="/indicatorbolljumbo.svg"
       />
       <div className={styles.textframe}>
-        <b className={styles.charging}>Parked</b>
-        <div className={styles.parkedSince48}>since 48 hrs</div>
+        <b className={styles.charging}>{text}</b>
+        <div className={styles.parkedSince48}>{subtext}</div>
       </div>
     </div>
   );
