@@ -18,3 +18,8 @@
   box-sizing: border-box;
   max-width: 100%;
 }
+@media (max-width: 992px){
+  .imageContainer{
+    display: none;
+  }
+}
