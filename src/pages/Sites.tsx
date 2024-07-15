@@ -3,11 +3,8 @@ import TopHeader from "../components/TopHeader/TopHeader";
 import { useNavigate } from "react-router-dom";
 import Table from "../components/Table/Table";
 
-export type TableType = {
-  className?: string;
-};
 
-const SitesPage: FunctionComponent<TableType> = ({ className = "" }) => {
+const SitesPage: FunctionComponent = () => {
   const navigate = useNavigate()
   return (
     <>
