@@ -1,6 +1,6 @@
 import { FunctionComponent, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import CurrentStatusHeader from "../CurrentStatusHeader/CurrentStatusHeader";
+// import CurrentStatusHeader from "../CurrentStatusHeader/CurrentStatusHeader";
 import MetricBox from "../MetricBox/MetricBox";
 import styles from "./HatvikMMU.module.css";
 
@@ -79,7 +79,7 @@ const HatvikMMU: FunctionComponent<HatvikMMUType> = ({ className = "" }) => {
           </div>
         </div>
       </section>
-      <CurrentStatusHeader equipmentName={`hoi`}/>
+      {/* <CurrentStatusHeader equipmentName={`hoi`}/> */}
       <section className={styles.usedTable}>
         <div className={styles.table}>
           <div className={styles.subsectionHeader}>
