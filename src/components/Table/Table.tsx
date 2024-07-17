@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Table.module.css";
+import TableRow from "./TableRow";
 
 export type TableType = {
   className?: string;
@@ -63,7 +64,9 @@ const Table: FunctionComponent<TableType> = ({ className = "" }) => {
         alt=""
         src="/line-14.svg"
       />
-      <div className={styles.tablerow0}>
+
+      {/* end of headers */}
+      {/* <div className={styles.tablerow0}>
         <div className={styles.tablecell1}>
           <div className={styles.celltextWrapper}>
             <div className={styles.celltext}>Hatvik</div>
@@ -102,8 +105,11 @@ const Table: FunctionComponent<TableType> = ({ className = "" }) => {
             <div className={styles.celltext4}>CellText_6</div>
           </div>
         </div>
-      </div>
-      <div className={styles.tablerow1}>
+      </div> */}
+      <TableRow/>
+      {/* End of first row
+       */}
+      {/* <div className={styles.tablerow1}>
         <div className={styles.tablecell11}>
           <div className={styles.celltextWrapper3}>
             <div className={styles.celltext5}>Narvik</div>
@@ -301,7 +307,7 @@ const Table: FunctionComponent<TableType> = ({ className = "" }) => {
             <div className={styles.celltext29}>CellText_6</div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className={styles.show5MoreParent}>
         <b className={styles.show5More}>Show more</b>
         <img className={styles.frameChild} alt="" src="/vector-18.svg" />
