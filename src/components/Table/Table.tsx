@@ -31,7 +31,6 @@ const Table: FunctionComponent<TableType> = ({ className = "" }) => {
     getSites()
   }, [])
 
-  console.log("site",sites)
   return ( <>
     <table className={styles.table}>
      <thead className={styles.tableHead}>
