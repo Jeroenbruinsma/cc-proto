@@ -1,17 +1,17 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Table.module.css";
-import TableRow from "./TableRow";
 import axios from "axios";
 import { site } from "../../types/sites";
+import React from "react";
 
 export type TableType = {
   className?: string;
+  TableRowElement: any
 };
 
 
-const Table: FunctionComponent<TableType> = ({ className = "" }) => {
-  const navigate = useNavigate();
+const Table: FunctionComponent<TableType> = ({ className = "", TableRowElement}) => {
   const [sites, set_sites] = useState<undefined | site[] >(undefined)
   const getSites = async () => {
     try{
@@ -31,25 +31,28 @@ const Table: FunctionComponent<TableType> = ({ className = "" }) => {
     getSites()
   }, [])
 
-  return ( <>
+
+  const columns = [
+    "Site name",
+    "Operator",
+    "SLA status",
+    "Data consent",
+    "Site health"]
+
+return ( <>
     <table className={styles.table}>
      <thead className={styles.tableHead}>
       <tr className={styles.tableRow}>
-        <th scope="col" className={styles.tableHeader}>Site name</th>
-        <th scope="col" className={styles.tableHeader}>Operator</th>
-        <th scope="col" className={styles.tableHeader}>SLA status</th>
-        <th scope="col" className={styles.tableHeader}>Data consent</th>
-        <th scope="col" className={styles.tableHeader}>Site health</th>
+        {columns.map((c, i) => <th key={i} scope="col" className={styles.tableHeader}>{c}</th>) }
       </tr>
     </thead>
     <tbody className={styles.tableBody}>
-      {sites?.map( (s,i)  => <TableRow key={i} siteName={s?.SiteLocation__c} operator={s["Account.Name"]} SLA="Active" DC="Yes" siteHealth="-"/>
-      )}
-    </tbody>
-  </table>
-
-    </>
-  );
+      {sites?.map((s) => React.createElement(TableRowElement, {siteName: s?.SiteLocation__c, operator: s["Account.Name"], SLA:"Active", DC:"Yes", siteHealth:"-"}) )}
+      </tbody>
+      </table>
+      
+      </>
+    );
 };
 
 export default Table;
