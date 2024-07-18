@@ -43,10 +43,11 @@ function UnitDetailsPage() {
       getLastState(params.id)
     }
   },[params.id])
+  console.log("mta", metaData)
   return (
     <>
       <TopHeader/>
-      <CurrentStatusHeader equipmentName={`${metaData?.SiteLocation__c}`} metaData={metaData} stateInfo={stateData}/>
+      <CurrentStatusHeader equipmentName={`${metaData?.Name}`} metaData={metaData} stateInfo={stateData}/>
       {/* <KpiBox>
         <MetricBox metricValue='95%' unitAvailability='Unit availability' className=""/>
         <MetricBox metricValue='14,6 days' unitAvailability='Unit MTBF' className=""/>

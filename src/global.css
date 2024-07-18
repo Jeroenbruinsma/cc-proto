@@ -22,11 +22,11 @@ body {
   --color-white: #fff;
   --color-black: #000;
   --color-darkgray: #9a9a9a;
-  --color-steelblue: #0091d3;
   --color-dimgray: #666;
   --color-firebrick: #a51010;
-  --color-steelblue-100: #0392d4;
-  --color-deepskyblue: #1cabed;
+  --color-steelblue: #0091D3;
+  --color-steelblue-100: #0091D3; 
+  --color-deepskyblue: #0091D3;
   --color-gainsboro: #d9d9d9;
   --color-black: #000;
   --color-darkgray: #9a9a9a;

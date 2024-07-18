@@ -17,7 +17,7 @@ const TopHeader: FunctionComponent<TopHeaderType> = ({ className = "", showImage
           loading="lazy"
           alt=""
           src="/homeiconv2@2x.png"
-          onClick={()=> navigate("/")}
+          onClick={()=> navigate("/sites")}
         />
         <div className={styles.magnifierParent}>
           <img

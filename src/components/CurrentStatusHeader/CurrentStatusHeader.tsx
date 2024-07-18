@@ -53,9 +53,9 @@ if(!metaData || !stateInfo) return "loading"
             <div className={styles.manufacturedYr2001}>
               Installation yr: {metaData?.YearOfInstallation__c}
             </div>
-            <div className={styles.slaActive}>
-              SLA Active : {capitalizeFirstLetter(metaData?.ServiceAgreement__c)}</div>
-              <div className={styles.slaActive}>Name: {metaData?.Name}</div>
+            <div className={styles.slaActive}> SLA Active : {capitalizeFirstLetter(metaData?.ServiceAgreement__c)}</div>
+            <div className={styles.slaActive}>Customer: {metaData?.["Account.Name"]}</div>
+            <div className={styles.slaActive}>Country: {metaData?.EndUserCountry__c}</div>
 
           </div>
         </div>
