@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Table.module.css";
 
 export type TableType = {
@@ -19,10 +19,10 @@ const TableRow: FunctionComponent<TableType> = ({
   DC,
   siteHealth,
 }) => {
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
   return (
     <>
-      <tr className={styles.tableRow}>
+      <tr className={styles.tableRow} onClick={() => navigate("/sites/turku")}>
         <th className={styles.tableData}>{siteName}</th>
         <td className={styles.tableData}>{operator}</td>
         <td className={styles.tableData}>{SLA}</td>

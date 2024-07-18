@@ -30,15 +30,17 @@ const Table: FunctionComponent<TableType> = ({ className = "" }) => {
   useEffect(()=> {
     getSites()
   }, [])
+
+  console.log("site",sites)
   return ( <>
-    <table className={styles.table} onClick={() => navigate("/sites/turku")}>
+    <table className={styles.table}>
      <thead className={styles.tableHead}>
       <tr className={styles.tableRow}>
         <th scope="col" className={styles.tableHeader}>Site name</th>
-        <th scope="col" className={styles.tableHeader} >Operator</th>
-        <th scope="col" className={styles.tableHeader} >SLA status</th>
-        <th scope="col" className={styles.tableHeader} >Data consent</th>
-        <th scope="col" className={styles.tableHeader} >Site health</th>
+        <th scope="col" className={styles.tableHeader}>Operator</th>
+        <th scope="col" className={styles.tableHeader}>SLA status</th>
+        <th scope="col" className={styles.tableHeader}>Data consent</th>
+        <th scope="col" className={styles.tableHeader}>Site health</th>
       </tr>
     </thead>
     <tbody className={styles.tableBody}>
