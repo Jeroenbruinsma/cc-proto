@@ -17,7 +17,7 @@ const SitesPage: FunctionComponent = () => {
       const url = `http://127.0.0.1:5000/sites`
       const res = await axios.get(url)
       if(res?.data){
-        set_sites(res?.data)
+        set_sites(res?.data.map( (d:any) => { return {...d, cc_dataConsent: "Yes", cc_siteHealth: "-" }}))
       }else{
         set_sites(undefined)
       }
@@ -30,12 +30,14 @@ const SitesPage: FunctionComponent = () => {
     getSites()
   }, [])
 
+  
   const columns = [
-    "Site name",
-    "Operator",
-    "SLA status",
-    "Data consent",
-    "Site health"]
+    { colName: "Site name", dataKey: "SiteLocation__c", autocapitalize: true},
+    { colName: "Operator", dataKey: "Account.Name"},
+    { colName: "SLA status", dataKey: "ServiceAgreement__c", autocapitalize: true},
+    { colName: "Data consent", dataKey: "cc_dataConsent", autocapitalize: true},
+    { colName: "Site health", dataKey: "cc_siteHealth"}
+  ]
 
   return (
     <>
