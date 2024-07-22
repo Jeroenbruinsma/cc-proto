@@ -1,3 +1,8 @@
 {
-    "siteOverview": "Site overview"
+    "siteOverview": "Site overview",
+    "error": {
+        "platform": {
+            "backendConnection": "Connection with backend not possible, some functions might not work properly"
+        }
+    }
 }
