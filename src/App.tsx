@@ -10,6 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import PlatformMessage from "./components/PlatformMessage/PlatformMessage.tsx";
 import { useTranslation } from "react-i18next";
+import { backendUrl } from "./config.ts";
 
 function App() {
   
@@ -17,7 +18,7 @@ function App() {
   const {t} = useTranslation()
   const checkKivConnection = async () => {
     try{
-      const url = `http://localhost:5000/health`
+      const url = `${backendUrl}/health`
       const res = await axios.get(url)
       console.log("res",res)
       set_connectionToKiv(res?.data?.success)

@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import TableRow from "../components/Table/TableRow";
 import { site } from "../types/sites";
 import axios from "axios";
+import { backendUrl } from "../config";
 
 
 const SitesPage: FunctionComponent = () => {
@@ -14,7 +15,7 @@ const SitesPage: FunctionComponent = () => {
   const [sites, set_sites] = useState<undefined | site[] >(undefined)
   const getSites = async () => {
     try{
-      const url = `http://127.0.0.1:5000/sites`
+      const url = `${backendUrl}/sites`
       const res = await axios.get(url)
       if(res?.data){
         set_sites(res?.data.map( (d:any) => { return {...d, cc_dataConsent: "Yes", cc_siteHealth: "-" }}))
