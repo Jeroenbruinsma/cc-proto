@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { equipmentDataType, stateType } from '../types/equipment'
+import { backendUrl } from '../config'
 // import KpiBox from '../components/KpiBox/KpiBox'
 // import MetricBox from '../components/MetricBox/MetricBox'
 
@@ -15,7 +16,7 @@ function UnitDetailsPage() {
   const [stateData, set_stateData ] = useState<stateType| undefined >(undefined)
   const getMetaData = async (eqpmentId:string) => {
     try{
-      const url = `http://127.0.0.1:5000/equipment-meta?serial=${eqpmentId}`
+      const url = `${backendUrl}/equipment-meta?serial=${eqpmentId}`
       const res = await axios.get(url)
       set_metaData(res?.data)
     }
@@ -25,7 +26,7 @@ function UnitDetailsPage() {
   }
   const getLastState = async (eqpmentId:string) => {
     try{
-      const url = `http://127.0.0.1:5000/serial-to-state?serial=${eqpmentId}`
+      const url = `${backendUrl}/serial-to-state?serial=${eqpmentId}`
       const res = await axios.get(url)
       if(res?.data?.states?.length > 0){
         set_stateData(res?.data?.states[0])
