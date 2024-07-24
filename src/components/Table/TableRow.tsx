@@ -1,8 +1,9 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Table.module.css";
-import { capitalizeFirstLetter } from "../../helpers";
 import { columnType } from "../../types/table";
+import React from "react";
+import TableCellStandard from "./TableCellStandard";
 
 export type TableRowType = {
   rowData: any
@@ -11,20 +12,22 @@ export type TableRowType = {
 
 const TableRow: FunctionComponent<TableRowType> = ({
     rowData,
-    columns
+    columns    
 }) => {
     const navigate = useNavigate();
   return (
     <>
       <tr className={styles.tableRow} onClick={() => navigate("/sites/turku")}>
         {columns.map((c,i) => {
-            return <td key={i} className={styles.tableData}>{ 
-                c?.autocapitalize ? capitalizeFirstLetter( rowData?.[c.dataKey] ) : rowData?.[c.dataKey] 
-                }</td>} )}
+          if(c?.cellElement){
+            return <td>{React.createElement(c?.cellElement, {c: c})}</td>
+          }
+          return <td>{React.createElement(TableCellStandard, {dataKey: rowData?.[c.dataKey]})}</td>
+          } 
+          )}
       </tr>
     </>
   );
 };
-
 
 export default TableRow;

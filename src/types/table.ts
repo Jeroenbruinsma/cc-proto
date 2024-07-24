@@ -1,5 +1,9 @@
-export interface columnType{
+export interface columnType extends cellType{
     colName: string 
-    dataKey: string
-    autocapitalize? : boolean
+    cellElement?: React.ComponentType<any>
   }
+  
+  export interface cellType{
+    dataKey: string
+    autocapitalize?: boolean
+}

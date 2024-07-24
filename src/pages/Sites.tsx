@@ -47,7 +47,7 @@ const SitesPage: FunctionComponent = () => {
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
             {/* @ts-ignore */}
             <SubsectionHeader title={t("siteOverview")} center/>
-            <Table TableRowElement={TableRow} tableColumns={columns} tableData={sites}/>
+            <Table tableRowElement={TableRow} tableColumns={columns} tableData={sites}/>
         </div>
       </div>
     </>

@@ -49,13 +49,14 @@ if(!metaData || !stateInfo) return "loading"
         <div className={styles.metadatainfoboxParent}>
           <div className={styles.metadatainfobox}>
             <div className={styles.serialNr234324322}>
-              Serial nr: {metaData?.SerialNumber}</div>
+              Serial nr: {metaData?.SerialNumber || "-"}</div>
             <div className={styles.manufacturedYr2001}>
-              Installation yr: {metaData?.YearOfInstallation__c}
+              Installation yr: {metaData?.YearOfInstallation__c || "-"}
             </div>
-            <div className={styles.slaActive}> SLA Active : {capitalizeFirstLetter(metaData?.ServiceAgreement__c)}</div>
-            <div className={styles.slaActive}>Customer: {metaData?.["Account.Name"]}</div>
-            <div className={styles.slaActive}>Country: {metaData?.EndUserCountry__c}</div>
+            <div className={styles.slaActive}> SLA Active: {capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")}</div>
+            <div className={styles.slaActive}> SLA end date: {capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")}</div>
+            <div className={styles.slaActive}>Customer: {metaData?.["Account.Name"] || "-"}</div>
+            <div className={styles.slaActive}>Country: {capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")}</div>
 
           </div>
         </div>

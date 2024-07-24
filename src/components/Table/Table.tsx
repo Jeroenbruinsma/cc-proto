@@ -6,13 +6,13 @@ import { columnType } from "../../types/table";
 import { TableRowType } from "./TableRow";
 
 export type TableType = {
-  TableRowElement: React.ComponentType<TableRowType>
+  tableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
   tableData: site[] | undefined
 };
 
 
-const Table: FunctionComponent<TableType> = ({ TableRowElement,tableColumns,tableData }) => {
+const Table: FunctionComponent<TableType> = ({ tableRowElement,tableColumns,tableData }) => {
 return ( <>
     <table className={styles.table}>
      <thead className={styles.tableHead}>
@@ -21,7 +21,7 @@ return ( <>
       </tr>
     </thead>
     <tbody className={styles.tableBody}>
-      {tableData?.map((s) => React.createElement(TableRowElement, {rowData: s, columns: tableColumns}))}
+      {tableData?.map((s) => React.createElement(tableRowElement, {rowData: s, columns: tableColumns}))}
       </tbody>
       </table>
       </>
