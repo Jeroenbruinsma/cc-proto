@@ -4,18 +4,12 @@ import styles from "./Table.module.css";
 import { capitalizeFirstLetter } from "../../helpers";
 import { columnType } from "../../types/table";
 
-export type TableType = {
-  className?: string;
-  siteName: string;
-  operator: string;
-  SLA: string;
-  DC: string;
-  siteHealth: string;
+export type TableRowType = {
   rowData: any
   columns: columnType[]
 };
 
-const TableRow: FunctionComponent<TableType> = ({
+const TableRow: FunctionComponent<TableRowType> = ({
     rowData,
     columns
 }) => {

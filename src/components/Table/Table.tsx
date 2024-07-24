@@ -3,9 +3,10 @@ import styles from "./Table.module.css";
 import React from "react";
 import { site } from "../../types/sites";
 import { columnType } from "../../types/table";
+import { TableRowType } from "./TableRow";
 
 export type TableType = {
-  TableRowElement: any
+  TableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
   tableData: site[] | undefined
 };
@@ -20,7 +21,7 @@ return ( <>
       </tr>
     </thead>
     <tbody className={styles.tableBody}>
-      {tableData?.map((s) => React.createElement(TableRowElement, {rowData: s, columns: tableColumns}))} {/* {siteName: s?.SiteLocation__c, operator: s["Account.Name"], SLA:"Active", DC:"Yes", siteHealth:"-"}) )} */}
+      {tableData?.map((s) => React.createElement(TableRowElement, {rowData: s, columns: tableColumns}))}
       </tbody>
       </table>
       </>
