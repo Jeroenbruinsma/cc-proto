@@ -1,8 +1,22 @@
 {
     "siteOverview": "Site overview",
+    "activeAlarmList": "Active alarms",
     "error": {
         "platform": {
             "backendConnection": "Connection with backend not possible, some functions might not work properly"
+        }
+    },
+    "table": {
+        "columnNames": {
+            "siteName": "Site name",
+            "operator": "Operator",
+            "slaStatus": "SLA status",
+            "dataConsent": "Data consent",
+            "siteHealth": "Site health",
+            "dateTime": "Date/time",
+            "alarm": "Alarm",
+            "duration": "Duration",
+            "priority": "Priority"
         }
     }
 }
