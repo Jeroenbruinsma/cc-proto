@@ -20,7 +20,6 @@ function App() {
     try{
       const url = `${backendUrl}/health`
       const res = await axios.get(url)
-      console.log("res",res)
       set_connectionToKiv(res?.data?.success)
     }
     catch(err){
@@ -31,10 +30,8 @@ function App() {
   useEffect(()=>{
     checkKivConnection()
   },[])
-  console.log(connectionToKiv,"kiv conn")
   return (
     <>
-    {/* @ts-ignore */}
     {!connectionToKiv ? <PlatformMessage msg={t("error.platform.backendConnection")}/> : null}
       <Routes>
         <Route path="/sites" Component={Sites} />
