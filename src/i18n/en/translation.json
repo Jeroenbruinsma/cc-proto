@@ -27,5 +27,9 @@
                 "high" : "High" ,
                 "critical": "Critical"
            }    
+    },
+    "warranty": {
+        "warranty_active": "Active",
+        "warranty_expired": "Expired"
     }
 }

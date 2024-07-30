@@ -2,9 +2,10 @@ import { FunctionComponent } from "react";
 import SubsectionHeader from "../SubsectionHeader/SubsectionHeader";
 import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import styles from "./CurrentStatusHeader.module.css";
-import { capitalizeFirstLetter } from "../../helpers";
+import { capitalizeFirstLetter, parseWarranty } from "../../helpers";
 import moment from 'moment-timezone'
-import { equipmentDataType, stateType } from "../../types/equipment";
+import { equipmentDataType, stateType, warranttStatus } from "../../types/equipment";
+import { useTranslation } from "react-i18next";
 
 
 export type CurrentStatusHeaderType = {
@@ -20,7 +21,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   metaData,
   stateInfo
 }) => {
-
+const {t} = useTranslation()
 const parseDate = (state: stateType)=> {
   if(!state?.time) return ""
   if(!state?.state_start) return ""
@@ -48,15 +49,13 @@ if(!metaData || !stateInfo) return "loading"
         </div>
         <div className={styles.metadatainfoboxParent}>
           <div className={styles.metadatainfobox}>
-            <div className={styles.serialNr234324322}>
-              Serial nr: {metaData?.SerialNumber || "-"}</div>
-            <div className={styles.manufacturedYr2001}>
-              Installation yr: {metaData?.YearOfInstallation__c || "-"}
-            </div>
-            <div className={styles.slaActive}> SLA Active: {capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")}</div>
-            <div className={styles.slaActive}> SLA end date: {capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")}</div>
-            <div className={styles.slaActive}>Customer: {metaData?.["Account.Name"] || "-"}</div>
-            <div className={styles.slaActive}>Country: {capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")}</div>
+            <div className={styles.metaDataInfo}>Serial nr: {metaData?.SerialNumber || "-"}</div>
+            <div className={styles.metaDataInfo}>Installation yr: {metaData?.YearOfInstallation__c || "-"}</div>
+            <div className={styles.metaDataInfo}>SLA Active: {capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")}</div>
+            <div className={styles.metaDataInfo}>SLA end date: {capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")}</div>
+            <div className={styles.metaDataInfo}>Customer: {metaData?.["Account.Name"] || "-"}</div>
+            <div className={styles.metaDataInfo}>Country: {capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")}</div>
+            <div className={styles.metaDataInfo}>Warranty: { parseWarranty(metaData?.cc__WarrantyStatus, t) || "-"}</div>
 
           </div>
         </div>

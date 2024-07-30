@@ -1,6 +1,7 @@
 import { TFunction } from "i18next";
 import moment from "moment";
 import { cellDataParserFunctions } from "./types/table";
+import { warranttStatus } from "./types/equipment";
 
 export const capitalizeFirstLetter = (text: string): string => {
   if (!text) return "";
@@ -19,3 +20,8 @@ export const alarmPrioParser: cellDataParserFunctions = (priority: number, t: TF
 export const durationParser: cellDataParserFunctions = (input: number): string => {
   return `${moment.duration(input, "seconds").humanize()}`;
 };
+
+export const parseWarranty = ( cc__WarrantyStatus: warranttStatus, t: TFunction) => {
+    return t(`warranty.${cc__WarrantyStatus}`)
+  }
+  
