@@ -10,9 +10,14 @@
   border-bottom: 2px solid black;
   height: 4em;
 }
-.tableBody tr:nth-child(even) {
-    background-color: #4C8BF5;
-    color: #fff;
+
+.tableBody tr{
+    border-style: solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: thin;
+    border-color: #dedfe1;
 }
 .tableData{
   margin: 2em;
