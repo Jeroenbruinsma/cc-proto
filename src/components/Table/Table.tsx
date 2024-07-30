@@ -3,16 +3,18 @@ import styles from "./Table.module.css";
 import React from "react";
 import { site } from "../../types/sites";
 import { columnType } from "../../types/table";
-import { TableRowType } from "./TableRow";
+import { TableRowType, onRowClick } from "./TableRow";
+import { alarm } from "../../types/equipment";
 
 export type TableType = {
   tableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
-  tableData: site[] | undefined
+  tableData: site[] | alarm[]|  undefined
+  onRowClick?: onRowClick
 };
 
 
-const Table: FunctionComponent<TableType> = ({ tableRowElement,tableColumns,tableData }) => {
+const Table: FunctionComponent<TableType> = ({ tableRowElement,tableColumns,tableData, onRowClick}) => {
 return ( <>
     <table className={styles.table}>
      <thead className={styles.tableHead}>
@@ -21,7 +23,7 @@ return ( <>
       </tr>
     </thead>
     <tbody className={styles.tableBody}>
-      {tableData?.map((s) => React.createElement(tableRowElement, {rowData: s, columns: tableColumns}))}
+      {tableData?.map((s,i) => React.createElement(tableRowElement, {key:i, rowData: s, columns: tableColumns, onRowClick:onRowClick}))}
       </tbody>
       </table>
       </>

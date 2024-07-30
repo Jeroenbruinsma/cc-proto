@@ -18,5 +18,14 @@
             "duration": "Duration",
             "priority": "Priority"
         }
+    },
+    "alarms": {
+            "priorities": {
+                "diagnostic" : "Diagnostic" ,
+                "low" : "Low" ,
+                "medium" : "Medium" ,
+                "high" : "High" ,
+                "critical": "Critical"
+           }    
     }
 }

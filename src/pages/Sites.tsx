@@ -7,10 +7,14 @@ import TableRow from "../components/Table/TableRow";
 import { site } from "../types/sites";
 import axios from "axios";
 import { backendUrl } from "../config";
+import {onRowClick} from "../components/Table/TableRow"
+import { useNavigate } from "react-router-dom";
+import { columnType } from "../types/table";
 
 
 const SitesPage: FunctionComponent = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   const [sites, set_sites] = useState<undefined | site[] >(undefined)
   const getSites = async () => {
@@ -31,14 +35,18 @@ const SitesPage: FunctionComponent = () => {
     getSites()
   }, [])
 
-  
-  const columns = [
-    { colName: "Site name", dataKey: "SiteLocation__c", autocapitalize: true},
-    { colName: "Operator", dataKey: "Account.Name"},
-    { colName: "SLA status", dataKey: "ServiceAgreement__c", autocapitalize: true},
-    { colName: "Data consent", dataKey: "cc_dataConsent", autocapitalize: true},
-    { colName: "Site health", dataKey: "cc_siteHealth"}
+  const columns: columnType[] = [
+    { colName: t("table.columnNames.siteName"), dataKey: "SiteLocation__c", autocapitalize: true},
+    { colName: t("table.columnNames.operator"), dataKey: "Account.Name"},
+    { colName: t("table.columnNames.slaStatus"), dataKey: "ServiceAgreement__c", autocapitalize: true},
+    { colName: t("table.columnNames.dataConsent"), dataKey: "cc_dataConsent", autocapitalize: true},
+    { colName: t("table.columnNames.siteHealth"), dataKey: "cc_siteHealth"}
   ]
+
+  const onRowClick:onRowClick = {
+    onClick: (e:any) => navigate(`/sites/${e}`) ,
+    dataKey: "SiteLocation__c",
+  }
 
   return (
     <>
@@ -47,7 +55,7 @@ const SitesPage: FunctionComponent = () => {
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
             {/* @ts-ignore */}
             <SubsectionHeader title={t("siteOverview")} center/>
-            <Table tableRowElement={TableRow} tableColumns={columns} tableData={sites}/>
+            <Table tableRowElement={TableRow} tableColumns={columns} tableData={sites} onRowClick={onRowClick}/>
         </div>
       </div>
     </>
