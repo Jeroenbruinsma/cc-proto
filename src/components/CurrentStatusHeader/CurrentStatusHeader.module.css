@@ -130,7 +130,7 @@
   gap: var(--gap-3xs);
 }
 .metadatainfoboxParent {
-  width: 254px;
+  width: 270px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
