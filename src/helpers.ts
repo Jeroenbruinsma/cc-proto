@@ -8,6 +8,13 @@ export const capitalizeFirstLetter = (text: string): string => {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 };
 
+export const onlyYear = (input: string): string => {
+  if (!input) return "";
+  const d = new Date(input)
+  d.getFullYear()
+  return `${d.getFullYear()}`
+};
+
 export const alarmPrioParser: cellDataParserFunctions = (priority: number, t: TFunction): string => {
   if (priority === 0) return t("alarms.priorities.diagnostic");
   if (priority === 1) return t("alarms.priorities.low");
