@@ -57,7 +57,7 @@ if(!metaData || !stateInfo) return "loading"
             <div className={styles.metaDataInfo}>Country: {capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")}</div>
             <div className={styles.metaDataInfo}>Warranty: { parseWarranty(metaData?.cc__WarrantyStatus, t) || "-"}</div>
             <div className={styles.metaDataInfo}>Commissioned : {onlyYear(metaData?.WarrantyStartingDate__c || "-")}</div>
-            <div className={styles.metaDataInfo}>Site Location : {capitalizeFirstLetter(metaData?.SiteLocation__c || "-")}</div>
+            <div className={styles.metaDataInfo}>Site Location : {metaData?.SiteLocation__c || "-"}</div>
 
           </div>
         </div>
