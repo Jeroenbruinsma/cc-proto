@@ -3,8 +3,8 @@ import moment from "moment";
 import { cellDataParserFunctions } from "./types/table";
 import { warranttStatus } from "./types/equipment";
 
-export const capitalizeFirstLetter = (text: string): string => {
-  if (!text) return "";
+export const capitalizeFirstLetter = (text: string): string | undefined => {
+  if (!text) return undefined;
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 };
 
@@ -14,6 +14,11 @@ export const onlyYear = (input: string): string => {
   d.getFullYear()
   return `${d.getFullYear()}`
 };
+
+export const yesOrNo = (input: boolean, t: TFunction) => {
+  if(input === true) return t("basics.yes")
+  if(input === false) return t("basics.no")  
+}
 
 export const alarmPrioParser: cellDataParserFunctions = (priority: number, t: TFunction): string => {
   if (priority === 0) return t("alarms.priorities.diagnostic");
