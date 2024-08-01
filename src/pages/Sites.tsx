@@ -10,6 +10,7 @@ import { backendUrl } from "../config";
 import {onRowClick} from "../components/Table/TableRow"
 import { useNavigate } from "react-router-dom";
 import { columnType } from "../types/table";
+import { yesOrNo } from "../helpers";
 
 
 const SitesPage: FunctionComponent = () => {
@@ -22,7 +23,7 @@ const SitesPage: FunctionComponent = () => {
       const url = `${backendUrl}/sites`
       const res = await axios.get(url)
       if(res?.data){
-        set_sites(res?.data.map( (d:any) => { return {...d, cc_dataConsent: "Yes", cc_siteHealth: "-" }}))
+        set_sites(res?.data.map( (d:any) => { return {...d, cc__siteHealth: "-" }}))
       }else{
         set_sites(undefined)
       }
@@ -39,8 +40,8 @@ const SitesPage: FunctionComponent = () => {
     { colName: t("table.columnNames.siteName"), dataKey: "SiteLocation__c", autocapitalize: true},
     { colName: t("table.columnNames.operator"), dataKey: "Account.Name"},
     { colName: t("table.columnNames.slaStatus"), dataKey: "ServiceAgreement__c", autocapitalize: true},
-    { colName: t("table.columnNames.dataConsent"), dataKey: "cc_dataConsent", autocapitalize: true},
-    { colName: t("table.columnNames.siteHealth"), dataKey: "cc_siteHealth"}
+    { colName: t("table.columnNames.dataConsent"), dataKey: "cc__dataConsent", autocapitalize: true, parsers: [yesOrNo]},
+    { colName: t("table.columnNames.siteHealth"), dataKey: "cc__siteHealth"}
   ]
 
   const onRowClick:onRowClick = {
