@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import SubsectionHeader from "../SubsectionHeader/SubsectionHeader";
 import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import styles from "./CurrentStatusHeader.module.css";
-import { capitalizeFirstLetter, parseWarranty } from "../../helpers";
+import { capitalizeFirstLetter, onlyYear, parseWarranty } from "../../helpers";
 import moment from 'moment-timezone'
 import { equipmentDataType, stateType, warranttStatus } from "../../types/equipment";
 import { useTranslation } from "react-i18next";
@@ -56,6 +56,8 @@ if(!metaData || !stateInfo) return "loading"
             <div className={styles.metaDataInfo}>Customer: {metaData?.["Account.Name"] || "-"}</div>
             <div className={styles.metaDataInfo}>Country: {capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")}</div>
             <div className={styles.metaDataInfo}>Warranty: { parseWarranty(metaData?.cc__WarrantyStatus, t) || "-"}</div>
+            <div className={styles.metaDataInfo}>Commissioned : {onlyYear(metaData?.WarrantyStartingDate__c || "-")}</div>
+            <div className={styles.metaDataInfo}>Site Location : {metaData?.SiteLocation__c || "-"}</div>
 
           </div>
         </div>
