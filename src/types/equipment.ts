@@ -12,6 +12,7 @@ export interface equipmentDataType {
   WarrantyStartingDate__c: string;
   EndDateOfServiceAgreement__c: string;
   cc__WarrantyStatus: warranttStatus
+  cc__dataConsent: boolean
 }
 
 export type warranttStatus = "warranty_active" | "warranty_expired"

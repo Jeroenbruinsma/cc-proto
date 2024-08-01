@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import SubsectionHeader from "../SubsectionHeader/SubsectionHeader";
 import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import styles from "./CurrentStatusHeader.module.css";
-import { capitalizeFirstLetter, onlyYear, parseWarranty } from "../../helpers";
+import { capitalizeFirstLetter, onlyYear, parseWarranty, yesOrNo } from "../../helpers";
 import moment from 'moment-timezone'
 import { equipmentDataType, stateType, warranttStatus } from "../../types/equipment";
 import { useTranslation } from "react-i18next";
@@ -53,9 +53,10 @@ if(!metaData || !stateInfo) return "loading"
             <div className={styles.metaDataInfo}>Installation yr: {metaData?.YearOfInstallation__c || "-"}</div>
             <div className={styles.metaDataInfo}>SLA Active: {capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")}</div>
             <div className={styles.metaDataInfo}>SLA end date: {capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")}</div>
+            <div className={styles.metaDataInfo}>Data consent: {capitalizeFirstLetter( yesOrNo(metaData?.cc__dataConsent, t) || "-")}</div>
             <div className={styles.metaDataInfo}>Customer: {metaData?.["Account.Name"] || "-"}</div>
             <div className={styles.metaDataInfo}>Country: {capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")}</div>
-            <div className={styles.metaDataInfo}>Warranty: { parseWarranty(metaData?.cc__WarrantyStatus, t) || "-"}</div>
+            <div className={styles.metaDataInfo}>Warranty: { metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) : "-"}</div>
             <div className={styles.metaDataInfo}>Commissioned : {onlyYear(metaData?.WarrantyStartingDate__c || "-")}</div>
             <div className={styles.metaDataInfo}>Site Location : {metaData?.SiteLocation__c || "-"}</div>
 
