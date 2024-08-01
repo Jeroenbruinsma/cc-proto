@@ -11,7 +11,10 @@ export interface equipmentDataType {
   "Account.Name": string;
   WarrantyStartingDate__c: string;
   EndDateOfServiceAgreement__c: string;
+  cc__WarrantyStatus: warranttStatus
 }
+
+export type warranttStatus = "warranty_active" | "warranty_expired"
 export interface statesResponseType {
   succes: boolean;
   unlocode: string;
