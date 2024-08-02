@@ -4,7 +4,7 @@ import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import styles from "./CurrentStatusHeader.module.css";
 import { capitalizeFirstLetter, onlyYear, parseWarranty, yesOrNo } from "../../helpers";
 import moment from 'moment-timezone'
-import { equipmentDataType, stateType, warranttStatus } from "../../types/equipment";
+import { equipmentDataType, stateType } from "../../types/equipment";
 import { useTranslation } from "react-i18next";
 
 
