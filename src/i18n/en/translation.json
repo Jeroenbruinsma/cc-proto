@@ -9,7 +9,7 @@
     "table": {
         "columnNames": {
             "siteName": "Site name",
-            "operator": "Operator",
+            "operator": "Customer",
             "slaStatus": "SLA status",
             "dataConsent": "Data consent",
             "siteHealth": "Site health",
