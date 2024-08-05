@@ -54,6 +54,7 @@ if(!metaData || !stateInfo) return "loading"
             <div className={styles.metaDataInfo}>SLA Active: {capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")}</div>
             <div className={styles.metaDataInfo}>SLA end date: {capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")}</div>
             <div className={styles.metaDataInfo}>Data consent: {capitalizeFirstLetter( yesOrNo(metaData?.cc__dataConsent, t) || "-")}</div>
+            {/* Make sure we use the translation from table.columnNames.operator! to match sites overview */}
             <div className={styles.metaDataInfo}>Customer: {metaData?.["Account.Name"] || "-"}</div>
             <div className={styles.metaDataInfo}>Country: {capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")}</div>
             <div className={styles.metaDataInfo}>Warranty: { metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) : "-"}</div>
