@@ -24,9 +24,9 @@ function UnitDetailsPage() {
   //TODO here ANY!
   const getMetaData = async (eqpmentId:string) => {
     try{
-      const url = `${backendUrl}/equipment-meta?serial=${eqpmentId}`
+      const url = `${backendUrl}/equipment/meta?serial=${eqpmentId}`
       const res = await axios.get(url)
-      set_metaData(res?.data)
+      set_metaData(res?.data?.data)
     }
     catch(err){
       console.log("err",err)
@@ -34,7 +34,7 @@ function UnitDetailsPage() {
   }
   const getLastState = async (eqpmentId:string) => {
     try{
-      const url = `${backendUrl}/serial-to-state?serial=${eqpmentId}`
+      const url = `${backendUrl}/equipment/serial-to-state?serial=${eqpmentId}`
       const res = await axios.get(url)
       if(res?.data?.states?.length > 0){
         set_stateData(res?.data?.states[0])
@@ -48,7 +48,7 @@ function UnitDetailsPage() {
   }
   const getAlarmData = async (eqpmentId:string) => {
     try{
-      const url = `${backendUrl}/serial-to-alarm?serial=${eqpmentId}`
+      const url = `${backendUrl}/equipment/serial-to-alarm?serial=${eqpmentId}`
       const res = await axios.get(url)
       console.log("res data", res?.data)
 
