@@ -34,8 +34,8 @@ function App() {
     <>
     {!connectionToKiv ? <PlatformMessage msg={t("error.platform.backendConnection")}/> : null}
       <Routes>
-        <Route path="/sites" Component={Sites} />
         <Route path="/sites/:id" Component={UnitsPage} />
+        <Route path="/sites" Component={Sites} />
         <Route path="/unit/:id" Component={UnitDetailsPage} />
         <Route path="/login" Component={Login} />
         <Route path="/" Component={Login} />
