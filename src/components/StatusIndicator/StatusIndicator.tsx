@@ -1,25 +1,24 @@
 import { FunctionComponent } from "react";
 import styles from "./StatusIndicator.module.css";
+import IndicatorBoll from './indicatorbolljumbo.svg';
 
 export type StatusIndicatorType = {
   className?: string;
   text: string
-  subtext: string 
+  subtext: string
+  indicatorBollColor: string;
 };
 
 const StatusIndicator: FunctionComponent<StatusIndicatorType> = ({
   className = "",
   text,
-  subtext
+  subtext,
+  indicatorBollColor
 }) => {
   return (
     <div className={[styles.statusindicator, className].join(" ")}>
-      <img
-        className={styles.indicatorbolljumboIcon}
-        loading="lazy"
-        alt=""
-        src="/indicatorbolljumbo.svg"
-      />
+      {/* @ts-ignore */}
+      <IndicatorBoll fill={indicatorBollColor}/>
       <div className={styles.textframe}>
         <b className={styles.charging}>{text}</b>
         <div className={styles.parkedSince48}>{subtext}</div>
