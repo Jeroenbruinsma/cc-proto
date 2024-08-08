@@ -16,6 +16,21 @@ export type CurrentStatusHeaderType = {
   stateInfo: stateType | undefined
 };
 
+interface MetaElementProps {
+  topic: string
+  value: string | number | undefined
+
+}
+const MetaElement : FunctionComponent<MetaElementProps> = ({topic, value}) => {
+  return (
+    <tr  className={styles.MetaElement} >
+      <td style={{width: "120px"}}>{topic}</td>
+      <td>:</td>
+      <td  style={{width: "200px"}}>{value}</td>
+    </tr>
+  )
+} 
+
 const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   className = "",
   equipmentName,
@@ -85,17 +100,18 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
           </div>
           <div className={styles.metadatainfoboxParent}>
             <div className={styles.metadatainfobox}>
-              <div className={styles.metaDataInfo}>Serial nr: {metaData?.SerialNumber || "-"}</div>
-              <div className={styles.metaDataInfo}>Installation yr: {metaData?.YearOfInstallation__c || "-"}</div>
-              <div className={styles.metaDataInfo}>SLA Active: {capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")}</div>
-              <div className={styles.metaDataInfo}>SLA end date: {capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")}</div>
-              <div className={styles.metaDataInfo}>Data consent: {capitalizeFirstLetter( yesOrNo(metaData?.cc__dataConsent, t) || "-")}</div>
-              {/* Make sure we use the translation from table.columnNames.operator! to match sites overview */}
-              <div className={styles.metaDataInfo}>Customer: {metaData?.["Account.Name"] || "-"}</div>
-              <div className={styles.metaDataInfo}>Country: {capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")}</div>
-              <div className={styles.metaDataInfo}>Warranty: { metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) : "-"}</div>
-              <div className={styles.metaDataInfo}>Commissioned : {onlyYear(metaData?.WarrantyStartingDate__c || "-")}</div>
-              <div className={styles.metaDataInfo}>Site Location : {metaData?.SiteLocation__c || "-"}</div>
+            <table>
+              <MetaElement topic={t("table.columnNames.serialNo")} value={metaData?.SerialNumber || "-"} />
+              <MetaElement topic={t("table.columnNames.installationYear")} value={metaData?.YearOfInstallation__c || "-"} />
+              <MetaElement topic={t("table.columnNames.slaActive")} value={capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")} />
+              <MetaElement topic={t("table.columnNames.slaEnd")} value={capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")} />
+              <MetaElement topic={t("table.columnNames.dataConsent")} value={capitalizeFirstLetter( yesOrNo(metaData?.cc__dataConsent, t) || "-")} />
+              <MetaElement topic={t("table.columnNames.operator")} value={metaData?.["Account.Name"] || "-"} />
+              <MetaElement topic={t("table.columnNames.country")} value={capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")} />
+              <MetaElement topic={t("table.columnNames.warranty")} value={ metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) :"-"} />
+              <MetaElement topic={t("table.columnNames.installationYear")} value={onlyYear(metaData?.WarrantyStartingDate__c || "-")} />
+              <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.SiteLocation__c || "-"} />
+              </table>
 
             </div>
           </div>

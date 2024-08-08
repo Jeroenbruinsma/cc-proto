@@ -11,12 +11,19 @@
             "siteName": "Site name",
             "operator": "Customer",
             "slaStatus": "SLA status",
+            "slaEnd": "SLA end date",
+            "slaActive": "SLA Active",
             "dataConsent": "Data consent",
             "siteHealth": "Site health",
             "dateTime": "Date/time",
             "alarm": "Alarm",
             "duration": "Duration",
-            "priority": "Priority"
+            "priority": "Priority",
+            "country": "Country",
+            "warranty": "Warranty",
+            "commissioned": "Commissioned" ,
+            "installationYear": "Installation yr",
+            "serialNo":"Serial nr"
         }
     },
     "alarms": {
