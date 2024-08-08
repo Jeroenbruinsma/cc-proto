@@ -1,6 +1,7 @@
 import { TFunction } from "i18next"
 import { alarm } from "./equipment"
 import { site } from "./sites"
+import { unit } from "./unit"
 
 export interface columnType extends cellType{
     colName: string 
@@ -9,7 +10,7 @@ export interface columnType extends cellType{
   }
   
   export interface cellType{
-    dataKey:  keyof alarm | keyof site
+    dataKey:  keyof alarm | keyof site | keyof unit
     autocapitalize?: boolean
 }
 

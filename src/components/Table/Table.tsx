@@ -5,11 +5,12 @@ import { site } from "../../types/sites";
 import { columnType } from "../../types/table";
 import { TableRowType, onRowClick } from "./TableRow";
 import { alarm } from "../../types/equipment";
+import { unit } from "../../types/unit";
 
 export type TableType = {
   tableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
-  tableData: site[] | alarm[]|  undefined
+  tableData: site[] | alarm[] | unit[] | undefined
   onRowClick?: onRowClick
 };
 

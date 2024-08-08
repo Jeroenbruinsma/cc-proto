@@ -1,5 +1,6 @@
 {
     "siteOverview": "Site overview",
+    "siteUnits" : "overview",
     "activeAlarmList": "Active alarms",
     "error": {
         "platform": {
@@ -23,7 +24,10 @@
             "warranty": "Warranty",
             "commissioned": "Commissioned" ,
             "installationYear": "Installation yr",
-            "serialNo":"Serial nr"
+            "serialNo":"Serial nr",
+            "equipmentName": "Equipment Name",
+            "equipmentType": "Equipment Type" ,
+            "status": "Status"
         }
     },
     "alarms": {
