@@ -1,5 +1,7 @@
+import { coreSystemType } from "./sites";
+
 export interface equipmentDataType {
-  CoreSystem__c: string;
+  CoreSystem__c: coreSystemType;
   SiteLocation__c: string;
   YearOfInstallation__c: number;
   WarrantyEndingDate__c: string;
@@ -42,3 +44,9 @@ export interface alarm {
   cleared: null | Date;
   duration: number
 }
+
+export type colorCodingType = "indicatorGreen" | "indicatorBlue" | "indicatorGray" | "indicatorYellow" | "indicatorRed"
+
+export type colorCodingMappingType = {colorName: colorCodingType, colorHex: string}
+
+export type stateColormapping = {stateNumber: number, stateName: string, stateColor: colorCodingMappingType['colorName'], equipmentType: coreSystemType}
