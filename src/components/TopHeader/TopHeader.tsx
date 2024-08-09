@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import styles from "./TopHeader.module.css";
 import { useNavigate } from "react-router-dom";
+import Logo from '../../assets/cavotec-logo-galaxy.svg'
 
 export type TopHeaderType = {
   className?: string;
@@ -12,13 +13,9 @@ const TopHeader: FunctionComponent<TopHeaderType> = ({ className = "", showImage
   return (
     <section className={[styles.topheader, className].join(" ")}>
       <div className={styles.homeiconv2Parent} >
-        <img
-          className={styles.homeiconv2}
-          loading="lazy"
-          alt=""
-          src="/homeiconv2@2x.png"
-          onClick={()=> navigate("/sites")}
-        />
+        {/*
+        //@ts-ignore */}
+        <Logo fill="#D9D9D9" height="4vh" onClick={()=> navigate("/sites")}/>
         <div className={styles.magnifierParent}>
           <img
             className={styles.magnifierIcon}
