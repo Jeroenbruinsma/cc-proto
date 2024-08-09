@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import PlatformMessage from "./components/PlatformMessage/PlatformMessage.tsx";
 import { useTranslation } from "react-i18next";
 import { backendUrl } from "./config.ts";
+import NotFound from "./pages/NotFound.tsx";
 
 function App() {
   
@@ -39,6 +40,7 @@ function App() {
         <Route path="/unit/:id" Component={UnitDetailsPage} />
         <Route path="/login" Component={Login} />
         <Route path="/" Component={Login} />
+        <Route path="*" Component={NotFound}/>
       </Routes>
     </>
   );
