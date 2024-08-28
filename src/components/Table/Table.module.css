@@ -19,6 +19,9 @@
     border-width: thin;
     border-color: #dedfe1;
 }
+.tableBody tr:nth-child(even) {
+  background-color: #77a1e928;
+}
 .tableData{
   margin: 2em;
   height: 4em;
