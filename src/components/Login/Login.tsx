@@ -12,6 +12,7 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
   const navigate = useNavigate()
   return (
     <div className={[styles.login, className].join(" ")}>
+        <img className={styles.logo} src="/cavotec_logo.png"/>
       <h1 className={styles.cavotecConnectInsights}>
         Cavotec Connect Insights
       </h1>
