@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { backendUrl } from "./config.ts";
 import NotFound from "./pages/NotFound.tsx";
 import CustomersPage from "./pages/Customers.tsx";
+import CustomersDetailPage from "./pages/CustomersDetailPage.tsx";
 
 function App() {
   
@@ -39,6 +40,7 @@ function App() {
         <Route path="/sites/:id" Component={UnitsPage} />
         <Route path="/sites" Component={Sites} />
         <Route path="/customers" Component={CustomersPage} />
+        <Route path="/customers/:id" Component={CustomersDetailPage} />
         <Route path="/unit/:id" Component={UnitDetailsPage} />
         <Route path="/login" Component={Login} />
         <Route path="/" Component={Login} />

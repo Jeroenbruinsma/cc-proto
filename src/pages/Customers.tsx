@@ -8,14 +8,14 @@ import { customer } from "../types/sites";
 import axios from "axios";
 import { backendUrl } from "../config";
 import {onRowClick} from "../components/Table/TableRow"
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { columnType } from "../types/table";
 import { yesOrNo } from "../helpers";
 
 
 const CustomersPage: FunctionComponent = () => {
   const { t } = useTranslation()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [sites, set_sites] = useState<undefined | customer[] >(undefined)
   const getCustomers = async () => {
@@ -43,7 +43,7 @@ const CustomersPage: FunctionComponent = () => {
   ]
 
   const onRowClick:onRowClick = {
-    onClick: (e:any) => console.log("todo navigate to ", e),//navigate(`/customer/${e}`) ,
+    onClick: (e:any) => navigate(`/customers/${e}`) ,
     dataKey: "Account.Id",
   }
 
