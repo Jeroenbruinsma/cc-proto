@@ -17,7 +17,8 @@ export const onlyYear = (input: string): string => {
 
 export const yesOrNo = (input: boolean, t: TFunction) => {
   if(input === true) return t("basics.yes")
-  if(input === false) return t("basics.no")  
+  if(input === false) return t("basics.no")
+  return "-"  //default for unknown 
 }
 
 export const alarmPrioParser: cellDataParserFunctions = (priority: number, t: TFunction): string => {

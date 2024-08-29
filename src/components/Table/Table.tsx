@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import styles from "./Table.module.css";
 import React from "react";
-import { site } from "../../types/sites";
+import { customer, site } from "../../types/sites";
 import { columnType } from "../../types/table";
 import { TableRowType, onRowClick } from "./TableRow";
 import { alarm } from "../../types/equipment";
@@ -10,7 +10,7 @@ import { unit } from "../../types/unit";
 export type TableType = {
   tableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
-  tableData: site[] | alarm[] | unit[] | undefined
+  tableData: site[] | alarm[] | unit[] | customer[] |undefined
   onRowClick?: onRowClick
 };
 

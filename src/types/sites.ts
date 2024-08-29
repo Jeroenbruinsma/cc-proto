@@ -6,5 +6,11 @@ export interface site{
     cc__dataConsent: string
     cc__siteHealth: string
 }
+export interface customer{
+    "Account.Name": string
+    "Account.Id": string
+    cc__dataConsent: string
+    cc__unit_count: number
+}
 
 export type coreSystemType = 'AutomatedMooring' | 'ShorePower' 

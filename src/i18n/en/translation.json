@@ -1,5 +1,6 @@
 {
     "siteOverview": "Site overview",
+    "customersOverview": "Customers overview",
     "siteUnits" : "overview",
     "activeAlarmList": "Active alarms",
     "error": {
@@ -27,7 +28,8 @@
             "serialNo":"Serial nr",
             "equipmentName": "Equipment Name",
             "equipmentType": "Equipment Type" ,
-            "status": "Status"
+            "status": "Status",
+            "unitCount": "# units "
         }
     },
     "alarms": {
