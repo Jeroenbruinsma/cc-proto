@@ -36,7 +36,7 @@ const UnitsPage: FunctionComponent = () => {
     if(params?.id){
       getUnitsFromSite(params?.id)
     }
-  }, [])
+  }, [params?.id])
   
   const columns: columnType[] = [
     { colName: t("table.columnNames.serialNo"), dataKey: "SerialNumber" },
