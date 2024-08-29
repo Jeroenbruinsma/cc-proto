@@ -11,7 +11,7 @@ export const capitalizeFirstLetter = (text: string): string | undefined => {
 export const onlyYear = (input: string): string => {
   if (!input) return "";
   const d = new Date(input)
-  d.getFullYear()
+  if( isNaN(d.getFullYear() )) return "-"
   return `${d.getFullYear()}`
 };
 

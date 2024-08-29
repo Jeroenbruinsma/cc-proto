@@ -82,7 +82,6 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   }
 
 
-  if(!metaData || !stateInfo) return "loading"
     return (
       <section className={[styles.currentstatusheader, className].join(" ")}>
         <div className={styles.statusContent}>
