@@ -39,7 +39,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
 }) => {
   const {t} = useTranslation()
 
-  const parseDate = (state: stateType)=> {
+  const parseDate = (state: stateType | undefined)=> {
     if(!state?.time) return ""
     if(!state?.state_start) return ""
     
@@ -75,7 +75,8 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
    ]
   
 
-  const stateToColor = (state:number, eqp: coreSystemType) : string => {
+  const stateToColor = (state:number | undefined, eqp: coreSystemType | undefined ) : string => {
+    if(!state && !eqp) return colors.filter(c => c.colorName === "indicatorRed")?.[0]?.colorHex 
     const color = stateColorMapping.filter(cm => state === cm.stateNumber  && eqp === cm.equipmentType)
     return colors.filter(c => c.colorName === color?.[0]?.stateColor)?.[0]?.colorHex ||
     colors.filter(c => c.colorName === "indicatorRed")?.[0]?.colorHex 
@@ -94,7 +95,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
         <SubsectionHeader title="Current status" />
         <div className={styles.currentinfo}>
           <div className={styles.duoindicator}>
-            <StatusIndicator text={stateInfo?.state_str || "" } subtext={parseDate(stateInfo)} indicatorBollColor={stateToColor(stateInfo?.state, metaData?.CoreSystem__c)}/>
+            <StatusIndicator text={stateInfo?.state_str || "-" } subtext={parseDate(stateInfo)} indicatorBollColor={stateToColor(stateInfo?.state, metaData?.CoreSystem__c)}/>
             {/* <StatusIndicator text="Scheduled Maintenace" subtext="Due for inspection"/> */}
           </div>
           <div className={styles.metadatainfoboxParent}>
@@ -104,7 +105,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
               <MetaElement topic={t("table.columnNames.installationYear")} value={metaData?.YearOfInstallation__c || "-"} />
               <MetaElement topic={t("table.columnNames.slaActive")} value={capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")} />
               <MetaElement topic={t("table.columnNames.slaEnd")} value={capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")} />
-              <MetaElement topic={t("table.columnNames.dataConsent")} value={capitalizeFirstLetter( yesOrNo(metaData?.cc__dataConsent, t) || "-")} />
+              <MetaElement topic={t("table.columnNames.dataConsent")} value={capitalizeFirstLetter( metaData?.cc__dataConsent ? yesOrNo(metaData?.cc__dataConsent, t)  || "-" : "-")} />
               <MetaElement topic={t("table.columnNames.operator")} value={metaData?.["Account.Name"] || "-"} />
               <MetaElement topic={t("table.columnNames.country")} value={capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")} />
               <MetaElement topic={t("table.columnNames.warranty")} value={ metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) :"-"} />

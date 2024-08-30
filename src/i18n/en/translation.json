@@ -43,7 +43,8 @@
     },
     "warranty": {
         "warranty_active": "Active",
-        "warranty_expired": "Expired"
+        "warranty_expired": "Expired",
+        "warranty_unknown": "-"
     },
     "basics": {
         "yes": "yes",

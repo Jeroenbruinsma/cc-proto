@@ -20,8 +20,8 @@ const StatusIndicator: FunctionComponent<StatusIndicatorType> = ({
       {/* @ts-ignore */}
       <IndicatorBoll fill={indicatorBollColor}/>
       <div className={styles.textframe}>
-        <b className={styles.charging}>{text}</b>
-        <div className={styles.parkedSince48}>{subtext}</div>
+        <b className={styles.charging}>{text || "-"}</b>
+        <div className={styles.parkedSince48}>{subtext || "-"}</div>
       </div>
     </div>
   );
