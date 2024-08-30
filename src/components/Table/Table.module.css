@@ -19,7 +19,7 @@
     border-width: thin;
     border-color: #dedfe1;
 }
-.tableBody tr:nth-child(even) {
+.tableBody tr:hover{
   background-color: #77a1e928;
 }
 .tableData{
