@@ -10,6 +10,7 @@ import TableRow from "../components/Table/TableRow";
 import {onRowClick} from "../components/Table/TableRow";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { unit } from "../types/unit";
+import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 
 
 const UnitsPage: FunctionComponent = () => {
@@ -68,7 +69,9 @@ const UnitsPage: FunctionComponent = () => {
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
             {/* @ts-ignore */}
             <SubsectionHeader title={ `${params?.id} - ${t("siteUnits")}`} center/>
-            <Table tableRowElement={TableRow} tableColumns={columns} tableData={units} onRowClick={onRowClick}/>
+            { units ? 
+            <Table tableRowElement={TableRow} tableColumns={columns} tableData={units} onRowClick={onRowClick}/> :
+            <LoadingIndicator/> }
         </div>
       </div>
     </>
