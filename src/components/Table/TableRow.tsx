@@ -27,7 +27,8 @@ const TableRow: FunctionComponent<TableRowType> = ({
     <>
       <tr className={styles.tableRow} onClick={ () => onRowClick?.onClick(  rowData?.[onRowClick.dataKey])}>
         {columns.map((c,i) => {
-          const value = c?.parsers ? c?.parsers[0](rowData?.[c.dataKey], t) : rowData?.[c.dataKey]
+          // parsers below is weird, only the first parser is applied
+          const value = c?.parsers ? c?.parsers?.[0](rowData?.[c?.dataKey], t) : rowData?.[c.dataKey]
           if(c?.cellElement){
             return <td key={i}>{React.createElement(c?.cellElement, {c: c})}</td>
           }

@@ -15,6 +15,10 @@ export const onlyYear = (input: string): string => {
   return `${d.getFullYear()}`
 };
 
+export const jsonSerializer = (anything: any): string =>{
+  return JSON.stringify(anything)
+}
+
 export const yesOrNo = (input: boolean, t: TFunction) => {
   if(input === true) return t("basics.yes")
   if(input === false) return t("basics.no")

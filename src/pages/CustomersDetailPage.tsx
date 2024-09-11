@@ -63,6 +63,7 @@ const CustomersDetailPage: FunctionComponent = () => {
   ]
 
   const onRowClick:onRowClick = {
+    // onClick: (e:any) => navigate(`/sites/${e}`) ,
     onClick: (e:any) => navigate(`/unit/${encodeURIComponent(e)}`) ,
     dataKey: "SerialNumber",
   }
@@ -72,7 +73,6 @@ const CustomersDetailPage: FunctionComponent = () => {
       <TopHeader showImage={true} />
       <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
-            {/* @ts-ignore */}
             <SubsectionHeader title={ `${customer?.["Account.Name"]} - ${t("siteUnits")}`} center/>
             <Table tableRowElement={TableRow} tableColumns={columns} tableData={units} onRowClick={onRowClick}/>
         </div>

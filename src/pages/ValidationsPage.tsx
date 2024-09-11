@@ -1,0 +1,89 @@
+import { FunctionComponent, useEffect, useState } from "react";
+import TopHeader from "../components/TopHeader/TopHeader";
+import Table from "../components/Table/Table";
+import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
+import { useTranslation } from "react-i18next";
+import TableRow from "../components/Table/TableRow";
+import axios from "axios";
+import { backendUrl } from "../config";
+import {onRowClick} from "../components/Table/TableRow"
+import { useNavigate, useParams } from "react-router-dom";
+import { columnType } from "../types/table";
+import { yesOrNo} from "../helpers";
+import { validation } from "../types/validations";
+import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
+import KpiBox from "../components/KpiBox/KpiBox";
+import MetricBox from "../components/MetricBox/MetricBox";
+import ErrorBoundary from "../components/ErrorBoundry/ErrorBoundry";
+
+interface apiResponse{
+  items: validation[]
+  item_count: number
+  passed: number
+}
+
+const ValidationsPage: FunctionComponent = () => {
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const params = useParams()
+
+
+  const [sites, set_sites] = useState<undefined | apiResponse >(undefined)
+  const getCustomers = async (type: string) => {
+    try{
+      const url = `${backendUrl}/validator/${type}`
+      const res = await axios.get(url)
+      console.log("d", res?.data)
+      if(res?.data){
+        set_sites(res?.data)
+      }else{
+        set_sites(undefined)
+      }
+    }
+    catch(err){
+      console.log("err",err)
+    }
+  }
+  useEffect(()=> {
+    if(params?.id){
+      getCustomers(params?.id)
+    }else{
+      set_sites(undefined)
+    }
+    
+  }, [params?.id])
+
+  const columns: columnType[] = [
+    { colName: "OBJECT ID", dataKey: "id"},
+    { colName: "sfdcObjectType", dataKey: "sfdcObjectType", autocapitalize: true},
+    { colName: "object_validation_result PASSED", dataKey: "object_validation_result",  parsers: [yesOrNo]},
+  ]
+
+  const onRowClick:onRowClick = {
+    onClick: (e:any) => navigate(`/validationdetails/${e}`) ,
+    dataKey: "id",
+  }
+
+  return (
+    <>
+      <TopHeader showImage={true} />
+      <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
+        	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
+            <SubsectionHeader title={t("validationsPage")} center/>
+            {!sites ? 
+              <LoadingIndicator/> : 
+              <Table tableRowElement={TableRow} tableColumns={columns} tableData={sites?.items} onRowClick={onRowClick}/>
+            }
+            <ErrorBoundary>
+            <KpiBox>
+              <MetricBox metricValue={`${sites?.item_count}`} unitAvailability='total item Count' className=""/>
+              <MetricBox metricValue={`${sites?.passed}`} unitAvailability='Items passed in current set' className=""/>
+            </KpiBox>
+            </ErrorBoundary>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ValidationsPage;

@@ -45,7 +45,7 @@ const SitesPage: FunctionComponent = () => {
   ]
 
   const onRowClick:onRowClick = {
-    onClick: (e:any) => navigate(`/sites/${e}`) ,
+    onClick: (e:any) => navigate(`/sites/{${encodeURIComponent(e)}`) ,
     dataKey: "SiteLocation__c",
   }
 

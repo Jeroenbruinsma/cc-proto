@@ -14,6 +14,11 @@ import { backendUrl } from "./config.ts";
 import NotFound from "./pages/NotFound.tsx";
 import CustomersPage from "./pages/Customers.tsx";
 import CustomersDetailPage from "./pages/CustomersDetailPage.tsx";
+import ValidationsPage from "./pages/ValidationsPage.tsx";
+import ValidationsDetailsPage from "./pages/ValidationsDetailsPage.tsx";
+import AdminPage from "./pages/AdminPage.tsx";
+import ValidationsTypePage from "./pages/ValidationsTypePage.tsx";
+import ErrorBoundary from "./components/ErrorBoundry/ErrorBoundry.tsx";
 
 function App() {
   
@@ -35,8 +40,13 @@ function App() {
   },[])
   return (
     <>
+    <ErrorBoundary>
     {!connectionToKiv ? <PlatformMessage msg={t("error.platform.backendConnection")}/> : null}
       <Routes>
+        <Route path="/admin" Component={AdminPage} />
+        <Route path="/validations" Component={ValidationsTypePage} />
+        <Route path="/validations/:id" Component={ValidationsPage} />
+        <Route path="/validationdetails/:id" Component={ValidationsDetailsPage} />
         <Route path="/sites/:id" Component={UnitsPage} />
         <Route path="/sites" Component={Sites} />
         <Route path="/customers" Component={CustomersPage} />
@@ -46,6 +56,7 @@ function App() {
         <Route path="/" Component={Login} />
         <Route path="*" Component={NotFound}/>
       </Routes>
+    </ErrorBoundary>
     </>
   );
 }

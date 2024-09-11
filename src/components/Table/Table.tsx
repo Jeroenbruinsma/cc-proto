@@ -6,11 +6,12 @@ import { columnType } from "../../types/table";
 import { TableRowType, onRowClick } from "./TableRow";
 import { alarm } from "../../types/equipment";
 import { unit } from "../../types/unit";
+import { validation, validationObject } from "../../types/validations";
 
 export type TableType = {
   tableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
-  tableData: site[] | alarm[] | unit[] | customer[] |undefined
+  tableData: site[] | alarm[] | unit[] | customer[] | validation[] | validationObject[] | undefined
   onRowClick?: onRowClick
 };
 

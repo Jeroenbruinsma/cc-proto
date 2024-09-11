@@ -1,6 +1,9 @@
 {
     "siteOverview": "Site overview",
     "customersOverview": "Customers overview",
+    "validationsPage": "MetaData validations",
+    "sfdcObjectNavigationPage": "Salesforce metaData validations",
+    "adminPage": "Admin Page",
     "siteUnits" : "overview",
     "activeAlarmList": "Active alarms",
     "error": {
