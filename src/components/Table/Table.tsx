@@ -7,6 +7,7 @@ import { TableRowType, onRowClick } from "./TableRow";
 import { alarm } from "../../types/equipment";
 import { unit } from "../../types/unit";
 import { validation, validationObject } from "../../types/validations";
+import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 
 export type TableType = {
   tableRowElement: React.ComponentType<TableRowType>
@@ -25,7 +26,8 @@ return ( <>
       </tr>
     </thead>
     <tbody className={styles.tableBody}>
-      {tableData?.map((s,i) => React.createElement(tableRowElement, {key:i, rowData: s, columns: tableColumns, onRowClick:onRowClick}))}
+      
+      {  !tableData ? <LoadingIndicator/> :  tableData?.map((s,i) => React.createElement(tableRowElement, {key:i, rowData: s, columns: tableColumns, onRowClick:onRowClick}))}
       </tbody>
       </table>
       </>
