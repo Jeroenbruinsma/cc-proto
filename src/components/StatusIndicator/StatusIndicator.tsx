@@ -6,7 +6,7 @@ export type StatusIndicatorType = {
   className?: string;
   text: string
   subtext: string
-  indicatorBollColor: Function;
+  indicatorBollColor: string;
 };
 
 const StatusIndicator: FunctionComponent<StatusIndicatorType> = ({

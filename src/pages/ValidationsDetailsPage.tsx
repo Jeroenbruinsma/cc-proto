@@ -55,7 +55,7 @@ const ValidationsDetailsPage: FunctionComponent = () => {
   ]
 
   const onRowClick:onRowClick = {
-    onClick: (e:any) => undefined, //navigate(`/validationdetails/${e}`) ,
+    onClick: (_:any) => undefined, //navigate(`/validationdetails/${e}`) ,
     dataKey: "Id",
   }
   

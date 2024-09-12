@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import styles from "./KpiBox.module.css";
 // import DoubleArrow from "../DoubleArrow/DoubleArrow";
 import { Children } from 'react';
