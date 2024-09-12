@@ -23,6 +23,21 @@ const ValidationsTypePage: FunctionComponent = () => {
             <li onClick={()=> navigate("/validations/workorder")}>Validation of WorkOrders TODO</li>
             <li onClick={()=> navigate("/validations/case")}>Validation of Cases TODO</li>
           </ul>
+            <h3>Quick links:</h3>
+          <ul>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YaqDLAAZ")}>Edoya (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000ZlJQbAAN")}>Halsa (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YaqE9AAJ")}>Kanestraum (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YamMuAAJ")}>Kinsarvik (Tower)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YamMVAAZ")}>Kvanndal (Tower)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YaqDkAAJ")}>Kvanne (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000ZkPTTAA3")}>Matre (Tower)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YaqDuAAJ")}>Rykkjem (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YaphoAAB")}>Sandvika (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000fpCL9AAM")}>Skanevik (Tower)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000ZlIijAAF")}>Utaker (Tower)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YamMfAAJ")}>Utne (Tower)</li> 
+          </ul>
         </div>
       </div>
   </>
