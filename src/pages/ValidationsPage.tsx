@@ -28,16 +28,15 @@ const ValidationsPage: FunctionComponent = () => {
   const params = useParams()
 
 
-  const [sites, set_sites] = useState<undefined | apiResponse >(undefined)
-  const getCustomers = async (type: string) => {
+  const [validationInfo, set_validationInfo] = useState<undefined | apiResponse >(undefined)
+  const getValidationInfo = async (type: string) => {
     try{
       const url = `${backendUrl}/validator/${type}`
       const res = await axios.get(url)
-      console.log("d", res?.data)
       if(res?.data){
-        set_sites(res?.data)
+        set_validationInfo(res?.data)
       }else{
-        set_sites(undefined)
+        set_validationInfo(undefined)
       }
     }
     catch(err){
@@ -46,9 +45,9 @@ const ValidationsPage: FunctionComponent = () => {
   }
   useEffect(()=> {
     if(params?.id){
-      getCustomers(params?.id)
+      getValidationInfo(params?.id)
     }else{
-      set_sites(undefined)
+      set_validationInfo(undefined)
     }
     
   }, [params?.id])
@@ -70,15 +69,17 @@ const ValidationsPage: FunctionComponent = () => {
       <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
             <SubsectionHeader title={t("validationsPage")} center/>
-            {!sites ? 
+            {!validationInfo ? 
               <LoadingIndicator/> : 
-              <Table tableRowElement={TableRow} tableColumns={columns} tableData={sites?.items} onRowClick={onRowClick}/>
+              <Table tableRowElement={TableRow} tableColumns={columns} tableData={validationInfo?.items} onRowClick={onRowClick}/>
             }
             <ErrorBoundary>
-            <KpiBox>
-              <MetricBox metricValue={`${sites?.item_count}`} unitAvailability='total item Count' className=""/>
-              <MetricBox metricValue={`${sites?.passed}`} unitAvailability='Items passed in current set' className=""/>
+            {!validationInfo ? 
+              <LoadingIndicator/> :  <KpiBox>
+              <MetricBox metricValue={`${validationInfo?.item_count}`} unitAvailability='total item Count' className=""/>
+              <MetricBox metricValue={`${validationInfo?.passed}`} unitAvailability='Items passed in current set' className=""/>
             </KpiBox>
+             }
             </ErrorBoundary>
         </div>
       </div>
