@@ -7,6 +7,7 @@ import moment from 'moment-timezone'
 import { colorCodingMappingType, equipmentDataType, stateColormapping, stateType } from "../../types/equipment";
 import { useTranslation } from "react-i18next";
 import { coreSystemType } from "../../types/sites";
+import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 
 
 export type CurrentStatusHeaderType = {
@@ -95,24 +96,27 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
         <SubsectionHeader title="Current status" />
         <div className={styles.currentinfo}>
           <div className={styles.duoindicator}>
-            <StatusIndicator text={stateInfo?.state_str || "-" } subtext={parseDate(stateInfo)} indicatorBollColor={stateToColor(stateInfo?.state, metaData?.CoreSystem__c)}/>
+          { !stateInfo ? <LoadingIndicator/> : 
+              <StatusIndicator text={stateInfo?.state_str || "-" } subtext={parseDate(stateInfo)} indicatorBollColor={stateToColor(stateInfo?.state, metaData?.CoreSystem__c)}/>
+          }
             {/* <StatusIndicator text="Scheduled Maintenace" subtext="Due for inspection"/> */}
           </div>
           <div className={styles.metadatainfoboxParent}>
             <div className={styles.metadatainfobox}>
-            <table>
-              <MetaElement topic={t("table.columnNames.serialNo")} value={metaData?.SerialNumber || "-"} />
-              <MetaElement topic={t("table.columnNames.installationYear")} value={metaData?.YearOfInstallation__c || "-"} />
-              <MetaElement topic={t("table.columnNames.slaActive")} value={capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")} />
-              <MetaElement topic={t("table.columnNames.slaEnd")} value={capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")} />
-              <MetaElement topic={t("table.columnNames.dataConsent")} value={capitalizeFirstLetter( metaData?.cc__dataConsent ? yesOrNo(metaData?.cc__dataConsent, t)  || "-" : "-")} />
-              <MetaElement topic={t("table.columnNames.operator")} value={metaData?.["Account.Name"] || "-"} />
-              <MetaElement topic={t("table.columnNames.country")} value={capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")} />
-              <MetaElement topic={t("table.columnNames.warranty")} value={ metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) :"-"} />
-              <MetaElement topic={t("table.columnNames.installationYear")} value={onlyYear(metaData?.WarrantyStartingDate__c || "-")} />
-              <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.SiteLocation__c || "-"} />
-              </table>
-
+            {!metaData ? <LoadingIndicator/> : 
+              <table>
+                <MetaElement topic={t("table.columnNames.serialNo")} value={metaData?.SerialNumber || "-"} />
+                <MetaElement topic={t("table.columnNames.installationYear")} value={metaData?.YearOfInstallation__c || "-"} />
+                <MetaElement topic={t("table.columnNames.slaActive")} value={capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")} />
+                <MetaElement topic={t("table.columnNames.slaEnd")} value={capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")} />
+                <MetaElement topic={t("table.columnNames.dataConsent")} value={capitalizeFirstLetter( metaData?.cc__dataConsent ? yesOrNo(metaData?.cc__dataConsent, t)  || "-" : "-")} />
+                <MetaElement topic={t("table.columnNames.operator")} value={metaData?.["Account.Name"] || "-"} />
+                <MetaElement topic={t("table.columnNames.country")} value={capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")} />
+                <MetaElement topic={t("table.columnNames.warranty")} value={ metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) :"-"} />
+                <MetaElement topic={t("table.columnNames.installationYear")} value={onlyYear(metaData?.WarrantyStartingDate__c || "-")} />
+                <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.SiteLocation__c || "-"} />
+                </table>
+              }
             </div>
           </div>
         </div>
