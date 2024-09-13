@@ -27,22 +27,23 @@ const ValidationsTypePage: FunctionComponent = () => {
           <ul>
             <li onClick={()=> navigate("/validationdetails/0011v00001kmAhUAAU")}>Fjord1 AS</li>
             <li onClick={()=> navigate("/validationdetails/0011v00003AZ7EQAA1")}>Boreal Sjø AS</li>
+            <li onClick={()=> navigate("/validationdetails/0011v00001oX1p0AAC")}>	Port of Turku Ltd.</li>
             </ul>
             <h3>Quick links Assets:</h3>
             <p>Some units appear multiple times in SFDC, let me know when the links need to be updated</p>
             <ul>
-            <li onClick={()=> navigate("/validationdetails/02i1v00000YaqDLAAZ")}>Edoya (Ramp)</li>
-            <li onClick={()=> navigate("/validationdetails/02i1v00000ZlJQbAAN")}>Halsa (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YaqDGAAZ")}>Edoya (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YaqDzAAJ")}>Halsa (Ramp)</li>
             <li onClick={()=> navigate("/validationdetails/02i1v00000YaqE9AAJ")}>Kanestraum (Ramp)</li>
             <li onClick={()=> navigate("/validationdetails/02i1v00000YamMuAAJ")}>Kinsarvik (Tower)</li>
             <li onClick={()=> navigate("/validationdetails/02i1v00000YamMVAAZ")}>Kvanndal (Tower)</li>
-            <li onClick={()=> navigate("/validationdetails/02i1v00000YaqDkAAJ")}>Kvanne (Ramp)</li>
-            <li onClick={()=> navigate("/validationdetails/02i1v00000ZkPTOAA3")}>Matre (Tower)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YaqDpAAJ")}>Kvanne (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000ZkPTTAA3")}>Matre (Tower)</li>
             <li onClick={()=> navigate("/validationdetails/02i1v00000YaqDuAAJ")}>Rykkjem (Ramp)</li>
-            <li onClick={()=> navigate("/validationdetails/02i1v00000YaphoAAB")}>Sandvika (Ramp)</li>
+            <li onClick={()=> navigate("/validationdetails/02i1v00000Yapi8AAB")}>Sandvika (Ramp)</li>
             <li onClick={()=> navigate("/validationdetails/02i1v00000fpCL9AAM")}>Skanevik (Tower)</li>
             <li onClick={()=> navigate("/validationdetails/02i1v00000ZlIijAAF")}>Utaker (Tower)</li>
-            <li onClick={()=> navigate("/validationdetails/02i1v00000YamMkAAJ")}>Utne (Tower)</li> 
+            <li onClick={()=> navigate("/validationdetails/02i1v00000YamMfAAJ")}>Utne (Tower)</li> 
           </ul>
         </div>
       </div>
