@@ -1,12 +1,11 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import TopHeader from "../components/TopHeader/TopHeader";
-import Table from "../components/Table/Table";
+import Table, { noOnRowClick } from "../components/Table/Table";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
 import TableRow from "../components/Table/TableRow";
 import axios from "axios";
 import { backendUrl } from "../config";
-import {onRowClick} from "../components/Table/TableRow"
 import { useParams } from "react-router-dom";
 import { columnType } from "../types/table";
 import { yesOrNo } from "../helpers";
@@ -54,11 +53,7 @@ const ValidationsDetailsPage: FunctionComponent = () => {
     { colName: "Validation Result", dataKey: "validation_result", parsers: [yesOrNoOfAllKeys]},
   ]
 
-  const onRowClick:onRowClick = {
-    onClick: (_:any) => undefined, //navigate(`/validationdetails/${e}`) ,
-    dataKey: "Id",
-  }
-  
+
   return (
     <>
       <TopHeader showImage={true} />
@@ -69,7 +64,7 @@ const ValidationsDetailsPage: FunctionComponent = () => {
             {validationObject? <h3>Object type: {validationObject?.sfdcObjectType}</h3> : null }
             {validationObject? <h3>Object passes all validations: {yesOrNo(validationObject?.object_validation_result,t )}</h3>: null }
             { !validationObject?.validations ? <LoadingIndicator/> : 
-              <Table tableRowElement={TableRow} tableColumns={columns} tableData={validationObject?.validations} onRowClick={onRowClick}/>
+              <Table tableRowElement={TableRow} tableColumns={columns} tableData={validationObject?.validations} onRowClick={noOnRowClick}/>
             }
         </div>
       </div>

@@ -13,6 +13,8 @@ import { useTranslation } from 'react-i18next'
 import TableRow, { onRowClick } from '../components/Table/TableRow'
 import { columnType } from '../types/table'
 import { alarmPrioParser, durationParser } from '../helpers'
+import LoadingIndicator from '../components/LoadingIndicator/LoadingIndicator'
+import AlarmExplanation from '../components/AlarmExplanation/AlarmExplanation'
 
 
 function UnitDetailsPage() {
@@ -91,7 +93,10 @@ function UnitDetailsPage() {
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
             {/* @ts-ignore */}
             <SubsectionHeader title={t("activeAlarmList")} />
+            { !alarmData ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={columns} tableData={alarmData} onRowClick={onRowClick}/>
+          }
+         {alarmData ? <AlarmExplanation/>: null}
         </div>
     </div>
       {/* <KpiBox>

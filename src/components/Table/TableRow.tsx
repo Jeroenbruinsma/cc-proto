@@ -11,21 +11,29 @@ export interface onRowClick{
   dataKey: string
 }
 
+export type rowColorParserFunctionType = (rowData : rowDataType)=>  string | undefined //should be color! 
+
+export type rowDataType = any 
+
 export type TableRowType = {
-  rowData: any
+  rowData: rowDataType
   columns: columnType[]
   onRowClick?: onRowClick
+  rowColorParser?: rowColorParserFunctionType
 };
 
 const TableRow: FunctionComponent<TableRowType> = ({
     rowData,
     columns,
-    onRowClick
+    onRowClick,
+    rowColorParser
 }) => {
+  
   const {t} = useTranslation()
+  const highlite = rowColorParser ? rowColorParser(rowData) : ""
   return (
     <>
-      <tr className={styles.tableRow} onClick={ () => onRowClick?.onClick(  rowData?.[onRowClick.dataKey])}>
+      <tr className={[styles.tableRow, styles[highlite ? highlite : ""]].join(" ")} onClick={ () => onRowClick?.onClick(  rowData?.[onRowClick.dataKey])}>
         {columns.map((c,i) => {
           // parsers below is weird, only the first parser is applied
           const value = c?.parsers ? c?.parsers?.[0](rowData?.[c?.dataKey], t) : rowData?.[c.dataKey]

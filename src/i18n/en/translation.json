@@ -5,6 +5,7 @@
     "sfdcObjectNavigationPage": "Salesforce metaData validations",
     "adminPage": "Admin Page",
     "siteUnits" : "overview",
+    "nomenclatureOverview": "Nomenclature Overview",
     "activeAlarmList": "Active alarms",
     "error": {
         "platform": {
@@ -32,7 +33,9 @@
             "equipmentName": "Equipment Name",
             "equipmentType": "Equipment Type" ,
             "status": "Status",
-            "unitCount": "# units "
+            "unitCount": "# units",
+            "alarmSeverity": "Alarm severity",
+            "alarmDescription": "Alarm severity description"
         }
     },
     "alarms": {
@@ -40,9 +43,19 @@
                 "diagnostic" : "Diagnostic" ,
                 "low" : "Low" ,
                 "medium" : "Medium" ,
-                "high" : "High" ,
+                "high" : "High",
+                "urgent": "Urgent",
                 "critical": "Critical"
-           }    
+           }, 
+           "descriptions": {
+            "diagnostic" : "Internal issue or malfunction within the automation system. Helps maintenance personnel identify and troubleshoot specific problems. " ,
+            "low" : "Minor issue or notification with little to no impact on immediate operations. Can be addressed at a convenient time." ,
+            "medium" : "Moderate issue with no immediate impact on safety or operations. Should be resolved in a reasonable timeframe." ,
+            "high" : "Important equipment condition affecting operations but not immediately threatening safety or causing severe damage. Should be addressed soon." ,
+            "urgent": "Important issue on equipment that could escalate to critical if not addressed promptly. Needs swift response.",
+            "critical": "Immediate threat to safety, environment, or significant equipment damage. Requires immediate action."
+           } 
+        
     },
     "warranty": {
         "warranty_active": "Active",
