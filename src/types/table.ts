@@ -4,15 +4,22 @@ import { customer, site } from "./sites"
 import { unit } from "./unit"
 import { validation, validationObject } from "./validations"
 import { alarmSeverityType } from "./alarms"
+import { rowDataType } from "../components/Table/TableRow"
 
-export interface columnType extends cellType{
+export type dataKeyType = keyof alarm | keyof site | keyof unit | keyof customer | keyof validation | keyof validationObject | keyof alarmSeverityType
+
+export interface columnType{ 
     colName: string 
-    cellElement?: React.ComponentType<any>
+    cellElement?: any //React.FC<cellType>; 
     parsers?: cellDataParserFunctions[]
+    dataKey:  dataKeyType
+    autocapitalize?: boolean
   }
-  
+
   export interface cellType{
-    dataKey:  keyof alarm | keyof site | keyof unit | keyof customer | keyof validation | keyof validationObject | keyof alarmSeverityType
+    dataKey: dataKeyType
+    value?: any
+    rowData?: rowDataType
     autocapitalize?: boolean
 }
 

@@ -6,11 +6,12 @@ import axios from "axios";
 import { columnType } from "../types/table";
 import { useTranslation } from "react-i18next";
 import Table from "../components/Table/Table";
-import TableRow from "../components/Table/TableRow";
+import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
 import {onRowClick} from "../components/Table/TableRow";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { unit } from "../types/unit";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
+import InfoBox from "../components/InfoBox/InfoBox";
 
 
 const UnitsPage: FunctionComponent = () => {
@@ -46,29 +47,23 @@ const UnitsPage: FunctionComponent = () => {
     { colName: t("table.columnNames.status"), dataKey: "cc__status"},
   ]
 
-  const onRowClick:onRowClick = {
-    onClick: (e:any) => navigate(`/unit/${encodeURIComponent(e)}`) ,
+  const onRowClick:onRowClickConfig = {
+    onClick: ({dataKey}:onRowClick): void => {
+      navigate(`/unit/${encodeURIComponent(dataKey)}`)
+    },    
     dataKey: "SerialNumber",
   }
   return (
     <>
       <TopHeader showImage={true} />
-      <h2>Please use the links below to navigate to the Turku units</h2>
-      <ul>
-          <li onClick={ ()=> navigate(`/unit/${encodeURIComponent('1902121-14165-0/0001')}`)}>1902121-14165-0/0001</li>
-          <li onClick={ ()=> navigate(`/unit/${encodeURIComponent('1902121-14165-0/0002')}`)}>1902121-14165-0/0002</li>
-          <li onClick={ ()=> navigate(`/unit/${encodeURIComponent('1902121-14165-0/0003')}`)}>1902121-14165-0/0003</li>
-          <li onClick={ ()=> navigate(`/unit/${encodeURIComponent('1902121-14165-0/0004')}`)}>1902121-14165-0/0004</li>
-          <li onClick={ ()=> navigate(`/unit/${encodeURIComponent('1902121-14165-0/0005')}`)}>1902121-14165-0/0005</li>
-          <li onClick={ ()=> navigate(`/unit/${encodeURIComponent('1902121-14165-0/0006')}`)}>1902121-14165-0/0006</li>
-      </ul>
-      <br/><br/><br/>
-      <h2>The section below is currently being tested</h2>
+      
+      {/* <h2>The section below is currently being tested</h2> */}
       <br/><br/>
       <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
             {/* @ts-ignore */}
             <SubsectionHeader title={ `${params?.id} - ${t("siteUnits")}`} center/>
+            <InfoBox type={"sitesPageTesting"}/>
             { units ? 
             <Table tableRowElement={TableRow} tableColumns={columns} tableData={units} onRowClick={onRowClick}/> :
             <LoadingIndicator/> }

@@ -3,7 +3,7 @@ import styles from "./Table.module.css";
 import React from "react";
 import { customer, site } from "../../types/sites";
 import { columnType } from "../../types/table";
-import { TableRowType, onRowClick, rowColorParserFunctionType } from "./TableRow";
+import { TableRowType, onRowClickConfig, rowColorParserFunctionType } from "./TableRow";
 import { alarm } from "../../types/equipment";
 import { unit } from "../../types/unit";
 import { validation, validationObject } from "../../types/validations";
@@ -13,12 +13,13 @@ import { alarmSeverityType } from "../../types/alarms";
 export type TableType = {
   tableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
-  tableData: site[] | alarm[] | unit[] | customer[] | validation[] | validationObject[] |  alarmSeverityType[] | undefined 
-  onRowClick?: onRowClick
+  tableData: site[] | alarm[] | unit[] | customer[] | validation[] | validationObject[] |  alarmSeverityType[]| undefined 
+  onRowClick: onRowClickConfig
   rowColorParser?: rowColorParserFunctionType
 };
-export const noOnRowClick:onRowClick = {
+export const noOnRowClick:onRowClickConfig = {
   onClick: (_:any) => undefined,
+  //@ts-ignore
   dataKey: "",
 }
 
@@ -31,7 +32,6 @@ return ( <>
       </tr>
     </thead>
     <tbody className={styles.tableBody}>
-      
       {  !tableData ? <LoadingIndicator/> :  tableData?.map((s,i) => React.createElement(tableRowElement, {key:i, rowData: s, columns: tableColumns, onRowClick:onRowClick, rowColorParser:rowColorParser}))}
       </tbody>
       </table>

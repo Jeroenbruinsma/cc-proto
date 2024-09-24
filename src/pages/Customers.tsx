@@ -3,7 +3,7 @@ import TopHeader from "../components/TopHeader/TopHeader";
 import Table from "../components/Table/Table";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
-import TableRow from "../components/Table/TableRow";
+import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
 import { customer } from "../types/sites";
 import axios from "axios";
 import { backendUrl } from "../config";
@@ -42,8 +42,12 @@ const CustomersPage: FunctionComponent = () => {
     { colName: t("table.columnNames.unitCount"), dataKey: "cc__unit_count"},
   ]
 
-  const onRowClick:onRowClick = {
-    onClick: (e:any) => navigate(`/customers/${e}`) ,
+
+  
+  const onRowClick:onRowClickConfig = {
+    onClick: ({dataKey}:onRowClick): void => {
+      navigate(`/customers/${encodeURIComponent(dataKey)}`)
+    },    
     dataKey: "Account.Id",
   }
 

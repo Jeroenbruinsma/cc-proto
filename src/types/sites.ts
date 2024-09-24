@@ -5,6 +5,7 @@ export interface site{
     "CoreSystem__c": coreSystemType
     cc__dataConsent: string
     cc__siteHealth: string
+    cc__data_validation_passed: Boolean
 }
 export interface customer{
     "Account.Name": string

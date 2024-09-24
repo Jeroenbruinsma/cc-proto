@@ -3,14 +3,15 @@ import TopHeader from "../components/TopHeader/TopHeader";
 import Table from "../components/Table/Table";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
-import TableRow from "../components/Table/TableRow";
+import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
 import { site } from "../types/sites";
 import axios from "axios";
 import { backendUrl } from "../config";
 import {onRowClick} from "../components/Table/TableRow"
 import { useNavigate } from "react-router-dom";
 import { columnType } from "../types/table";
-import { yesOrNo } from "../helpers";
+import { emptyDash, yesOrNo } from "../helpers";
+import DataQualityCell from "../components/Table/DataQualityCell";
 
 
 const SitesPage: FunctionComponent = () => {
@@ -39,13 +40,21 @@ const SitesPage: FunctionComponent = () => {
   const columns: columnType[] = [
     { colName: t("table.columnNames.siteName"), dataKey: "SiteLocation__c", autocapitalize: true},
     { colName: t("table.columnNames.operator"), dataKey: "Account.Name"},
-    { colName: t("table.columnNames.slaStatus"), dataKey: "ServiceAgreement__c", autocapitalize: true},
+    { colName: t("table.columnNames.slaStatus"), dataKey: "ServiceAgreement__c", autocapitalize: true, parsers: [emptyDash]},
     { colName: t("table.columnNames.dataConsent"), dataKey: "cc__dataConsent", autocapitalize: true, parsers: [yesOrNo]},
-    { colName: t("table.columnNames.siteHealth"), dataKey: "cc__siteHealth"}
+    { colName: t("table.columnNames.siteHealth"), dataKey: "cc__siteHealth"},
+    { colName: t("table.columnNames.dataValidation"), dataKey: "cc__data_validation_passed" , cellElement: DataQualityCell } //; parsers: [yesOrNo]}
   ]
 
-  const onRowClick:onRowClick = {
-    onClick: (e:any) => navigate(`/sites/${encodeURIComponent(e)}`) ,
+
+  const onRowClick:onRowClickConfig = {
+    onClick: ({dataKey,rowData}:onRowClick): void => {
+      if(!rowData?.cc__data_validation_passed){
+        return navigate(`/validationdetails/${encodeURIComponent(rowData?.["Account.Id"])}?reason=navigation`)
+      }
+      navigate(`/sites/${encodeURIComponent(dataKey)}`)
+    }
+  ,
     dataKey: "SiteLocation__c",
   }
 

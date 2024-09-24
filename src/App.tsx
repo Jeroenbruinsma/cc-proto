@@ -44,7 +44,7 @@ function App() {
     <ErrorBoundary>
     {!connectionToKiv ? <PlatformMessage msg={t("error.platform.backendConnection")}/> : null}
       <Routes>
-        <Route path="/admin" Component={AdminPage} />
+        <Route path="/demolinks" Component={AdminPage} />
         <Route path="/nomenclature/alarms" Component={NomenclaturePage} />
         <Route path="/validations" Component={ValidationsTypePage} />
         <Route path="/validations/:id" Component={ValidationsPage} />

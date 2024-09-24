@@ -3,7 +3,7 @@ import TopHeader from "../components/TopHeader/TopHeader";
 import Table from "../components/Table/Table";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
-import TableRow from "../components/Table/TableRow";
+import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
 import axios from "axios";
 import { backendUrl } from "../config";
 import {onRowClick} from "../components/Table/TableRow"
@@ -58,8 +58,10 @@ const ValidationsPage: FunctionComponent = () => {
     { colName: "object_validation_result PASSED", dataKey: "object_validation_result",  parsers: [yesOrNo]},
   ]
 
-  const onRowClick:onRowClick = {
-    onClick: (e:any) => navigate(`/validationdetails/${e}`) ,
+  const onRowClick:onRowClickConfig = {
+    onClick: ({dataKey}:onRowClick): void => {
+      navigate(`/validationdetails/${encodeURIComponent(dataKey)}`)
+    }, 
     dataKey: "id",
   }
 

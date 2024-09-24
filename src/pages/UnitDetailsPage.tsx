@@ -10,7 +10,7 @@ import { backendUrl } from '../config'
 import SubsectionHeader from '../components/SubsectionHeader/SubsectionHeader'
 import Table from '../components/Table/Table'
 import { useTranslation } from 'react-i18next'
-import TableRow, { onRowClick } from '../components/Table/TableRow'
+import TableRow, { onRowClickConfig } from '../components/Table/TableRow'
 import { columnType } from '../types/table'
 import { alarmPrioParser, durationParser } from '../helpers'
 import LoadingIndicator from '../components/LoadingIndicator/LoadingIndicator'
@@ -52,7 +52,6 @@ function UnitDetailsPage() {
     try{
       const url = `${backendUrl}/equipment/serial-to-alarm?serial=${eqpmentId}`
       const res = await axios.get(url)
-      console.log("res data", res?.data)
 
       if(res?.data?.data?.length > 0){
         set_AlarmData(res?.data?.data) //.filter((a:any) => a?.berth === false))
@@ -80,7 +79,7 @@ function UnitDetailsPage() {
       { colName: t("table.columnNames.duration"), dataKey: "duration", parsers: [ durationParser]   }
     ]
 
-    const onRowClick:onRowClick = {
+    const onRowClick:onRowClickConfig = {
       onClick: (e:any) => console.log("Click not supported, alarm UUID:",e ),
       dataKey: "uuid",
 

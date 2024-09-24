@@ -4,13 +4,15 @@ import { cellDataParserFunctions } from "./types/table";
 import { warranttStatus } from "./types/equipment";
 
 export const capitalizeFirstLetter = (text: string): string | undefined => {
-  if (!text) return undefined;
-  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    if (!text) return undefined;
+    if (typeof(text) !== "string") return text 
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 };
 
 export const capitalizeFirstLetterParser = (text: string): string => {
-  if (!text) return "";
-  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    if (!text) return "";
+    if (typeof(text) !== "string") return text 
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 };
 
 export const onlyYear = (input: string): string => {
@@ -28,6 +30,12 @@ export const yesOrNo = (input: boolean, t: TFunction) => {
   if(input === true) return t("basics.yes")
   if(input === false) return t("basics.no")
   return "-"  //default for unknown 
+}
+
+export const emptyDash = (text: string, t: any) => {
+  if(text === "") return t("basics.dash")
+  return text
+
 }
 
 export const alarmPrioParser: cellDataParserFunctions = (priority: number, t: TFunction): string => {

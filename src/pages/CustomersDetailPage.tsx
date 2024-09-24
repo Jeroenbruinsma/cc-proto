@@ -6,7 +6,7 @@ import axios from "axios";
 import { columnType } from "../types/table";
 import { useTranslation } from "react-i18next";
 import Table from "../components/Table/Table";
-import TableRow from "../components/Table/TableRow";
+import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
 import {onRowClick} from "../components/Table/TableRow";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { unit } from "../types/unit";
@@ -37,7 +37,6 @@ const CustomersDetailPage: FunctionComponent = () => {
     try{
       const url = `${backendUrl}/customers/${accountId}`
       const res = await axios.get(url)
-      console.log("res",res)
       if(res?.data){
        set_customer(res.data)
       }else{
@@ -62,9 +61,12 @@ const CustomersDetailPage: FunctionComponent = () => {
     { colName: t("table.columnNames.status"), dataKey: "cc__status"},
   ]
 
-  const onRowClick:onRowClick = {
-    // onClick: (e:any) => navigate(`/sites/${e}`) ,
-    onClick: (e:any) => navigate(`/unit/${encodeURIComponent(e)}`) ,
+  const onRowClick:onRowClickConfig = {
+    onClick: ({dataKey}:onRowClick): void => {
+      if(dataKey){
+        navigate(`/unit/${encodeURIComponent(dataKey)}`)
+      }
+    },
     dataKey: "SerialNumber",
   }
 
