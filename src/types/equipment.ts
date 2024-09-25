@@ -15,6 +15,8 @@ export interface equipmentDataType {
   EndDateOfServiceAgreement__c: string;
   cc__WarrantyStatus: warranttStatus
   cc__dataConsent: boolean
+  cc__data_validation_unit_passed?: boolean
+  cc__data_validation_account_passed?: boolean
 }
 
 export type warranttStatus = "warranty_active" | "warranty_expired"

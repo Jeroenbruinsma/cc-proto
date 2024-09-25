@@ -71,6 +71,14 @@
         "explanation": "Most likely you got here because you clicked a on an item that did not pass the validations required for proper function of the platform. Below you can find the reason why the navigation is blocked.",
         "resolution": "When the problem is resolved navigation will be enabled within 24h" 
     },
+    "assetValidation": {
+        "warning": "Validation for this asset failed",
+        "explanation": "You might see incorrect information"
+    },
+    "accountValidation": {
+        "warning": "Validation for this account failed",
+        "explanation": "You might see incorrect information"
+    },
     "testingSitesPage": {
         "warning": "Section under development",
         "explanation": "SitesLocation information is not always correctly recorded Salesforce, equipment might be missing in this list."

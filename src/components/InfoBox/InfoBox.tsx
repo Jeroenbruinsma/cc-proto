@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 
 interface InfoBoxProps{
-    type: "validationNavigation" | "sitesPageTesting"
+    type: "validationNavigation" | "sitesPageTesting" | "assetNotValidated" | "accountNotValidated"
 }
 
 export default function InfoBox({ type }:InfoBoxProps
@@ -19,6 +19,16 @@ export default function InfoBox({ type }:InfoBoxProps
     if(type === "sitesPageTesting"){
         warning = t("testingSitesPage.warning")
         explanation = t("testingSitesPage.explanation") 
+        backgroundColor = "#f5bf89"
+    }
+    if(type === "assetNotValidated"){
+        warning = t("assetValidation.warning")
+        explanation = t("assetValidation.explanation") 
+        backgroundColor = "#f5bf89"
+    }
+    if(type === "accountNotValidated"){
+        warning = t("accountValidation.warning")
+        explanation = t("accountValidation.explanation") 
         backgroundColor = "#f5bf89"
     }
   return (

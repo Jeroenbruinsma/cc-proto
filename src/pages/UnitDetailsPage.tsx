@@ -15,6 +15,7 @@ import { columnType } from '../types/table'
 import { alarmPrioParser, durationParser } from '../helpers'
 import LoadingIndicator from '../components/LoadingIndicator/LoadingIndicator'
 import AlarmExplanation from '../components/AlarmExplanation/AlarmExplanation'
+import InfoBox from '../components/InfoBox/InfoBox'
 
 
 function UnitDetailsPage() {
@@ -90,6 +91,8 @@ function UnitDetailsPage() {
       <CurrentStatusHeader equipmentName={`${metaData?.Name || "-"} `} metaData={metaData} stateInfo={stateData}/>
       <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
+          { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="assetNotValidated" /> }
+          { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="accountNotValidated" /> }
             {/* @ts-ignore */}
             <SubsectionHeader title={t("activeAlarmList")} />
             { !alarmData ? <LoadingIndicator/> : 

@@ -12,6 +12,7 @@ import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { unit } from "../types/unit";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import InfoBox from "../components/InfoBox/InfoBox";
+import DataQualityCell from "../components/Table/DataQualityCell";
 
 
 const UnitsPage: FunctionComponent = () => {
@@ -45,10 +46,14 @@ const UnitsPage: FunctionComponent = () => {
     { colName: t("table.columnNames.equipmentName"), dataKey: "Name"},
     { colName: t("table.columnNames.equipmentType"), dataKey: "cc__status" },
     { colName: t("table.columnNames.status"), dataKey: "cc__status"},
+    { colName: t("table.columnNames.dataValidation"), dataKey: "cc__data_validation_passed" , cellElement: DataQualityCell }
   ]
 
   const onRowClick:onRowClickConfig = {
-    onClick: ({dataKey}:onRowClick): void => {
+    onClick: ({dataKey,rowData}:onRowClick): void => {
+      if(!rowData?.cc__data_validation_passed){
+        return navigate(`/validationdetails/${encodeURIComponent(rowData?.["Id"])}?reason=navigation`)
+      }
       navigate(`/unit/${encodeURIComponent(dataKey)}`)
     },    
     dataKey: "SerialNumber",
@@ -56,8 +61,6 @@ const UnitsPage: FunctionComponent = () => {
   return (
     <>
       <TopHeader showImage={true} />
-      
-      {/* <h2>The section below is currently being tested</h2> */}
       <br/><br/>
       <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>

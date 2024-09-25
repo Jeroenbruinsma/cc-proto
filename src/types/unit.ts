@@ -13,4 +13,5 @@ export interface unit{
     WarrantyStartingDate__c: string 
     YearOfInstallation__c: string 
     cc__status: string
+    cc__data_validation_passed: Boolean
 }

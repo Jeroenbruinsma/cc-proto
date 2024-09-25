@@ -11,6 +11,7 @@ import {onRowClick} from "../components/Table/TableRow"
 import { useNavigate } from "react-router-dom";
 import { columnType } from "../types/table";
 import { yesOrNo } from "../helpers";
+import DataQualityCell from "../components/Table/DataQualityCell";
 
 
 const CustomersPage: FunctionComponent = () => {
@@ -40,6 +41,7 @@ const CustomersPage: FunctionComponent = () => {
     { colName: t("table.columnNames.operator"), dataKey: "Account.Name"},
     { colName: t("table.columnNames.dataConsent"), dataKey: "cc__dataConsent", autocapitalize: true, parsers: [yesOrNo]},
     { colName: t("table.columnNames.unitCount"), dataKey: "cc__unit_count"},
+    { colName: t("table.columnNames.dataValidation"), dataKey: "cc__data_validation_passed" , cellElement: DataQualityCell }
   ]
 
 

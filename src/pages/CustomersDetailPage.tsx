@@ -11,6 +11,7 @@ import {onRowClick} from "../components/Table/TableRow";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { unit } from "../types/unit";
 import {customer} from "../types/sites"
+import DataQualityCell from "../components/Table/DataQualityCell";
 
 const CustomersDetailPage: FunctionComponent = () => {
   const navigate = useNavigate()
@@ -59,6 +60,7 @@ const CustomersDetailPage: FunctionComponent = () => {
     { colName: t("table.columnNames.equipmentName"), dataKey: "Name"},
     { colName: t("table.columnNames.equipmentType"), dataKey: "cc__status" },
     { colName: t("table.columnNames.status"), dataKey: "cc__status"},
+    { colName: t("table.columnNames.dataValidation"), dataKey: "cc__data_validation_passed" , cellElement: DataQualityCell }
   ]
 
   const onRowClick:onRowClickConfig = {
