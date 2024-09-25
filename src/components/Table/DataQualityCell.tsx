@@ -20,7 +20,7 @@ const DataQualityCell= ({
                 {/* 
                 //@ts-ignore */}
                 <ExclamationMark fill="red" width="20px" />
-                <p style={{ margin: "10px"}}> View details</p>
+                <a style={{ margin: "10px", textDecorationLine: "underline", cursor: "pointer"}}> View details</a>
             </div>
     );
   return <p>-</p>;
