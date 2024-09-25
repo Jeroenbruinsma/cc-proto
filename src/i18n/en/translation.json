@@ -5,7 +5,7 @@
     "sfdcObjectNavigationPage": "Salesforce data quality validations",
     "adminPage": "Demo links page",
     "siteUnits" : "overview",
-    "nomenclatureOverview": "Nomenclature Overview",
+    "nomenclatureOverview": "Alarm priority description",
     "activeAlarmList": "Active alarms",
     "error": {
         "platform": {
@@ -36,7 +36,7 @@
             "status": "Status",
             "unitCount": "# units",
             "alarmSeverity": "Alarm priority",
-            "alarmDescription": "Alarm priority description",
+            "alarmDescription": "Description",
             "sfdcObjectName": "Object name",
             "sfdcObjectValue": "Object value",
             "sfdcObjectValidationResult": "Validation Result"
