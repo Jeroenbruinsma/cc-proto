@@ -1,7 +1,7 @@
 import TopHeader from '../components/TopHeader/TopHeader'
 import CurrentStatusHeader from '../components/CurrentStatusHeader/CurrentStatusHeader'
-import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { createElement, useEffect, useState } from 'react'
 import axios from 'axios'
 import { alarm, equipmentDataType, stateType } from '../types/equipment'
 import { backendUrl } from '../config'
@@ -14,13 +14,14 @@ import TableRow, { onRowClickConfig } from '../components/Table/TableRow'
 import { columnType } from '../types/table'
 import { alarmPrioParser, durationParser } from '../helpers'
 import LoadingIndicator from '../components/LoadingIndicator/LoadingIndicator'
-import AlarmExplanation from '../components/AlarmExplanation/AlarmExplanation'
 import InfoBox from '../components/InfoBox/InfoBox'
+import QM from "..//components/AlarmExplanation/questionMark.svg";
 
 
 function UnitDetailsPage() {
   const {t} = useTranslation()
   const params = useParams()
+  const navigate = useNavigate()
   const [metaData, set_metaData ] = useState<equipmentDataType| undefined >(undefined)
   const [stateData, set_stateData ] = useState<stateType| undefined >(undefined)
   const [alarmData, set_AlarmData ] = useState<alarm[]| undefined >(undefined)
@@ -76,7 +77,7 @@ function UnitDetailsPage() {
   const columns:columnType[] = [
       { colName: t("table.columnNames.dateTime"), dataKey: "created", autocapitalize: true},
       { colName: t("table.columnNames.alarm"), dataKey: "detail"},
-      { colName: t("table.columnNames.priority"), dataKey: "priority" , parsers: [ alarmPrioParser] },
+      { colName: t("table.columnNames.priority"), dataKey: "priority" , parsers: [ alarmPrioParser], headerIcon: {onClick: ()=> navigate("/nomenclature/alarms"), icon: createElement(QM, {fill:"gray", width: "20px", style: {marginLeft: "10px"} })} },
       { colName: t("table.columnNames.duration"), dataKey: "duration", parsers: [ durationParser]   }
     ]
 
@@ -98,7 +99,6 @@ function UnitDetailsPage() {
             { !alarmData ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={columns} tableData={alarmData} onRowClick={onRowClick}/>
           }
-         {alarmData ? <AlarmExplanation/>: null}
         </div>
     </div>
       {/* <KpiBox>

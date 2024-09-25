@@ -28,7 +28,9 @@ return ( <>
     <table className={styles.table}>
      <thead className={styles.tableHead}>
       <tr className={styles.tableRow}>
-        {tableColumns.map((c, i) => <th key={i} scope="col" className={styles.tableHeader}>{c.colName}</th>) }
+        {tableColumns.map((c, i) => { 
+          if(c?.headerIcon) return <th key={i} scope="col" className={styles.tableHeader} onClick={c?.headerIcon?.onClick} >{c.colName} {c?.headerIcon?.icon}</th> 
+          return <th key={i} scope="col" className={styles.tableHeader}>{c.colName}</th> }) }
       </tr>
     </thead>
     <tbody className={styles.tableBody}>

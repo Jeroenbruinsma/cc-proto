@@ -14,8 +14,13 @@ export interface columnType{
     parsers?: cellDataParserFunctions[]
     dataKey:  dataKeyType
     autocapitalize?: boolean
+    headerIcon?: headerIconType
   }
 
+export interface headerIconType {
+  onClick: () => void
+  icon: JSX.Element
+}
   export interface cellType{
     dataKey: dataKeyType
     value?: any
