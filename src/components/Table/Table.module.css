@@ -9,6 +9,7 @@
 .tableHeader{
   border-bottom: 2px solid black;
   height: 4em;
+  font-size: large;
 }
 
 .tableBody tr{
