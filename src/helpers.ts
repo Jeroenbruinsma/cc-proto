@@ -31,6 +31,11 @@ export const yesOrNo = (input: boolean, t: TFunction) => {
   if(input === false) return t("basics.no")
   return "-"  //default for unknown 
 }
+export const passedOrFailed = (input: boolean, t: TFunction) => {
+  if(input === true) return t("basics.passed")
+  if(input === false) return t("basics.failed")
+  return "-"  //default for unknown 
+}
 
 export const emptyDash = (text: string, t: any) => {
   if(text === "") return t("basics.dash")

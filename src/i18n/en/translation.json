@@ -1,8 +1,8 @@
 {
     "siteOverview": "Site overview",
     "customersOverview": "Customers overview",
-    "validationsPage": "MetaData validations",
-    "sfdcObjectNavigationPage": "Salesforce metaData validations",
+    "validationsPage": "Data quality validations",
+    "sfdcObjectNavigationPage": "Salesforce data quality validations",
     "adminPage": "Demo links page",
     "siteUnits" : "overview",
     "nomenclatureOverview": "Nomenclature Overview",
@@ -68,8 +68,8 @@
     },
     "validations": {
         "warning": "Navigation blocked",
-        "explanation": "Most likely you got here because you clicked a on an item that did not pass the validations required for proper function of the platform. Below you can find the reason why the navigation is blocked.",
-        "resolution": "When the problem is resolved navigation will be enabled within 24h" 
+        "explanation": "Requested details are temporarily unavailable. Please enter all required values in Salesforce correctly. ",
+        "resolution": "The system will revalidate the data every 24h, For further assistance, contact Cavotec support" 
     },
     "assetValidation": {
         "warning": "Validation for this asset failed",
@@ -80,11 +80,13 @@
         "explanation": "You might see incorrect information"
     },
     "testingSitesPage": {
-        "warning": "Section under development",
-        "explanation": "SitesLocation information is not always correctly recorded Salesforce, equipment might be missing in this list."
+        "warning": "Page under development",
+        "explanation": "Site Location information is not always correctly recorded in Salesforce, equipment might be missing in this list."
     },
     "basics": {
         "yes": "yes",
         "no": "no",
-        "dash": "-"
+        "dash": "-",
+        "passed": "Passed",
+        "failed": "Failed"
     }}
