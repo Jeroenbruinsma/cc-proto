@@ -1,7 +1,7 @@
 .cavotecConnectInsights {
   margin: 0;
   position: relative;
-  font-size: var(--font-size-21xl);
+  font-size: var(--font-size-13xl);
   line-height: 48.13px;
   font-weight: 400;
   font-family: inherit;
@@ -86,15 +86,7 @@
   font-family: var(--font-inter);
   padding: 20px;
 }
-@media screen and (max-width: 800px) {
-  .cavotecConnectInsights {
-    font-size: var(--font-size-13xl);
-  }
-}
 @media screen and (max-width: 450px) {
-  .cavotecConnectInsights {
-    font-size: var(--font-size-5xl);
-  }
   .login {
     padding-top: var(--padding-xl);
     padding-bottom: var(--padding-xl);
@@ -102,5 +94,6 @@
   }
 }
 .logo{
-  width: 100%;
+  width: 90%;
+  margin-bottom: 50px;
 }
