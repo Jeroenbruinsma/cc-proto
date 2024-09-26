@@ -9,11 +9,12 @@ import { unit } from "../../types/unit";
 import { validation, validationObject } from "../../types/validations";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import { alarmSeverityType } from "../../types/alarms";
+import { serviceNeedsType } from "../../types/serviceNeeds";
 
 export type TableType = {
   tableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
-  tableData: site[] | alarm[] | unit[] | customer[] | validation[] | validationObject[] |  alarmSeverityType[]| undefined 
+  tableData: site[] | alarm[] | unit[] | customer[] | validation[] | validationObject[] |  alarmSeverityType[] |  serviceNeedsType[] |  undefined 
   onRowClick: onRowClickConfig
   rowColorParser?: rowColorParserFunctionType
 };

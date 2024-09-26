@@ -5,8 +5,9 @@ import { unit } from "./unit"
 import { validation, validationObject } from "./validations"
 import { alarmSeverityType } from "./alarms"
 import { rowDataType } from "../components/Table/TableRow"
+import { serviceNeedsType } from "./serviceNeeds"
 
-export type dataKeyType = keyof alarm | keyof site | keyof unit | keyof customer | keyof validation | keyof validationObject | keyof alarmSeverityType
+export type dataKeyType = keyof alarm | keyof site | keyof unit | keyof customer | keyof validation | keyof validationObject | keyof alarmSeverityType | keyof serviceNeedsType
 
 export interface columnType{ 
     colName: string 

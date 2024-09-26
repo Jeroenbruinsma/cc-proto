@@ -7,6 +7,7 @@
     "siteUnits" : "overview",
     "nomenclatureOverview": "Alarm priority description",
     "activeAlarmList": "Active alarms",
+    "serviceNeedsList": "Service needs",
     "error": {
         "platform": {
             "backendConnection": "Connection with backend not possible, some functions might not work properly"
@@ -39,7 +40,11 @@
             "alarmDescription": "Description",
             "sfdcObjectName": "Object name",
             "sfdcObjectValue": "Object value",
-            "sfdcObjectValidationResult": "Validation Result"
+            "sfdcObjectValidationResult": "Validation Result",
+            "serviceNeedId": "Service need",
+            "serviceNeedName": "Name",
+            "date": "Date",
+            "serviceNeedStatus": "Status"
         }
     },
     "alarms": {

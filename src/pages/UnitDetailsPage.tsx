@@ -16,6 +16,7 @@ import { alarmPrioParser, durationParser } from '../helpers'
 import LoadingIndicator from '../components/LoadingIndicator/LoadingIndicator'
 import InfoBox from '../components/InfoBox/InfoBox'
 import QM from "..//components/AlarmExplanation/questionMark.svg";
+import { serviceNeedsType } from '../types/serviceNeeds'
 
 
 function UnitDetailsPage() {
@@ -74,11 +75,24 @@ function UnitDetailsPage() {
     }
   },[params.id])
 
-  const columns:columnType[] = [
+  const dummyServiceNeed:serviceNeedsType = {
+    serviceNeedId: "-",
+    servicceNeedName: "-",
+    date: "-",
+    serviceNeedStatus: "-" 
+  }
+
+  const alarmColumns:columnType[] = [
       { colName: t("table.columnNames.dateTime"), dataKey: "created", autocapitalize: true},
       { colName: t("table.columnNames.alarm"), dataKey: "detail"},
       { colName: t("table.columnNames.priority"), dataKey: "priority" , parsers: [ alarmPrioParser], headerIcon: {onClick: ()=> navigate("/nomenclature/alarms"), icon: createElement(QM, {fill:"gray", width: "20px", style: {marginLeft: "10px"} })} },
       { colName: t("table.columnNames.duration"), dataKey: "duration", parsers: [ durationParser]   }
+    ]
+  const serviceNeedsColumns:columnType[] = [
+      { colName: t("table.columnNames.serviceNeedId"), dataKey: "serviceNeedId", autocapitalize: true},
+      { colName: t("table.columnNames.serviceNeedName"), dataKey: "servicceNeedName"},
+      { colName: t("table.columnNames.date"), dataKey: "date"},
+      { colName: t("table.columnNames.serviceNeedStatus"), dataKey: "serviceNeedStatus"   }
     ]
 
     const onRowClick:onRowClickConfig = {
@@ -94,10 +108,14 @@ function UnitDetailsPage() {
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
           { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="assetNotValidated" /> }
           { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="accountNotValidated" /> }
-            {/* @ts-ignore */}
+           
+            <SubsectionHeader title={t("serviceNeedsList")} />
+            { !alarmData ? <LoadingIndicator/> : 
+            <Table tableRowElement={TableRow} tableColumns={serviceNeedsColumns} tableData={[dummyServiceNeed]} onRowClick={onRowClick}/>
+          }
             <SubsectionHeader title={t("activeAlarmList")} />
             { !alarmData ? <LoadingIndicator/> : 
-            <Table tableRowElement={TableRow} tableColumns={columns} tableData={alarmData} onRowClick={onRowClick}/>
+            <Table tableRowElement={TableRow} tableColumns={alarmColumns} tableData={alarmData} onRowClick={onRowClick}/>
           }
         </div>
     </div>
