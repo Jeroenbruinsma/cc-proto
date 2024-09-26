@@ -1,6 +1,6 @@
 export interface serviceNeedsType{
     serviceNeedId: string
-    servicceNeedName: string
+    serviceNeedName: string
     date: string,
     serviceNeedStatus: string 
 }

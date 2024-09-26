@@ -77,7 +77,7 @@ function UnitDetailsPage() {
 
   const dummyServiceNeed:serviceNeedsType = {
     serviceNeedId: "-",
-    servicceNeedName: "-",
+    serviceNeedName: "-",
     date: "-",
     serviceNeedStatus: "-" 
   }
@@ -90,7 +90,7 @@ function UnitDetailsPage() {
     ]
   const serviceNeedsColumns:columnType[] = [
       { colName: t("table.columnNames.serviceNeedId"), dataKey: "serviceNeedId", autocapitalize: true},
-      { colName: t("table.columnNames.serviceNeedName"), dataKey: "servicceNeedName"},
+      { colName: t("table.columnNames.serviceNeedName"), dataKey: "serviceNeedName" , headerIcon: {onClick: ()=> navigate("/nomenclature/serviceneeds"), icon: createElement(QM, {fill:"gray", width: "20px", style: {marginLeft: "10px"} })} },
       { colName: t("table.columnNames.date"), dataKey: "date"},
       { colName: t("table.columnNames.serviceNeedStatus"), dataKey: "serviceNeedStatus"   }
     ]

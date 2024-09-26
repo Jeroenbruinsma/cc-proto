@@ -6,9 +6,9 @@
     "adminPage": "Demo links page",
     "siteUnits" : "overview",
     "nomenclatureOverview": "Alarm priority description",
-    "serviceNeedOverview": "Service need description",
+    "serviceNeedOverview": "Service Need description",
     "activeAlarmList": "Active alarms",
-    "serviceNeedsList": "Service needs",
+    "serviceNeedsList": "Service Needs",
     "error": {
         "platform": {
             "backendConnection": "Connection with backend not possible, some functions might not work properly"
@@ -42,8 +42,8 @@
             "sfdcObjectName": "Object name",
             "sfdcObjectValue": "Object value",
             "sfdcObjectValidationResult": "Validation Result",
-            "serviceNeedId": "Service need",
-            "serviceNeedName": "Name",
+            "serviceNeedId": "Service Need",
+            "serviceNeedName": "Summary",
             "date": "Date",
             "serviceNeedStatus": "Status"
         }
