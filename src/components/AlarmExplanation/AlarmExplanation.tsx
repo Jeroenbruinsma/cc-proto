@@ -15,7 +15,7 @@ export default function AlarmExplanation({listView}:alarmExplanationProps) {
         .reverse()
         ?.map((at) => (
           <div className={styles.alarm}>
-            <p className={styles.alarmText} onClick={()=>navigate(`/nomenclature/alarms?alarmSeverity=${at?.cc__alarmSeverity}`)}>{at?.cc__alarmSeverity}</p>
+            <p className={styles.alarmText} onClick={()=>navigate(`/nomenclature/alarms?alarmSeverity=${at?.cc__severity}`)}>{at?.cc__severity}</p>
             {/* 
             //@ts-ignore */}
             <QM fill="gray" width="15px" />
