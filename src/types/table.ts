@@ -3,11 +3,11 @@ import { alarm } from "./equipment"
 import { customer, site } from "./sites"
 import { unit } from "./unit"
 import { validation, validationObject } from "./validations"
-import { alarmSeverityType } from "./alarms"
+import { severityType } from "./alarms"
 import { rowDataType } from "../components/Table/TableRow"
 import { serviceNeedsType } from "./serviceNeeds"
 
-export type dataKeyType = keyof alarm | keyof site | keyof unit | keyof customer | keyof validation | keyof validationObject | keyof alarmSeverityType | keyof serviceNeedsType
+export type dataKeyType = keyof alarm | keyof site | keyof unit | keyof customer | keyof validation | keyof validationObject  | keyof serviceNeedsType | keyof severityType
 
 export interface columnType{ 
     colName: string 

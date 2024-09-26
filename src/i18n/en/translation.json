@@ -6,6 +6,7 @@
     "adminPage": "Demo links page",
     "siteUnits" : "overview",
     "nomenclatureOverview": "Alarm priority description",
+    "serviceNeedOverview": "Service need description",
     "activeAlarmList": "Active alarms",
     "serviceNeedsList": "Service needs",
     "error": {
@@ -66,6 +67,18 @@
            } 
         
     },
+    "serviceNeeds": {
+        "priorities":{
+            "breakdown":  "Breakdown Service",
+            "urgent":  "Urgent Service",
+            "scheduled": "Scheduled Service"
+        },
+        "descriptions":{
+            "breakdown":"A failure has occurred unexpectedly, and a technician is required to be dispatched to fix the issue.",
+            "urgent": "An alarm shows signs of imminent failure, prompting immediate intervention by a technician to prevent a complete breakdown." ,
+            "scheduled": "Regular inspections, servicing, and part replacements performed based on a set schedule or usage criteria." 
+        }
+  },
     "warranty": {
         "warranty_active": "Active",
         "warranty_expired": "Expired",

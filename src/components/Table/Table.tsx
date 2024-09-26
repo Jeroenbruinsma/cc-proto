@@ -8,13 +8,13 @@ import { alarm } from "../../types/equipment";
 import { unit } from "../../types/unit";
 import { validation, validationObject } from "../../types/validations";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
-import { alarmSeverityType } from "../../types/alarms";
 import { serviceNeedsType } from "../../types/serviceNeeds";
+import { severityType } from "../../types/alarms";
 
 export type TableType = {
   tableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
-  tableData: site[] | alarm[] | unit[] | customer[] | validation[] | validationObject[] |  alarmSeverityType[] |  serviceNeedsType[] |  undefined 
+  tableData: site[] | alarm[] | unit[] | customer[] | validation[] | validationObject[] |  severityType[] | serviceNeedsType[] | undefined 
   onRowClick: onRowClickConfig
   rowColorParser?: rowColorParserFunctionType
 };
