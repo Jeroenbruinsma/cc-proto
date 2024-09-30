@@ -83,7 +83,6 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
     colors.filter(c => c.colorName === "indicatorRed")?.[0]?.colorHex 
   }
 
-
     return (
       <section className={[styles.currentstatusheader, className].join(" ")}>
         <div className={styles.statusContent}>
@@ -108,13 +107,13 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
                 <MetaElement topic={t("table.columnNames.serialNo")} value={metaData?.SerialNumber || "-"} />
                 <MetaElement topic={t("table.columnNames.installationYear")} value={metaData?.YearOfInstallation__c || "-"} />
                 <MetaElement topic={t("table.columnNames.slaActive")} value={capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")} />
-                <MetaElement topic={t("table.columnNames.slaEnd")} value={capitalizeFirstLetter(metaData?.EndDateOfServiceAgreement__c || "-")} />
+                <MetaElement topic={t("table.columnNames.slaActiveSince")} value={capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")} />
+                <MetaElement topic={t("table.columnNames.commisionedYear")} value={onlyYear(metaData?.WarrantyStartingDate__c || "-")} />
                 <MetaElement topic={t("table.columnNames.dataConsent")} value={capitalizeFirstLetter( metaData?.cc__dataConsent ? yesOrNo(metaData?.cc__dataConsent, t)  || "-" : "-")} />
+                <MetaElement topic={t("table.columnNames.warranty")} value={ metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) :"-"} />
+                <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.SiteLocation__c || "-"} />
                 <MetaElement topic={t("table.columnNames.operator")} value={metaData?.["Account.Name"] || "-"} />
                 <MetaElement topic={t("table.columnNames.country")} value={capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")} />
-                <MetaElement topic={t("table.columnNames.warranty")} value={ metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) :"-"} />
-                <MetaElement topic={t("table.columnNames.installationYear")} value={onlyYear(metaData?.WarrantyStartingDate__c || "-")} />
-                <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.SiteLocation__c || "-"} />
                 </table>
               }
             </div>
