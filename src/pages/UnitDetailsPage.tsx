@@ -5,8 +5,8 @@ import { createElement, useEffect, useState } from 'react'
 import axios from 'axios'
 import { alarm, equipmentDataType, stateType } from '../types/equipment'
 import { backendUrl } from '../config'
-// import KpiBox from '../components/KpiBox/KpiBox'
-// import MetricBox from '../components/MetricBox/MetricBox'
+import KpiBox from '../components/KpiBox/KpiBox'
+import MetricBox from '../components/MetricBox/MetricBox'
 import SubsectionHeader from '../components/SubsectionHeader/SubsectionHeader'
 import Table from '../components/Table/Table'
 import { useTranslation } from 'react-i18next'
@@ -117,15 +117,14 @@ function UnitDetailsPage() {
             { !alarmData ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={alarmColumns} tableData={alarmData} onRowClick={onRowClick}/>
           }
+      <KpiBox>
+        <MetricBox metricValue='- %' unitAvailability='Unit availability' className=""/>
+        <MetricBox metricValue='- days' unitAvailability='Unit MTBF' className=""/>
+        <MetricBox metricValue='-%' unitAvailability='Unit performance' className=""/>
+        <MetricBox metricValue='-%' unitAvailability='Unit utilization' className=""/>
+      </KpiBox>
         </div>
     </div>
-      {/* <KpiBox>
-        <MetricBox metricValue='95%' unitAvailability='Unit availability' className=""/>
-        <MetricBox metricValue='14,6 days' unitAvailability='Unit MTBF' className=""/>
-        <MetricBox metricValue='98%' unitAvailability='Unit performance' className=""/>
-        <MetricBox metricValue='99%' unitAvailability='Unit utilization' className=""/>
-        <MetricBox metricValue='97%' unitAvailability='BDU availability' className=""/>
-      </KpiBox> */}
        
     </>
   )
