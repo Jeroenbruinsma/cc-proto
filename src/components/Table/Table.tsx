@@ -25,6 +25,7 @@ export const noOnRowClick:onRowClickConfig = {
 }
 
 const Table: FunctionComponent<TableType> = ({ tableRowElement,tableColumns,tableData, onRowClick,rowColorParser}) => {
+if(!tableData) return  <LoadingIndicator/>
 return ( <>
     <table className={styles.table}>
      <thead className={styles.tableHead}>
