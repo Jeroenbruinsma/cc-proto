@@ -43,7 +43,7 @@ export default function InfoBox({ type }:InfoBoxProps
         //@ts-ignore */}
           <QM fill="black" width="25px" onClick={()=> set_hide(true)} />
         </div>
-        <h2 style={{ marginBottom: "0px"}} >{warning}</h2>
+        <h2 style={{ margin: "0px 0px 0px 0px"}} >{warning}</h2>
         {explanation ? <h4 style={{textAlign: "center"}}>{explanation}</h4> : null }
         {resolution ? <p style={{textAlign: "center"}}>{resolution}</p> : null}
     </div>
