@@ -25,7 +25,7 @@ interface MetaElementProps {
 const MetaElement : FunctionComponent<MetaElementProps> = ({topic, value}) => {
   return (
     <tr  className={styles.MetaElement} >
-      <td style={{width: "120px"}}>{topic}</td>
+      <td style={{width: "150px"}}>{topic}</td>
       <td>:</td>
       <td  style={{width: "200px"}}>{value}</td>
     </tr>
