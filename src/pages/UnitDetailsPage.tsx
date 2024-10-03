@@ -14,7 +14,7 @@ import TableRow, { onRowClickConfig } from '../components/Table/TableRow'
 import { columnType } from '../types/table'
 import { alarmPrioParser, durationParser } from '../helpers'
 import LoadingIndicator from '../components/LoadingIndicator/LoadingIndicator'
-import InfoBox from '../components/InfoBox/InfoBox'
+// import InfoBox from '../components/InfoBox/InfoBox'
 import QM from "..//components/AlarmExplanation/questionMark.svg";
 import { serviceNeedsType } from '../types/serviceNeeds'
 
@@ -106,8 +106,8 @@ function UnitDetailsPage() {
       <CurrentStatusHeader equipmentName={`${metaData?.Name || "-"} `} metaData={metaData} stateInfo={stateData}/>
       <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
-          { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="assetNotValidated" /> }
-          { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="accountNotValidated" /> }
+          {/* { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="assetNotValidated" /> }
+          { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="accountNotValidated" /> } */}
            
             <SubsectionHeader title={t("serviceNeedsList")} />
             { !alarmData ? <LoadingIndicator/> : 
