@@ -22,7 +22,7 @@ const UnitsPage: FunctionComponent = () => {
   const [units, set_units] = useState<undefined | unit[] >(undefined)
   const getUnitsFromSite = async (sitename:string) => {
     try{
-      const url = `${backendUrl}/units/${sitename}`
+      const url = `${backendUrl}/units/${encodeURIComponent(sitename)}`
       const res = await axios.get(url)
       
       if(res?.data){
