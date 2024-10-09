@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { backendUrl } from "./config.ts";
 import NotFound from "./pages/NotFound.tsx";
 import CustomersPage from "./pages/Customers.tsx";
+import UsersPage from "./pages/Users.tsx";
 import CustomersDetailPage from "./pages/CustomersDetailPage.tsx";
 import ValidationsPage from "./pages/ValidationsPage.tsx";
 import ValidationsDetailsPage from "./pages/ValidationsDetailsPage.tsx";
@@ -20,6 +21,7 @@ import AdminPage from "./pages/AdminPage.tsx";
 import ValidationsTypePage from "./pages/ValidationsTypePage.tsx";
 import ErrorBoundary from "./components/ErrorBoundry/ErrorBoundry.tsx";
 import NomenclaturePage from "./pages/NomenclaturePage.tsx";
+import UsersDetailsPage from "./pages/UsersDetailsPage.tsx";
 
 function App() {
   
@@ -53,6 +55,8 @@ function App() {
         <Route path="/sites" Component={Sites} />
         <Route path="/customers" Component={CustomersPage} />
         <Route path="/customers/:id" Component={CustomersDetailPage} />
+        <Route path="/users" Component={UsersPage} />
+        <Route path="/user/:id" Component={UsersDetailsPage} />
         <Route path="/unit/:id" Component={UnitDetailsPage} />
         <Route path="/login" Component={Login} />
         <Route path="/" Component={Login} />

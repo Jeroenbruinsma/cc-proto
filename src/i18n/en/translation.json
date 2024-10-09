@@ -1,6 +1,8 @@
 {
     "siteOverview": "Site overview",
     "customersOverview": "Customers overview",
+    "usersOverview": "Users overview",
+    "userDetailsPage": "User details ",
     "validationsPage": "Data quality validations",
     "sfdcObjectNavigationPage": "Salesforce data quality validations",
     "adminPage": "Demo links page",
@@ -47,7 +49,12 @@
             "serviceNeedId": "Service Need",
             "serviceNeedName": "Summary",
             "date": "Date",
-            "serviceNeedStatus": "Status"
+            "serviceNeedStatus": "Status",
+            "username": "Username",
+            "salesCenter": "Sales Center",
+            "timezone": "Timezone"
+
+
         }
     },
     "alarms": {

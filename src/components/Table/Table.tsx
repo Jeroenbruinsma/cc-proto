@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import styles from "./Table.module.css";
 import React from "react";
 import { customer, site } from "../../types/sites";
-import { columnType } from "../../types/table";
+import { columnType, keyValue } from "../../types/table";
 import { TableRowType, onRowClickConfig, rowColorParserFunctionType } from "./TableRow";
 import { alarm } from "../../types/equipment";
 import { unit } from "../../types/unit";
@@ -10,11 +10,12 @@ import { validation, validationObject } from "../../types/validations";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import { serviceNeedsType } from "../../types/serviceNeeds";
 import { severityType } from "../../types/alarms";
+import { user } from "../../types/user";
 
 export type TableType = {
   tableRowElement: React.ComponentType<TableRowType>
   tableColumns: columnType[]
-  tableData: site[] | alarm[] | unit[] | customer[] | validation[] | validationObject[] |  severityType[] | serviceNeedsType[] | undefined 
+  tableData: site[] | alarm[] | unit[] | customer[] | validation[] | validationObject[] |  severityType[] | serviceNeedsType[] | user[] | keyValue[] |undefined 
   onRowClick: onRowClickConfig
   rowColorParser?: rowColorParserFunctionType
 };

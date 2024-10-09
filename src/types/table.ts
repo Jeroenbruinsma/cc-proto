@@ -6,9 +6,14 @@ import { validation, validationObject } from "./validations"
 import { severityType } from "./alarms"
 import { rowDataType } from "../components/Table/TableRow"
 import { serviceNeedsType } from "./serviceNeeds"
+import { user } from "./user"
 
-export type dataKeyType = keyof alarm | keyof site | keyof unit | keyof customer | keyof validation | keyof validationObject  | keyof serviceNeedsType | keyof severityType
+export type dataKeyType = keyof alarm | keyof site | keyof unit | keyof customer | keyof validation | keyof validationObject  | keyof serviceNeedsType | keyof severityType | keyof user | keyof keyValue
 
+export interface keyValue{
+  key: string
+  value: string
+}
 export interface columnType{ 
     colName: string 
     cellElement?: any //React.FC<cellType>; 
