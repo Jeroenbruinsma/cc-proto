@@ -1,4 +1,11 @@
 #root {
   margin: 0 auto;
   width: 100%;
+  min-height: 100vh;
+}
+
+
+p, h1, h2, h3, h4, h5, h6, blockquote, span, strong, em, small, mark, del, ins, abbr, cite, code, 
+b, i, u, q, kbd, samp, var, sub, sup, textarea, div, a, li, dt, dd {
+  color: black
 }
