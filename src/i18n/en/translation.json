@@ -11,9 +11,24 @@
     "serviceNeedOverview": "Service Need description",
     "activeAlarmList": "Active alarms",
     "serviceNeedsList": "Service Needs",
+    "KPIStatistics": "KPI Statistics",
     "error": {
         "platform": {
             "backendConnection": "Connection with backend not possible, some functions might not work properly"
+        }
+    },
+    "kpi": {
+        "kpi_unit_availability": "Unit availability",
+        "kpi_unit_utilisation": "Unit utilization",
+        "kpi_unit_in_use": "Unit in use",
+        "percent": "%",
+        "%": "%",
+        "": "",
+        "hour": "hour",
+        "period": {
+            "7D": "7 Days",
+            "30D": "30 Days",
+            "1Y": "12 Months" 
         }
     },
     "table": {
