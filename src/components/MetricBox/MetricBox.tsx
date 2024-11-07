@@ -21,7 +21,7 @@ const MetricBox: FunctionComponent<MetricBoxType> = ({
       className={[styles.metricBox, className].join(" ")}
       onClick={onMetricBoxContainerClick}
     >
-      <div className={styles.metricBackground} />
+      <div className={[styles.metricBackground].join(" ")} />
       <b className={styles.unitAvailability}>{unitAvailability}</b>
       <b className={styles.metricValue}>{metricValue}</b>
     </div>

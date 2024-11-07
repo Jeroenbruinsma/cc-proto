@@ -19,6 +19,7 @@ import QM from "..//components/AlarmExplanation/questionMark.svg";
 import { serviceNeedsType } from '../types/serviceNeeds'
 
 
+
 function UnitDetailsPage() {
   const {t} = useTranslation()
   const params = useParams()
@@ -26,7 +27,13 @@ function UnitDetailsPage() {
   const [metaData, set_metaData ] = useState<equipmentDataType| undefined >(undefined)
   const [stateData, set_stateData ] = useState<stateType| undefined >(undefined)
   const [alarmData, set_AlarmData ] = useState<alarm[]| undefined >(undefined)
-  //TODO here ANY!
+  const [kpiData, set_kpiData ] = useState<kpi[]| undefined >(undefined)
+
+  const [selectedOption, set_selectedOption] =  useState(0)
+  const [showOptionDropdown, set_showOptionDropdown] =  useState(false)
+  const periodOptions = ["7D","30D","1Y"] // make api call?
+  const dropdownOptions = periodOptions.map(o => t(`kpi.period.${o}`))  
+
   const getMetaData = async (eqpmentId:string) => {
     try{
       const url = `${backendUrl}/equipment/meta?serial=${eqpmentId}`
@@ -57,9 +64,25 @@ function UnitDetailsPage() {
       const res = await axios.get(url)
 
       if(res?.data?.data?.length > 0){
-        set_AlarmData(res?.data?.data) //.filter((a:any) => a?.berth === false))
+        set_AlarmData(res?.data?.data)
       }else{
         set_AlarmData([])
+      }
+    }
+    catch(err){
+      console.log("err",err)
+      set_AlarmData(undefined)
+    }
+  }
+  const getKpiData = async (eqpmentId:string) => {
+    try{
+      const url = `${backendUrl}/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`
+      const res = await axios.get(url)
+
+      if(res?.data?.length > 0){
+        set_kpiData(res?.data) 
+      }else{
+        set_kpiData([])
       }
     }
     catch(err){
@@ -74,6 +97,12 @@ function UnitDetailsPage() {
       getAlarmData(params.id)
     }
   },[params.id])
+
+    useEffect(()=>{
+      if(params.id ) {
+        getKpiData(params.id)
+      }
+    }, [params.id,selectedOption])
 
   const dummyServiceNeed:serviceNeedsType = {
     serviceNeedId: "-",
@@ -117,11 +146,21 @@ function UnitDetailsPage() {
             { !alarmData ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={alarmColumns} tableData={alarmData} onRowClick={onRowClick}/>
           }
+      <SubsectionHeader title={t("KPIStatistics")} since
+          showOptionDropdown={showOptionDropdown}
+          set_selectedOption={set_selectedOption}
+          selectedOption={selectedOption}
+          set_showOptionDropdown={set_showOptionDropdown}
+          dropdownOptions={dropdownOptions}
+          
+      />    
       <KpiBox>
-        <MetricBox metricValue='- %' unitAvailability='Unit availability' className=""/>
-        <MetricBox metricValue='- days' unitAvailability='Unit MTBF' className=""/>
+        {kpiData?.map( (kpi, i) => <MetricBox key={i} metricValue={`${kpi?.kpi_result} ${t(`kpi.${kpi?.kpi_unit}`)}`} 
+                                              unitAvailability={`${t(`kpi.${kpi.kpi_name}`)}`} 
+                                              className=""
+                                    /> )}
         <MetricBox metricValue='-%' unitAvailability='Unit performance' className=""/>
-        <MetricBox metricValue='-%' unitAvailability='Unit utilization' className=""/>
+        <MetricBox metricValue='- days' unitAvailability='Unit MTBF' className=""/>
       </KpiBox>
         </div>
     </div>

@@ -50,3 +50,57 @@
     font-size: var(--font-size-base);
   }
 }
+.frameChild,
+.kpiStatistics {
+  position: relative;
+}
+.frameChild {
+  width: 15.5px;
+  height: 16px;
+  object-fit: contain;
+}
+.sinceDropdownInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-11xs-5) 0 0;
+}
+.months {
+  flex: 1;
+  position: relative;
+}
+.sinceDropdown,
+.titleplussince {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.sinceDropdown {
+  width: 211px;
+  justify-content: flex-start;
+  padding: 0 0 0 var(--padding-37xl);
+  box-sizing: border-box;
+  gap: var(--gap-3xs);
+  font-size: var(--font-size-base);
+  color: var(--color-dimgray);
+}
+.titleplussince {
+  align-self: stretch;
+  justify-content: space-between;
+  padding: var(--padding-9xs) 0;
+  gap: var(--gap-xl);
+}
+.periodDropdown{
+  border-style: solid;
+  padding: 0em 1em 0em 1em;
+  border-color: var(--color-steelblue);
+  z-index: 3;
+  background-color: white;
+  bottom: -42px;
+  right: 54px;
+  position: absolute;
+}
+.perodDropdownList{
+  list-style-image: url(/polygon-1.svg);
+}
