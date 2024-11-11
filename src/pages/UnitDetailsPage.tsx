@@ -159,8 +159,6 @@ function UnitDetailsPage() {
                                               unitAvailability={`${t(`kpi.${kpi.kpi_name}`)}`} 
                                               className=""
                                     /> )}
-        <MetricBox metricValue='-%' unitAvailability='Unit performance' className=""/>
-        <MetricBox metricValue='- days' unitAvailability='Unit MTBF' className=""/>
       </KpiBox>
         </div>
     </div>
