@@ -104,6 +104,20 @@ function UnitDetailsPage() {
       }
     }, [params.id,selectedOption])
 
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+        if(params.id ) {
+          getLastState(params.id)
+          getAlarmData(params.id)
+        }
+      }, 60000);
+  
+      return () => {
+        clearInterval(intervalId);
+      };
+    }, []);
+
+
   const dummyServiceNeed:serviceNeedsType = {
     serviceNeedId: "-",
     serviceNeedName: "-",
