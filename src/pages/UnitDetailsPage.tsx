@@ -81,8 +81,8 @@ function UnitDetailsPage() {
 
       if(res?.data?.length > 0){
         //Hack to remove miscalculated kpi's
-        set_kpiData(res?.data) 
-        // set_kpiData(res?.data?.filter((kpi:kpi ) => kpi?.kpi_name == "kpi_unit_in_use")) 
+        // set_kpiData(res?.data) 
+        set_kpiData(res?.data?.filter((kpi:kpi ) => kpi?.kpi_name == "kpi_unit_in_use")) 
       }else{
         set_kpiData([])
       }
