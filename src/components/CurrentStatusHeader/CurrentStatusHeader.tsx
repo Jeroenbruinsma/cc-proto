@@ -112,7 +112,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
                 <MetaElement topic={t("table.columnNames.dataConsent")} value={capitalizeFirstLetter( metaData?.cc__dataConsent ? yesOrNo(metaData?.cc__dataConsent, t)  || "-" : "-")} />
                 <MetaElement topic={t("table.columnNames.warranty")} value={ metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) :"-"} />
                 <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.asset_SiteLocation__c || "-"} />
-                <MetaElement topic={t("table.columnNames.operator")} value={metaData?.["Account.Name"] || "-"} />
+                <MetaElement topic={t("table.columnNames.operator")} value={metaData?.["account_Name"] || "-"} />
                 <MetaElement topic={t("table.columnNames.country")} value={capitalizeFirstLetter(metaData?.asset_EndUserCountry__c || "-")} />
                 </table>
               }

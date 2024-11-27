@@ -10,7 +10,7 @@ export interface equipmentDataType {
   asset_SerialNumber: string;
   asset_PartNumber__c: string;
   asset_Name: string;
-  "Account.Name": string;   //mmm checj
+  account_Name: string;
   asset_WarrantyStartingDate__c: string;
   asset_EndDateOfServiceAgreement__c: string;
   cc__WarrantyStatus: warranttStatus
