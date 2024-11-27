@@ -1,18 +1,18 @@
 import { coreSystemType } from "./sites";
 
 export interface equipmentDataType {
-  CoreSystem__c: coreSystemType;
-  SiteLocation__c: string;
-  YearOfInstallation__c: number;
-  WarrantyEndingDate__c: string;
-  ServiceAgreement__c: string;
-  EndUserCountry__c: string;
-  SerialNumber: string;
-  PartNumber__c: string;
-  Name: string;
-  "Account.Name": string;
-  WarrantyStartingDate__c: string;
-  EndDateOfServiceAgreement__c: string;
+  asset_CoreSystem__c: coreSystemType;
+  asset_SiteLocation__c: string;
+  asset_YearOfInstallation__c: number;
+  asset_WarrantyEndingDate__c: string;
+  asset_ServiceAgreement__c: string;
+  asset_EndUserCountry__c: string;
+  asset_SerialNumber: string;
+  asset_PartNumber__c: string;
+  asset_Name: string;
+  "Account.Name": string;   //mmm checj
+  asset_WarrantyStartingDate__c: string;
+  asset_EndDateOfServiceAgreement__c: string;
   cc__WarrantyStatus: warranttStatus
   cc__dataConsent: boolean
   cc__data_validation_unit_passed?: boolean

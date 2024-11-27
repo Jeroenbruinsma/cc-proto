@@ -1,5 +1,6 @@
 {
     "siteOverview": "Site overview",
+    "accountOverview": "Account overview",
     "customersOverview": "Customers overview",
     "usersOverview": "Users overview",
     "userDetailsPage": "User details ",
@@ -34,7 +35,7 @@
     "table": {
         "columnNames": {
             "siteName": "Site name",
-            "operator": "Customer",
+            "operator": "End user",
             "slaStatus": "SLA status",
             "slaEnd": "SLA end date",
             "slaActive": "SLA Active",
@@ -42,6 +43,7 @@
             "dataConsent": "Data consent",
             "siteHealth": "Site health",
             "dataValidation": "Data Quality",
+            "dataValidationAccount": "Account Data Quality ",
             "dateTime": "Date/time",
             "alarm": "Alarm",
             "duration": "Duration",
@@ -52,8 +54,8 @@
             "installationYear": "Installation year",
             "commisionedYear": "Commisioned year",
             "serialNo":"Serial nr",
-            "equipmentName": "Equipment Name",
-            "equipmentType": "Equipment Type" ,
+            "equipmentName": "Asset Name",
+            "equipmentType": "Asset Type" ,
             "status": "Status",
             "unitCount": "# units",
             "alarmSeverity": "Alarm priority",
@@ -85,9 +87,9 @@
             "diagnostic" : "Internal issue or malfunction within the automation system. Helps maintenance personnel identify and troubleshoot specific problems. " ,
             "low" : "Minor issue or notification with little to no impact on immediate operations. Can be addressed at a convenient time." ,
             "medium" : "Moderate issue with no immediate impact on safety or operations. Should be resolved in a reasonable timeframe." ,
-            "high" : "Important equipment condition affecting operations but not immediately threatening safety or causing severe damage. Should be addressed soon." ,
-            "urgent": "Important issue on equipment that could escalate to critical if not addressed promptly. Needs swift response.",
-            "critical": "Immediate threat to safety, environment, or significant equipment damage. Requires immediate action."
+            "high" : "Important asset condition affecting operations but not immediately threatening safety or causing severe damage. Should be addressed soon." ,
+            "urgent": "Important issue on asset that could escalate to critical if not addressed promptly. Needs swift response.",
+            "critical": "Immediate threat to safety, environment, or significant asset damage. Requires immediate action."
            } 
         
     },
@@ -123,7 +125,7 @@
     },
     "testingSitesPage": {
         "warning": "Page under development",
-        "explanation": "Site Location information is not always correctly recorded in Salesforce, equipment might be missing in this list."
+        "explanation": "Site Location information is not always correctly recorded in Salesforce, asset might be missing in this list."
     },
     "basics": {
         "yes": "yes",

@@ -39,8 +39,8 @@ export const passedOrFailed = (input: boolean, t: TFunction) => {
 
 export const emptyDash = (text: string, t: any) => {
   if(text === "") return t("basics.dash")
+  if(text === "null") return t("basics.dash")
   return text
-
 }
 
 export const alarmPrioParser: cellDataParserFunctions = (priority: number, t: TFunction): string => {

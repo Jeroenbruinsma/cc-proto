@@ -13,7 +13,7 @@ const AdminPage: FunctionComponent = () => {
         <div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
           <SubsectionHeader title={t("adminPage")} center/>
           <ul>
-            <li onClick={()=> navigate("/customers")}>List of customers [Customer overview]</li>
+            {/* <li onClick={()=> navigate("/customers")}>List of customers [Customer overview]</li> */}
             <li onClick={()=> navigate("/validations")}>Validation of sfdc objects</li>
           </ul>
           <h3>Quick links Turku:</h3>

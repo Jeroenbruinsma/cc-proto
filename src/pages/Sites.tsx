@@ -36,35 +36,32 @@ const SitesPage: FunctionComponent = () => {
   useEffect(()=> {
     getSites()
   }, [])
-
   const columns: columnType[] = [
-    { colName: t("table.columnNames.siteName"), dataKey: "SiteLocation__c", autocapitalize: true},
-    { colName: t("table.columnNames.operator"), dataKey: "Account.Name"},
-    { colName: t("table.columnNames.slaStatus"), dataKey: "ServiceAgreement__c", autocapitalize: true, parsers: [emptyDash]},
+    { colName: t("table.columnNames.operator"), dataKey: "account_Name"},
+    { colName: t("table.columnNames.siteName"), dataKey: "asset_SiteLocation__c", autocapitalize: true},
+    { colName: t("table.columnNames.slaStatus"), dataKey: "asset_ServiceAgreement__c", autocapitalize: true, parsers: [emptyDash]},
     { colName: t("table.columnNames.dataConsent"), dataKey: "cc__dataConsent", autocapitalize: true, parsers: [yesOrNo]},
     { colName: t("table.columnNames.siteHealth"), dataKey: "cc__siteHealth"},
-    { colName: t("table.columnNames.dataValidation"), dataKey: "cc__data_validation_passed" , cellElement: DataQualityCell } //; parsers: [yesOrNo]}
+    { colName: t("table.columnNames.dataValidationAccount"), dataKey: "cc__data_validation_passed" , cellElement: DataQualityCell } //; parsers: [yesOrNo]}
   ]
-
 
   const onRowClick:onRowClickConfig = {
     onClick: ({dataKey,rowData}:onRowClick): void => {
       if(!rowData?.cc__data_validation_passed){
-        return navigate(`/validationdetails/${encodeURIComponent(rowData?.["Account.Id"])}?reason=navigation`)
+        return navigate(`/validationdetails/${encodeURIComponent(rowData?.["account_Id"])}?reason=navigation`)
       }
       navigate(`/sites/${encodeURIComponent(dataKey)}`)
     }
   ,
-    dataKey: "SiteLocation__c",
+    dataKey: "asset_SiteLocation__c",
   }
-
   return (
     <>
       <TopHeader showImage={true} />
       <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
             {/* @ts-ignore */}
-            <SubsectionHeader title={t("siteOverview")} center/>
+            <SubsectionHeader title={t("accountOverview")} center/>
             <Table tableRowElement={TableRow} tableColumns={columns} tableData={sites} onRowClick={onRowClick}/>
         </div>
       </div>

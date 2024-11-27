@@ -96,7 +96,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
         <div className={styles.currentinfo}>
           <div className={styles.duoindicator}>
           { !stateInfo ? <LoadingIndicator/> : 
-              <StatusIndicator text={stateInfo?.state_str || "-" } subtext={parseDate(stateInfo)} indicatorBollColor={stateToColor(stateInfo?.state, metaData?.CoreSystem__c)}/>
+              <StatusIndicator text={stateInfo?.state_str || "-" } subtext={parseDate(stateInfo)} indicatorBollColor={stateToColor(stateInfo?.state, metaData?.asset_CoreSystem__c)}/>
           }
             {/* <StatusIndicator text="Scheduled Maintenace" subtext="Due for inspection"/> */}
           </div>
@@ -104,16 +104,16 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
             <div className={styles.metadatainfobox}>
             {!metaData ? <LoadingIndicator/> : 
               <table>
-                <MetaElement topic={t("table.columnNames.serialNo")} value={metaData?.SerialNumber || "-"} />
-                <MetaElement topic={t("table.columnNames.installationYear")} value={metaData?.YearOfInstallation__c || "-"} />
-                <MetaElement topic={t("table.columnNames.slaActive")} value={capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")} />
+                <MetaElement topic={t("table.columnNames.serialNo")} value={metaData?.asset_SerialNumber || "-"} />
+                <MetaElement topic={t("table.columnNames.installationYear")} value={metaData?.asset_YearOfInstallation__c || "-"} />
+                <MetaElement topic={t("table.columnNames.slaActive")} value={capitalizeFirstLetter(metaData?.asset_ServiceAgreement__c || "-")} />
                 {/* <MetaElement topic={t("table.columnNames.slaActiveSince")} value={capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")} /> */}
-                <MetaElement topic={t("table.columnNames.commisionedYear")} value={onlyYear(metaData?.WarrantyStartingDate__c || "-")} />
+                <MetaElement topic={t("table.columnNames.commisionedYear")} value={onlyYear(metaData?.asset_WarrantyStartingDate__c || "-")} />
                 <MetaElement topic={t("table.columnNames.dataConsent")} value={capitalizeFirstLetter( metaData?.cc__dataConsent ? yesOrNo(metaData?.cc__dataConsent, t)  || "-" : "-")} />
                 <MetaElement topic={t("table.columnNames.warranty")} value={ metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) :"-"} />
-                <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.SiteLocation__c || "-"} />
+                <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.asset_SiteLocation__c || "-"} />
                 <MetaElement topic={t("table.columnNames.operator")} value={metaData?.["Account.Name"] || "-"} />
-                <MetaElement topic={t("table.columnNames.country")} value={capitalizeFirstLetter(metaData?.EndUserCountry__c || "-")} />
+                <MetaElement topic={t("table.columnNames.country")} value={capitalizeFirstLetter(metaData?.asset_EndUserCountry__c || "-")} />
                 </table>
               }
             </div>

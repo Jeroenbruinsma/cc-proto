@@ -146,7 +146,7 @@ function UnitDetailsPage() {
   return (  
     <>
       <TopHeader/>
-      <CurrentStatusHeader equipmentName={`${metaData?.Name || "-"} `} metaData={metaData} stateInfo={stateData}/>
+      <CurrentStatusHeader equipmentName={`${metaData?.asset_Name || "-"} `} metaData={metaData} stateInfo={stateData}/>
       <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
           {/* { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="assetNotValidated" /> }
