@@ -5,7 +5,7 @@ import { createElement, useEffect, useState } from 'react'
 import axios from 'axios'
 import { alarm, equipmentDataType, stateType } from '../types/equipment'
 import { backendUrl } from '../config'
-import KpiBox from '../components/KpiBox/KpiBox'
+import KpiBox, { KpiBoxType } from '../components/KpiBox/KpiBox'
 import MetricBox from '../components/MetricBox/MetricBox'
 import SubsectionHeader from '../components/SubsectionHeader/SubsectionHeader'
 import Table from '../components/Table/Table'
@@ -80,7 +80,8 @@ function UnitDetailsPage() {
       const res = await axios.get(url)
 
       if(res?.data?.length > 0){
-        set_kpiData(res?.data) 
+        //Hack to remove miscalculated kpi's
+        set_kpiData(res?.data?.filter((kpi:kpi ) => kpi?.kpi_name == "kpi_unit_in_use")) 
       }else{
         set_kpiData([])
       }
