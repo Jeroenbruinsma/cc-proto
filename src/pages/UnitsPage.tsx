@@ -13,6 +13,7 @@ import { unit } from "../types/unit";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import InfoBox from "../components/InfoBox/InfoBox";
 import DataQualityCell from "../components/Table/DataQualityCell";
+import { emptyDash } from "../helpers";
 
 
 const UnitsPage: FunctionComponent = () => {
@@ -42,7 +43,7 @@ const UnitsPage: FunctionComponent = () => {
   }, [params?.id])
   
   const columns: columnType[] = [
-    { colName: t("table.columnNames.serialNo"), dataKey: "asset_SerialNumber" },
+    { colName: t("table.columnNames.serialNo"), dataKey: "asset_SerialNumber",  parsers: [emptyDash] },
     { colName: t("table.columnNames.equipmentName"), dataKey: "asset_Name"},
     { colName: t("table.columnNames.equipmentType"), dataKey: "cc__status" },
     { colName: t("table.columnNames.status"), dataKey: "cc__status"},
