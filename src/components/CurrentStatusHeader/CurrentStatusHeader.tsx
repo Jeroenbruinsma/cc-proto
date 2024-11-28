@@ -72,7 +72,10 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
     {stateNumber: 0, stateName: "Connected", stateColor: "indicatorBlue", equipmentType: "ShorePower"},
     {stateNumber: 0, stateName: "Charging", stateColor: "indicatorGreen", equipmentType: "ShorePower"},
     {stateNumber: 0, stateName: "Alarm", stateColor: "indicatorRed", equipmentType: "ShorePower"},
-    {stateNumber: 0, stateName: "Fault", stateColor: "indicatorRed", equipmentType: "ShorePower"}
+    {stateNumber: 0, stateName: "Fault", stateColor: "indicatorRed", equipmentType: "ShorePower"},
+
+    {stateNumber: 9999, stateName: "Not onboarded", stateColor: "indicatorGray", equipmentType: "ShorePower"},
+    {stateNumber: 9999, stateName: "Not onboarded", stateColor: "indicatorGray", equipmentType: "AutomatedMooring"}
    ]
   
 
