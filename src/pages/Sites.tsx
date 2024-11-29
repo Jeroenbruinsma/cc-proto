@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { columnType } from "../types/table";
 import { emptyDash, yesOrNo } from "../helpers";
 import DataQualityCell from "../components/Table/DataQualityCell";
+import { equipmentDataType } from "../types/equipment";
 
 
 const SitesPage: FunctionComponent = () => {
@@ -24,7 +25,8 @@ const SitesPage: FunctionComponent = () => {
       const url = `${backendUrl}/sites`
       const res = await axios.get(url)
       if(res?.data){
-        set_sites(res?.data.map( (d:any) => { return {...d, cc__siteHealth: "-" }}))
+        // set_sites(res?.data.map( (d:any) => { return {...d, cc__siteHealth: "-" }}))
+        set_sites(res?.data.map( (d:any) => { return {...d, cc__siteHealth: "-" }}).sort(sorting_on_dc))
       }else{
         set_sites(undefined)
       }
@@ -32,6 +34,9 @@ const SitesPage: FunctionComponent = () => {
     catch(err){
       console.log("err",err)
     }
+  }
+  const sorting_on_dc = ( a:any, b:any)  => {
+    return b?.cc__dataConsent - a?.cc__dataConsent
   }
   useEffect(()=> {
     getSites()
@@ -55,6 +60,7 @@ const SitesPage: FunctionComponent = () => {
   ,
     dataKey: "asset_SiteLocation__c",
   }
+
   return (
     <>
       <TopHeader showImage={true} />
