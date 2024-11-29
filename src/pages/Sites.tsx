@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { columnType } from "../types/table";
 import { emptyDash, yesOrNo } from "../helpers";
 import DataQualityCell from "../components/Table/DataQualityCell";
-import { equipmentDataType } from "../types/equipment";
 
 
 const SitesPage: FunctionComponent = () => {
