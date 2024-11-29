@@ -81,8 +81,7 @@ function UnitDetailsPage() {
 
       if(res?.data?.length > 0){
         //Hack to remove miscalculated kpi's
-        // set_kpiData(res?.data) 
-        set_kpiData(res?.data?.filter((kpi:kpi ) => kpi?.kpi_name == "kpi_unit_in_use")) 
+        set_kpiData(res?.data) 
       }else{
         set_kpiData([])
       }
@@ -145,6 +144,10 @@ function UnitDetailsPage() {
       dataKey: "uuid",
 
     }
+    const onMetricBoxClick = (id: string) => {
+      console.log("id", id, "link", `https://eu-west-1.console.aws.amazon.com/s3/object/cc-data-lake-analytics-results?region=eu-west-1&bucketType=general&prefix=calculation_info_${id}.json`)
+    }
+
   return (  
     <>
       <TopHeader/>
@@ -174,6 +177,7 @@ function UnitDetailsPage() {
         {kpiData?.map( (kpi, i) => <MetricBox key={i} metricValue={`${kpi?.kpi_result} ${t(`kpi.${kpi?.kpi_unit}`)}`} 
                                               unitAvailability={`${t(`kpi.${kpi.kpi_name}`)}`} 
                                               className=""
+                                              onMetricBoxContainerClick={()=> onMetricBoxClick(kpi?.kpi_calculation_id)}
                                     /> )}
       </KpiBox>
         </div>
