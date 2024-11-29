@@ -6,4 +6,5 @@ interface kpi {
     kpi_period_seconds: number
     kpi_result: number
     kpi_unit: "%"
+    kpi_calculation_id: string
   }
