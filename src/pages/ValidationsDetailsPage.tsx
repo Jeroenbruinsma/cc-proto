@@ -19,6 +19,7 @@ const ValidationsDetailsPage: FunctionComponent = () => {
   const params = useParams()
   const [searchParams] = useSearchParams();
   const navigationReason =  searchParams.get("reason")
+  const filter =  searchParams.get("filter")
   
   const [validationObject, set_validationObject] = useState<undefined | validation >(undefined)
   const getCustomers = async (type: string) => {
@@ -50,6 +51,7 @@ const ValidationsDetailsPage: FunctionComponent = () => {
     { colName:  t("table.columnNames.sfdcObjectValidationResult"), dataKey: "object_validation_result", parsers: [passedOrFailed]},
   ]
 
+  const tableData = filter ===  "failed" ? validationObject?.validations?.filter((vo:any) => !vo.object_validation_result) : validationObject?.validations
 
   return (
     <>
@@ -62,7 +64,7 @@ const ValidationsDetailsPage: FunctionComponent = () => {
             {validationObject? <h3 style={{margin: "3px 0px 3px"}}>Object type: {validationObject?.sfdcObjectType}</h3> : null }
             {validationObject? <h3 style={{margin: "3px 0px 3px"}}>Object passes all validations: {yesOrNo(validationObject?.object_validation_result,t )}</h3>: null }
             { !validationObject?.validations ? <LoadingIndicator/> : 
-              <Table tableRowElement={TableRow} tableColumns={columns} tableData={validationObject?.validations} onRowClick={noOnRowClick}/>
+              <Table tableRowElement={TableRow} tableColumns={columns} tableData={tableData} onRowClick={noOnRowClick}/>
             }
         </div>
       </div>

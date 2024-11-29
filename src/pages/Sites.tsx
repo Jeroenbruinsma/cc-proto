@@ -53,7 +53,7 @@ const SitesPage: FunctionComponent = () => {
   const onRowClick:onRowClickConfig = {
     onClick: ({dataKey,rowData}:onRowClick): void => {
       if(!rowData?.cc__data_validation_passed){
-        return navigate(`/validationdetails/${encodeURIComponent(rowData?.["account_Id"])}?reason=navigation`)
+        return navigate(`/validationdetails/${encodeURIComponent(rowData?.["account_Id"])}?reason=navigation&filter=failed`)
       }
       navigate(`/sites/${encodeURIComponent(dataKey)}`)
     }
