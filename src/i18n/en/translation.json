@@ -27,6 +27,7 @@
         "": "",
         "hour": "hour",
         "period": {
+            "1D": "1 Day",
             "7D": "7 Days",
             "30D": "30 Days",
             "1Y": "12 Months" 
@@ -52,7 +53,7 @@
             "warranty": "Warranty",
             "commissioned": "Commissioned" ,
             "installationYear": "Installation year",
-            "commisionedYear": "Commisioned year",
+            "commissionedYear": "Commissioned year",
             "serialNo":"Serial nr",
             "equipmentName": "Asset Name",
             "equipmentType": "Asset Type" ,

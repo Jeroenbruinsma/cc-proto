@@ -111,7 +111,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
                 <MetaElement topic={t("table.columnNames.installationYear")} value={metaData?.asset_YearOfInstallation__c || "-"} />
                 <MetaElement topic={t("table.columnNames.slaActive")} value={capitalizeFirstLetter(metaData?.asset_ServiceAgreement__c || "-")} />
                 {/* <MetaElement topic={t("table.columnNames.slaActiveSince")} value={capitalizeFirstLetter(metaData?.ServiceAgreement__c || "-")} /> */}
-                <MetaElement topic={t("table.columnNames.commisionedYear")} value={onlyYear(metaData?.asset_WarrantyStartingDate__c || "-")} />
+                <MetaElement topic={t("table.columnNames.commissionedYear")} value={onlyYear(metaData?.asset_WarrantyStartingDate__c || "-")} />
                 <MetaElement topic={t("table.columnNames.dataConsent")} value={capitalizeFirstLetter( metaData?.cc__dataConsent ? yesOrNo(metaData?.cc__dataConsent, t)  || "-" : "-")} />
                 <MetaElement topic={t("table.columnNames.warranty")} value={ metaData?.cc__WarrantyStatus ? parseWarranty(metaData?.cc__WarrantyStatus, t) :"-"} />
                 <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.asset_SiteLocation__c || "-"} />
