@@ -31,7 +31,7 @@ function UnitDetailsPage() {
 
   const [selectedOption, set_selectedOption] =  useState(0)
   const [showOptionDropdown, set_showOptionDropdown] =  useState(false)
-  const periodOptions = ["7D","30D","1Y"] // make api call?
+  const periodOptions = ["1D","7D","30D","1Y"] // make api call?
   const dropdownOptions = periodOptions.map(o => t(`kpi.period.${o}`))  
 
   const getMetaData = async (eqpmentId:string) => {
@@ -127,7 +127,7 @@ function UnitDetailsPage() {
   }
 
   const alarmColumns:columnType[] = [
-      { colName: t("table.columnNames.dateTime"), dataKey: "created", autocapitalize: true},
+      { colName: t("table.columnNames.dateTime"), dataKey: "created", autocapitalize: true },
       { colName: t("table.columnNames.alarm"), dataKey: "detail"},
       { colName: t("table.columnNames.priority"), dataKey: "priority" , parsers: [ alarmPrioParser], headerIcon: {onClick: ()=> navigate("/nomenclature/alarms"), icon: createElement(QM, {fill:"gray", width: "20px", style: {marginLeft: "10px"} })} },
       { colName: t("table.columnNames.duration"), dataKey: "duration", parsers: [ durationParser]   }
@@ -158,7 +158,7 @@ function UnitDetailsPage() {
           { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="accountNotValidated" /> } */}
            
             <SubsectionHeader title={t("serviceNeedsList")} />
-            { !alarmData ? <LoadingIndicator/> : 
+            { !dummyServiceNeed ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={serviceNeedsColumns} tableData={[dummyServiceNeed]} onRowClick={onRowClick}/>
           }
             <SubsectionHeader title={t("activeAlarmList")} />
