@@ -29,7 +29,7 @@ function UnitDetailsPage() {
   const [alarmData, set_AlarmData ] = useState<alarm[]| undefined >(undefined)
   const [kpiData, set_kpiData ] = useState<kpi[]| undefined >(undefined)
 
-  const [selectedOption, set_selectedOption] =  useState(0)
+  const [selectedOption, set_selectedOption] =  useState(1)
   const [showOptionDropdown, set_showOptionDropdown] =  useState(false)
   const periodOptions = ["1D","7D","30D","1Y"] // make api call?
   const dropdownOptions = periodOptions.map(o => t(`kpi.period.${o}`))  
