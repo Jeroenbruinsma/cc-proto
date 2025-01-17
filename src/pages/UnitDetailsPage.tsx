@@ -174,7 +174,7 @@ function UnitDetailsPage() {
           
       />    
       <KpiBox>
-        {kpiData?.map( (kpi, i) => <MetricBox key={i} metricValue={`${kpi?.kpi_result} ${t(`kpi.${kpi?.kpi_unit}`)}`} 
+        {kpiData?.map( (kpi, i) => <MetricBox key={i} metricValue={`${kpi?.kpi_result ? kpi?.kpi_result : t("basics.dash")} ${t(`kpi.${kpi?.kpi_unit}`)}`} 
                                               unitAvailability={`${t(`kpi.${kpi.kpi_name}`)}`} 
                                               className=""
                                               onMetricBoxContainerClick={()=> onMetricBoxClick(kpi?.kpi_calculation_id)}
