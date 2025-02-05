@@ -13,23 +13,24 @@
   box-sizing: border-box;
 }
 .metricValue,
-.unitAvailability {
+.metricName {
   align-self: stretch;
   position: relative;
   font-weight: 700;
   z-index: 1;
 }
 .metricValue {
-  font-size: var(--font-size-11xl);
+  font-size: 1.7em;
 }
 .metricBox {
-  width: 150px;
+  min-width: 150px;
+  width: auto;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: var(--padding-lgi) var(--padding-11xs) var(--padding-8xl);
+  padding: var(--padding-lgi) var(--padding-3xs) var(--padding-8xl) var(--padding-3xs);
   box-sizing: border-box;
   position: relative;
   gap: var(--gap-lgi);
@@ -38,14 +39,5 @@
   font-size: var(--font-size-base);
   color: var(--color-black);
   font-family: var(--font-inter);
-}
-@media screen and (max-width: 1025px) {
-  .metricValue {
-    font-size: var(--font-size-5xl);
-  }
-}
-@media screen and (max-width: 450px) {
-  .metricValue {
-    font-size: var(--font-size-lg);
-  }
+  max-height: 120px;
 }

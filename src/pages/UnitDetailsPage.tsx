@@ -18,7 +18,10 @@ import LoadingIndicator from '../components/LoadingIndicator/LoadingIndicator'
 import QM from "..//components/AlarmExplanation/questionMark.svg";
 import { serviceNeedsType } from '../types/serviceNeeds'
 
-
+interface hacked_kpi extends kpi{
+  kpi_secondResult?: number
+  kpi_secondUnit?: string
+}
 
 function UnitDetailsPage() {
   const {t} = useTranslation()
@@ -27,7 +30,7 @@ function UnitDetailsPage() {
   const [metaData, set_metaData ] = useState<equipmentDataType| undefined >(undefined)
   const [stateData, set_stateData ] = useState<stateType| undefined >(undefined)
   const [alarmData, set_AlarmData ] = useState<alarm[]| undefined >(undefined)
-  const [kpiData, set_kpiData ] = useState<kpi[]| undefined >(undefined)
+  const [kpiData, set_kpiData ] = useState<hacked_kpi[]| undefined >(undefined)
 
   const [selectedOption, set_selectedOption] =  useState(1)
   const [showOptionDropdown, set_showOptionDropdown] =  useState(false)
@@ -74,6 +77,15 @@ function UnitDetailsPage() {
       set_AlarmData(undefined)
     }
   }
+  const hack_double_kpi_box = (kpis: kpi[]):hacked_kpi[] => {
+    const data = kpis.filter(k=> (k?.kpi_name != "kpi_unit_in_use" && (k?.kpi_name != "kpi_unit_utilisation")))
+    const unitUtil = kpis.filter(k=> (k?.kpi_name === "kpi_unit_utilisation"))[0]
+    const unitInUse = kpis.filter(k=> (k?.kpi_name === "kpi_unit_in_use"))[0]
+    // We need both unitUtil and UnitInUse for a double box
+    if(!unitUtil || !unitInUse) return kpis
+    const doublebox = {...unitUtil, kpi_secondResult: unitInUse?.kpi_result,  kpi_secondUnit: unitInUse?.kpi_unit  }
+    return [...data, doublebox]
+  }
   const getKpiData = async (eqpmentId:string) => {
     try{
       const url = `${backendUrl}/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`
@@ -81,7 +93,8 @@ function UnitDetailsPage() {
 
       if(res?.data?.length > 0){
         //Hack to remove miscalculated kpi's
-        set_kpiData(res?.data) 
+        // set_kpiData(res?.data) 
+        set_kpiData(hack_double_kpi_box(res?.data))
       }else{
         set_kpiData([])
       }
@@ -175,7 +188,8 @@ function UnitDetailsPage() {
       />    
       <KpiBox>
         {kpiData?.map( (kpi, i) => <MetricBox key={i} metricValue={`${(kpi?.kpi_result || kpi?.kpi_result === 0 ) ? kpi?.kpi_result : t("basics.dash")} ${t(`kpi.${kpi?.kpi_unit}`)}`} 
-                                              unitAvailability={`${t(`kpi.${kpi.kpi_name}`)}`} 
+                                              metricName={`${t(`kpi.${kpi.kpi_name}`)}`} 
+                                              secondMetricValue={kpi?.kpi_secondResult ? `${ kpi?.kpi_secondResult} ${t(`kpi.${kpi?.kpi_secondUnit}`)}` : undefined} 
                                               className=""
                                               onMetricBoxContainerClick={()=> onMetricBoxClick(kpi?.kpi_calculation_id)}
                                     /> )}

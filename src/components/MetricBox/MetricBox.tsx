@@ -3,17 +3,17 @@ import styles from "./MetricBox.module.css";
 
 export type MetricBoxType = {
   className?: string;
-  unitAvailability: string;
+  metricName: string;
   metricValue: string;
-
-  /** Action props */
+  secondMetricValue?: string
   onMetricBoxContainerClick?: () => void;
 };
 
 const MetricBox: FunctionComponent<MetricBoxType> = ({
   className = "",
-  unitAvailability,
+  metricName,
   metricValue,
+  secondMetricValue,
   onMetricBoxContainerClick,
 }) => {
   return (
@@ -22,8 +22,11 @@ const MetricBox: FunctionComponent<MetricBoxType> = ({
       onClick={onMetricBoxContainerClick}
     >
       <div className={[styles.metricBackground].join(" ")} />
-      <b className={styles.unitAvailability}>{unitAvailability}</b>
-      <b className={styles.metricValue}>{metricValue}</b>
+      <b className={styles.metricName}>{metricName}</b>
+      {secondMetricValue ? 
+      <b className={styles.metricValue}>{metricValue} | {secondMetricValue}</b> : 
+      <b className={styles.metricValue}>{metricValue} </b> 
+      }
     </div>
   );
 };
