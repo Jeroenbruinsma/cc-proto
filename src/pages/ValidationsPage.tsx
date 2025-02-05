@@ -78,8 +78,8 @@ const ValidationsPage: FunctionComponent = () => {
             <ErrorBoundary>
             {!validationInfo ? 
               <LoadingIndicator/> :  <KpiBox>
-              <MetricBox metricValue={`${validationInfo?.item_count}`} unitAvailability='total item Count' className=""/>
-              <MetricBox metricValue={`${validationInfo?.passed}`} unitAvailability='Items passed in current set' className=""/>
+              <MetricBox metricValue={`${validationInfo?.item_count}`} metricName='total item Count' className=""/>
+              <MetricBox metricValue={`${validationInfo?.passed}`} metricName='Items passed in current set' className=""/>
             </KpiBox>
              }
             </ErrorBoundary>
