@@ -189,7 +189,7 @@ function UnitDetailsPage() {
       <KpiBox>
         {kpiData?.map( (kpi, i) => <MetricBox key={i} metricValue={`${(kpi?.kpi_result || kpi?.kpi_result === 0 ) ? kpi?.kpi_result : t("basics.dash")} ${t(`kpi.${kpi?.kpi_unit}`)}`} 
                                               metricName={`${t(`kpi.${kpi.kpi_name}`)}`} 
-                                              secondMetricValue={kpi?.kpi_secondResult ? `${ kpi?.kpi_secondResult} ${t(`kpi.${kpi?.kpi_secondUnit}`)}` : undefined} 
+                                              secondMetricValue={(kpi?.kpi_secondResult || kpi?.kpi_secondResult === 0) ? `${ kpi?.kpi_secondResult} ${t(`kpi.${kpi?.kpi_secondUnit}`)}` : undefined} 
                                               className=""
                                               onMetricBoxContainerClick={()=> onMetricBoxClick(kpi?.kpi_calculation_id)}
                                     /> )}
