@@ -6,7 +6,8 @@
     "userDetailsPage": "User details ",
     "validationsPage": "Data quality validations",
     "sfdcObjectNavigationPage": "Salesforce data quality validations",
-    "adminPage": "Demo links page",
+    "demoPage": "Demo links page",
+    "adminPage": "Admin Page",
     "siteUnits" : "overview",
     "nomenclatureOverview": "Alarm priority description",
     "serviceNeedOverview": "Service Need description",
@@ -15,7 +16,8 @@
     "KPIStatistics": "KPI Statistics",
     "error": {
         "platform": {
-            "backendConnection": "Connection with backend not possible, some functions might not work properly"
+            "backendConnection": "Connection with backend not possible, some functions might not work properly",
+            "alternativeBackend": "Alternative backend used! "
         }
     },
     "kpi": {
