@@ -23,7 +23,6 @@ import ValidationsTypePage from "./pages/ValidationsTypePage.tsx";
 import ErrorBoundary from "./components/ErrorBoundry/ErrorBoundry.tsx";
 import NomenclaturePage from "./pages/NomenclaturePage.tsx";
 import UsersDetailsPage from "./pages/UsersDetailsPage.tsx";
-import Testing from "./pages/TestingDetails.tsx";
 import DemoLinksPage from "./pages/DemolinksPage.tsx";
 
 function App() {
@@ -64,7 +63,6 @@ function App() {
         <Route path="/user/:id" Component={UsersDetailsPage} />
         <Route path="/unit/:id" Component={UnitDetailsPage} />
         <Route path="/kpi/:id" Component={UnitKPIDetailsPage} />
-        <Route path="/testing" Component={Testing} />
 
         <Route path="/login" Component={Login} />
         <Route path="/" Component={Login} />
