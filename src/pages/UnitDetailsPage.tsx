@@ -30,12 +30,14 @@ function UnitDetailsPage() {
   const [metaData, set_metaData ] = useState<equipmentDataType| undefined >(undefined)
   const [stateData, set_stateData ] = useState<stateType| undefined >(undefined)
   const [alarmData, set_AlarmData ] = useState<alarm[]| undefined >(undefined)
+  const [berthAlarmData, set_berthAlarmData ] = useState<alarm[]| undefined >(undefined)
   const [kpiData, set_kpiData ] = useState<hacked_kpi[]| undefined >(undefined)
 
   const [selectedOption, set_selectedOption] =  useState(1)
   const [showOptionDropdown, set_showOptionDropdown] =  useState(false)
   const periodOptions = ["1D","7D","30D","1Y"] // make api call?
   const dropdownOptions = periodOptions.map(o => t(`kpi.period.${o}`))  
+  const [showBerthAlarms, set_showBerthAlarms] =  useState(true)
 
   const getMetaData = async (eqpmentId:string) => {
     try{
@@ -77,6 +79,24 @@ function UnitDetailsPage() {
       set_AlarmData(undefined)
     }
   }
+  const getBerthAlarmData = async (eqpmentId:string) => {
+    try{
+      // console.log("equipmentId", eqpmentId , `${eqpmentId.split("/")[0]}/0`)
+      const url = `${backendUrl}/equipment/serial-to-alarm?serial=${`${eqpmentId.split("/")[0]}/0`}`
+      const res = await axios.get(url)
+
+      if(res?.data?.data?.length > 0){
+        set_berthAlarmData(res?.data?.data)
+      }else{
+        set_berthAlarmData([])
+      }
+    }
+    catch(err){
+      console.log("err",err)
+      set_berthAlarmData(undefined)
+    }
+  }
+
   const hack_double_kpi_box = (kpis: kpi[]):hacked_kpi[] => {
     const data = kpis.filter(k=> (k?.kpi_name != "kpi_unit_in_use" && (k?.kpi_name != "kpi_unit_utilisation")))
     const unitUtil = kpis.filter(k=> (k?.kpi_name === "kpi_unit_utilisation"))[0]
@@ -86,6 +106,8 @@ function UnitDetailsPage() {
     const doublebox = {...unitUtil, kpi_secondResult: unitInUse?.kpi_result,  kpi_secondUnit: unitInUse?.kpi_unit  }
     return [...data, doublebox]
   }
+
+
   const getKpiData = async (eqpmentId:string) => {
     try{
       const url = `${backendUrl}/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`
@@ -101,7 +123,7 @@ function UnitDetailsPage() {
     }
     catch(err){
       console.log("err",err)
-      set_AlarmData(undefined)
+      set_kpiData(undefined)
     }
   }
   useEffect(()=>{
@@ -109,8 +131,9 @@ function UnitDetailsPage() {
       getMetaData(params.id)
       getLastState(params.id)
       getAlarmData(params.id)
+      getBerthAlarmData(params.id)
     }
-  },[params.id])
+  },[params.id,])
 
     useEffect(()=>{
       if(params.id ) {
@@ -123,13 +146,14 @@ function UnitDetailsPage() {
         if(params.id ) {
           getLastState(params.id)
           getAlarmData(params.id)
+          getBerthAlarmData(params.id)
         }
       }, 60000);
   
       return () => {
         clearInterval(intervalId);
       };
-    }, []);
+    }, [params.id]);
 
 
   const dummyServiceNeed:serviceNeedsType = {
@@ -161,6 +185,9 @@ function UnitDetailsPage() {
       console.log("id", id, "link", `https://eu-west-1.console.aws.amazon.com/s3/object/cc-data-lake-analytics-results?region=eu-west-1&bucketType=general&prefix=calculation_info_${id}.json`)
     }
 
+
+  const concat = (...arrays : any) => [].concat(...arrays.filter(Array.isArray));
+  const alarmList =  showBerthAlarms ? concat(berthAlarmData, alarmData) : alarmData
   return (  
     <>
       <TopHeader/>
@@ -174,9 +201,11 @@ function UnitDetailsPage() {
             { !dummyServiceNeed ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={serviceNeedsColumns} tableData={[dummyServiceNeed]} onRowClick={onRowClick}/>
           }
-            <SubsectionHeader title={t("activeAlarmList")} />
+            <SubsectionHeader title={`${t("activeAlarmList")}(${alarmData?.length})`} optionToggleName={`${t('activeAlarmBerthToggle')}`} 
+              toggleChecked={showBerthAlarms} 
+              set_toggleChecked={set_showBerthAlarms}/>
             { !alarmData ? <LoadingIndicator/> : 
-            <Table tableRowElement={TableRow} tableColumns={alarmColumns} tableData={alarmData} onRowClick={onRowClick}/>
+            <Table tableRowElement={TableRow} tableColumns={alarmColumns} tableData={alarmList} onRowClick={onRowClick}/>
           }
       <SubsectionHeader title={t("KPIStatistics")} since
           showOptionDropdown={showOptionDropdown}

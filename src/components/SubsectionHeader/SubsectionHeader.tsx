@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import styles from "./SubsectionHeader.module.css";
+import Toggle from 'react-toggle'
 
 export type SubsectionHeaderType = {
   className?: string;
@@ -10,6 +11,10 @@ export type SubsectionHeaderType = {
   set_selectedOption?: (x: number) => void
   set_showOptionDropdown?: (x:boolean) => void
   showOptionDropdown?: boolean
+  set_showOptionToggle?: (x:boolean) => void
+  optionToggleName?: string
+  set_toggleChecked?: (x:boolean) => void
+  toggleChecked?: boolean
   dropdownOptions?: string[]
 };
 
@@ -21,7 +26,10 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
   set_selectedOption,
   selectedOption,
   set_showOptionDropdown,
-  dropdownOptions
+  dropdownOptions,
+  optionToggleName,
+  set_toggleChecked,
+  toggleChecked
 }) => {
   // const [selectedPeriod, set_selectedPeriod] =  useState(0)
   // const [showPeriodDropdown, set_showPeriodDropdown] =  useState(false)
@@ -62,6 +70,20 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
           </>
           : null
           }
+
+          { optionToggleName  ?
+            <div className={styles.toggleHolder}>
+                <Toggle
+                  icons={false}
+                  onChange={() => set_toggleChecked && set_toggleChecked(!toggleChecked) } 
+                  checked={toggleChecked}  
+                />
+                <span className={styles.toggleTextHolder}>
+                  <p className={styles.toggleText}>{optionToggleName}</p>
+                </span>
+            </div>
+            : null
+            }
       </div>
       <div className={styles.lineframe}>
         <div className={styles.lineframeChild} />

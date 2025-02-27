@@ -104,3 +104,23 @@
 .perodDropdownList{
   list-style-image: url(/polygon-1.svg);
 }
+.toggleHolder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.toggleText{
+  color: var(--color-dimgray);
+  background-color: #dedfe1;
+  padding: 6px 20px 6px 20px;
+  border-radius: 10px;
+  margin: 0px;
+  font-size: var(--font-size-smi);
+  font-family: var(--font-inter);
+}
+.toggleTextHolder{
+  margin: 0px 10px 0px;
+}
+
+

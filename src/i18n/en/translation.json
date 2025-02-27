@@ -14,6 +14,7 @@
     "activeAlarmList": "Active alarms",
     "serviceNeedsList": "Service Needs",
     "KPIStatistics": "KPI Statistics",
+    "activeAlarmBerthToggle": "Berth alarms",
     "error": {
         "platform": {
             "backendConnection": "Connection with backend not possible, some functions might not work properly",
