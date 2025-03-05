@@ -24,6 +24,7 @@ import ErrorBoundary from "./components/ErrorBoundry/ErrorBoundry.tsx";
 import NomenclaturePage from "./pages/NomenclaturePage.tsx";
 import UsersDetailsPage from "./pages/UsersDetailsPage.tsx";
 import DemoLinksPage from "./pages/DemolinksPage.tsx";
+import UnitsAlarmsPage from "./pages/UnitAlarmsPage.tsx";
 
 function App() {
   
@@ -62,6 +63,7 @@ function App() {
         <Route path="/users" Component={UsersPage} />
         <Route path="/user/:id" Component={UsersDetailsPage} />
         <Route path="/unit/:id" Component={UnitDetailsPage} />
+        <Route path="/unit/:id/historicalAlarms" Component={UnitsAlarmsPage} />
         <Route path="/kpi/:id" Component={UnitKPIDetailsPage} />
 
         <Route path="/login" Component={Login} />

@@ -15,6 +15,7 @@ export type CurrentStatusHeaderType = {
   equipmentName: string
   metaData: equipmentDataType | undefined
   stateInfo: stateType | undefined
+  small?: boolean
 };
 
 interface MetaElementProps {
@@ -36,7 +37,8 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   className = "",
   equipmentName,
   metaData,
-  stateInfo
+  stateInfo,
+  small
 }) => {
   const {t} = useTranslation()
 
@@ -87,7 +89,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   }
 
     return (
-      <section className={[styles.currentstatusheader, className].join(" ")}>
+      <section className={[styles.currentstatusheader, className, small ? styles.small : ""].join(" ")}>
         <div className={styles.statusContent}>
           <div className={styles.statusContentInner}>
             <div className={styles.mmu02Wrapper}>
@@ -95,8 +97,9 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
             </div>
           </div>
         </div>
-        <SubsectionHeader title="Current status" />
-        <div className={styles.currentinfo}>
+
+        {!small ? <SubsectionHeader title="Current status" /> : null}
+        {!small  ? <div className={styles.currentinfo}>
           <div className={styles.duoindicator}>
           { !stateInfo ? <LoadingIndicator/> : 
               <StatusIndicator text={stateInfo?.state_str || "-" } subtext={parseDate(stateInfo)} indicatorBollColor={stateToColor(stateInfo?.state, metaData?.asset_CoreSystem__c)}/>
@@ -122,6 +125,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
             </div>
           </div>
         </div>
+        : null }
       </section>
     );
   };

@@ -16,6 +16,8 @@ export type SubsectionHeaderType = {
   set_toggleChecked?: (x:boolean) => void
   toggleChecked?: boolean
   dropdownOptions?: string[]
+  button?: () => void 
+  buttonText?: string
 };
 
 const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
@@ -29,7 +31,9 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
   dropdownOptions,
   optionToggleName,
   set_toggleChecked,
-  toggleChecked
+  toggleChecked,
+  button,
+  buttonText
 }) => {
   // const [selectedPeriod, set_selectedPeriod] =  useState(0)
   // const [showPeriodDropdown, set_showPeriodDropdown] =  useState(false)
@@ -84,6 +88,10 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
             </div>
             : null
             }
+            {button ? <span className={styles.btnTextHolder} onClick={button}>
+                  <p className={styles.btnText}>{buttonText}</p>
+                </span> :
+            null}
       </div>
       <div className={styles.lineframe}>
         <div className={styles.lineframeChild} />

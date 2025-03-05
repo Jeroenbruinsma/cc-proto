@@ -171,6 +171,9 @@
   color: var(--color-black);
   font-family: var(--font-inter);
 }
+.small{
+  margin-bottom: 2em;
+}
 @media screen and (max-width: 1025px) {
   .mmu02 {
     font-size: var(--font-size-7xl);

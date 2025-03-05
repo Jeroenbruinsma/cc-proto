@@ -201,9 +201,12 @@ function UnitDetailsPage() {
             { !dummyServiceNeed ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={serviceNeedsColumns} tableData={[dummyServiceNeed]} onRowClick={onRowClick}/>
           }
-            <SubsectionHeader title={`${t("activeAlarmList")}(${alarmData?.length})`} optionToggleName={`${t('activeAlarmBerthToggle')}`} 
+            <SubsectionHeader title={`${t("activeAlarmList")}`} optionToggleName={`${t('activeAlarmBerthToggle')}`} 
               toggleChecked={showBerthAlarms} 
-              set_toggleChecked={set_showBerthAlarms}/>
+              set_toggleChecked={set_showBerthAlarms}
+              button={() => navigate(`/unit/${encodeURIComponent(params?.id || "")}/historicalAlarms`)}
+              buttonText={t("historicalAlarmsButton")}
+              />
             { !alarmData ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={alarmColumns} tableData={alarmList} onRowClick={onRowClick}/>
           }

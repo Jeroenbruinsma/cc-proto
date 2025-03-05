@@ -1,0 +1,8 @@
+.back{
+    margin: 1em 1em 1em 0em;
+    display: flex;
+}
+.singleArrowLeft{
+    width: 30px;
+    margin-right: 1em;
+}
