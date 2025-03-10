@@ -27,7 +27,7 @@
   align-self: stretch;
   padding: 0 var(--padding-4xs) 0 var(--padding-5xs);
   box-sizing: border-box;
-  color: var(--color-steelblue-100);
+  color: var(--color-steelblue);
 }
 .buttontext {
   height: 33px;
@@ -52,14 +52,14 @@
   cursor: pointer;
   border: 0;
   padding: var(--padding-5xs-5) 0;
-  background-color: var(--color-steelblue-100);
+  background-color: var(--color-steelblue);
   width: 244px;
   border-radius: var(--br-3xs);
   justify-content: flex-start;
   box-sizing: border-box;
 }
 .button:hover {
-  background-color: var(--color-deepskyblue);
+  background-color: var(--color-steelblue);
 }
 .login,
 .loginButton {
