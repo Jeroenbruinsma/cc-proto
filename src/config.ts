@@ -6,3 +6,4 @@ export const backendUrl = localStorage.getItem('backend') ? localStorage.getItem
 if(backendUrl !== api_ip) console.log("alternative backend url used", backendUrl)
     
 export const firtPageAfterLogin = '/sites'
+export const rowItemsNeededForShowMoreButton = 3

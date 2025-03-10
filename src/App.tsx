@@ -25,6 +25,7 @@ import NomenclaturePage from "./pages/NomenclaturePage.tsx";
 import UsersDetailsPage from "./pages/UsersDetailsPage.tsx";
 import DemoLinksPage from "./pages/DemolinksPage.tsx";
 import UnitsAlarmsPage from "./pages/UnitAlarmsPage.tsx";
+import UnitServiceNeedPage from "./pages/UnitServiceNeedPage.tsx";
 
 function App() {
   
@@ -64,6 +65,7 @@ function App() {
         <Route path="/user/:id" Component={UsersDetailsPage} />
         <Route path="/unit/:id" Component={UnitDetailsPage} />
         <Route path="/unit/:id/historicalAlarms" Component={UnitsAlarmsPage} />
+        <Route path="/unit/:id/serviceneeds" Component={UnitServiceNeedPage} />
         <Route path="/kpi/:id" Component={UnitKPIDetailsPage} />
 
         <Route path="/login" Component={Login} />

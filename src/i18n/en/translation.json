@@ -12,6 +12,7 @@
     "nomenclatureOverview": "Alarm priority description",
     "serviceNeedOverview": "Service Need description",
     "historicalAlarmList": "Historical Alarms",
+    "serviceNeedList": "All Service Needs",
     "activeAlarmList": "Active alarms",
     "serviceNeedsList": "Service Needs",
     "KPIStatistics": "KPI Statistics",
@@ -138,5 +139,9 @@
         "no": "no",
         "dash": "-",
         "passed": "Passed",
-        "failed": "Failed"
+        "failed": "Failed",
+        "showMore": "View all",
+        "show": "View",
+        "more": "more",
+        "back": "Back"
     }}

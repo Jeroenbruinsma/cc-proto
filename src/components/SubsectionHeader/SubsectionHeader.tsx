@@ -18,6 +18,7 @@ export type SubsectionHeaderType = {
   dropdownOptions?: string[]
   button?: () => void 
   buttonText?: string
+  onClick?: () => void
 };
 
 const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
@@ -33,7 +34,8 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
   set_toggleChecked,
   toggleChecked,
   button,
-  buttonText
+  buttonText,
+  onClick
 }) => {
   // const [selectedPeriod, set_selectedPeriod] =  useState(0)
   // const [showPeriodDropdown, set_showPeriodDropdown] =  useState(false)
@@ -48,7 +50,7 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
   return (
     <div className={[styles.subsectionHeader, className].join(" ")}>
       <div className={styles.titleplussince}>
-        <b style={{textAlign: center ? "center": "left"}} className={styles.kpiStatistics}>{title}</b>
+        <b style={{textAlign: center ? "center": "left"}} className={[styles.sh, onClick ? styles.shName : null ].join(" ")} onClick={onClick}>{title}</b>
         { set_showOptionDropdown ? 
         <>
         <div className={styles.sinceDropdown} onClick={() => set_showOptionDropdown && set_showOptionDropdown(!showOptionDropdown)} >

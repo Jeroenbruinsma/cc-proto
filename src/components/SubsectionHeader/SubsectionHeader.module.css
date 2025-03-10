@@ -1,8 +1,11 @@
-.kpiStatistics {
+.sh {
   flex: 1;
   position: relative;
   display: inline-block;
   max-width: 100%;
+}
+.shName:hover{
+  color: var(--color-steelblue)
 }
 .lineframeChild,
 .titleplussince {
@@ -128,6 +131,9 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
+}
+.btnText:hover{
+  background-color:var(--color-steelblue);
 }
 .btnText{
   color: var(--color-white);

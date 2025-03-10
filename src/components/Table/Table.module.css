@@ -31,3 +31,26 @@
 .highlite{
   background-color: #77a1e928;
 }
+.showMoreHolder{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 1em;
+}
+.showMoreText{
+  font-size: var(--font-size-l);
+  color: var(--color-darkgray);
+  font-family: var(--font-inter);
+  font-weight: 700;
+}
+.showMoreArrow{
+  max-width: 20px;
+  margin: auto;
+}
+.showMoreText:hover{
+  color: var(--color-steelblue);
+}
+.showMoreArrow{
+  color: var(--color-steelblue);
+}
