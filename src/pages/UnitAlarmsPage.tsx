@@ -124,8 +124,7 @@ function UnitsAlarmsPage() {
           {/* { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="assetNotValidated" /> }
           { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="accountNotValidated" /> } */}
            
-            <SubsectionHeader title={`${t("historicalAlarmList")}`} optionToggleName={`${t('activeAlarmBerthToggle')}`} 
-              toggleChecked={showBerthAlarms} 
+            <SubsectionHeader title={`${t("historicalAlarmList")}`} 
               set_toggleChecked={set_showBerthAlarms}
               // button={() => navigate(`/unit/${encodeURIComponent(params?.id)}/historicalAlarms`)}
               // buttonText={t("historicalAlarmsButton")}
