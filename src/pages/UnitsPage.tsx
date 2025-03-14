@@ -67,7 +67,6 @@ const UnitsPage: FunctionComponent = () => {
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
             {/* @ts-ignore */}
             <SubsectionHeader title={ `${params?.id} - ${t("siteUnits")}`} center/>
-            <InfoBox type={"sitesPageTesting"}/>
             { units ? 
             <Table tableRowElement={TableRow} tableColumns={columns} tableData={units} onRowClick={onRowClick}/> :
             <LoadingIndicator/> }
