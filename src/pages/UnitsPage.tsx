@@ -11,7 +11,6 @@ import {onRowClick} from "../components/Table/TableRow";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { unit } from "../types/unit";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
-import InfoBox from "../components/InfoBox/InfoBox";
 import DataQualityCell from "../components/Table/DataQualityCell";
 import { emptyDash } from "../helpers";
 
