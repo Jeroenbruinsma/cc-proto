@@ -16,7 +16,6 @@ import NotFound from "./pages/NotFound.tsx";
 import CustomersPage from "./pages/Customers.tsx";
 import UsersPage from "./pages/Users.tsx";
 import CustomersDetailPage from "./pages/CustomersDetailPage.tsx";
-import ValidationsPage from "./pages/ValidationsPage.tsx";
 import ValidationsDetailsPage from "./pages/ValidationsDetailsPage.tsx";
 import AdminPage from "./pages/AdminPage.tsx";
 import ValidationsTypePage from "./pages/ValidationsTypePage.tsx";
@@ -55,7 +54,6 @@ function App() {
         <Route path="/demolinks" Component={DemoLinksPage} />
         <Route path="/nomenclature/:type" Component={NomenclaturePage} />
         <Route path="/validations" Component={ValidationsTypePage} />
-        <Route path="/validations/:id" Component={ValidationsPage} />
         <Route path="/validationdetails/:id" Component={ValidationsDetailsPage} />
         <Route path="/sites/:id" Component={UnitsPage} />
         <Route path="/sites" Component={Sites} />
