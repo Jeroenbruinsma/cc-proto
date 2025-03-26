@@ -1,6 +1,9 @@
 import { FunctionComponent } from "react";
 import styles from "./SubsectionHeader.module.css";
 import Toggle from 'react-toggle'
+import ExportIcon from "./IconExport.svg"
+import CalendarIcon from "./IconCalendar.svg"
+import { Link } from "react-router-dom";
 
 export type SubsectionHeaderType = {
   className?: string;
@@ -19,6 +22,8 @@ export type SubsectionHeaderType = {
   button?: () => void 
   buttonText?: string
   onClick?: () => void
+  exportData?: string
+  setRange?: boolean
 };
 
 const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
@@ -35,14 +40,15 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
   toggleChecked,
   button,
   buttonText,
-  onClick
+  onClick,
+  exportData,
+  setRange 
 }) => {
   // const [selectedPeriod, set_selectedPeriod] =  useState(0)
   // const [showPeriodDropdown, set_showPeriodDropdown] =  useState(false)
   // const {t} = useTranslation()
   // const periodOptions = ["7D","30D","12M"] // make api call?
   // const periodText = periodOptions.map(o => t(`kpi.period.${o}`))  
-
   const handleOptionClick = (i:number ) => {
     set_selectedOption && set_selectedOption(i)
     set_showOptionDropdown && set_showOptionDropdown(false)
@@ -94,6 +100,24 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
                   <p className={styles.btnText}>{buttonText}</p>
                 </span> :
             null}
+            { exportData ? 
+            <>
+            <Link to={exportData} download target="_self">
+            
+            <span className={styles.btnTextHolder}>
+                  <ExportIcon/>
+            </span> 
+            </Link>
+                </>:
+                
+            null
+            }
+            { setRange ? <span className={styles.btnTextHolder} onClick={button}>
+                  <CalendarIcon/>
+                </span> :
+            null
+            }
+
       </div>
       <div className={styles.lineframe}>
         <div className={styles.lineframeChild} />

@@ -26,7 +26,7 @@ function UnitsAlarmsPage() {
   const [alarmData, set_AlarmData ] = useState<alarm[]| undefined >(undefined)
   const [berthAlarmData, set_berthAlarmData ] = useState<alarm[]| undefined >(undefined)
 
-  const [showBerthAlarms, set_showBerthAlarms] =  useState(true)
+  const [showBerthAlarms] =  useState(true)
 
   const getMetaData = async (eqpmentId:string) => {
     try{
@@ -125,9 +125,9 @@ function UnitsAlarmsPage() {
           { metaData?.cc__data_validation_unit_passed || metaData == undefined ? null:  <InfoBox type="accountNotValidated" /> } */}
            
             <SubsectionHeader title={`${t("historicalAlarmList")}`} 
-              set_toggleChecked={set_showBerthAlarms}
               // button={() => navigate(`/unit/${encodeURIComponent(params?.id)}/historicalAlarms`)}
               // buttonText={t("historicalAlarmsButton")}
+              exportData={`${backendUrl}/equipment/serial-to-alarm?serial=${params?.id}&historical=True&export=True`}
               />
             { !alarmData ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={alarmColumns} tableData={alarmList} onRowClick={onRowClick}/>
