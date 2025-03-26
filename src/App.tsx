@@ -13,7 +13,6 @@ import PlatformMessage from "./components/PlatformMessage/PlatformMessage.tsx";
 import { useTranslation } from "react-i18next";
 import { api_ip, backendUrl } from "./config.ts";
 import NotFound from "./pages/NotFound.tsx";
-import CustomersPage from "./pages/Customers.tsx";
 import UsersPage from "./pages/Users.tsx";
 import CustomersDetailPage from "./pages/CustomersDetailPage.tsx";
 import ValidationsDetailsPage from "./pages/ValidationsDetailsPage.tsx";
@@ -57,7 +56,6 @@ function App() {
         <Route path="/validationdetails/:id" Component={ValidationsDetailsPage} />
         <Route path="/sites/:id" Component={UnitsPage} />
         <Route path="/sites" Component={Sites} />
-        <Route path="/customers" Component={CustomersPage} />
         <Route path="/customers/:id" Component={CustomersDetailPage} />
         <Route path="/users" Component={UsersPage} />
         <Route path="/user/:id" Component={UsersDetailsPage} />
