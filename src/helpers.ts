@@ -22,6 +22,12 @@ export const onlyYear = (input: string): string => {
   return `${d.getFullYear()}`
 };
 
+export const dayMonthTime = (input: Date): string => {
+  if (!input) return "";
+  return `${moment(input).format('DD-MMM, HH:MM')}`
+};
+
+
 export const jsonSerializer = (anything: any): string =>{
   return JSON.stringify(anything)
 }

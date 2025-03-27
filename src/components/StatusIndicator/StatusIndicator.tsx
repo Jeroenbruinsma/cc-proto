@@ -14,6 +14,7 @@ const StatusIndicator: FunctionComponent<StatusIndicatorType> = ({
   className = "",
   text,
   subText,
+  subSubText,
   indicatorBollColor
 }) => {
   return (
@@ -23,7 +24,7 @@ const StatusIndicator: FunctionComponent<StatusIndicatorType> = ({
       <div className={styles.textframe}>
         <b className={styles.charging}>{text || "-"}</b>
         <div className={styles.subText}>{subText || "-"}</div>
-        {/* <div className={styles.subSubText}>{subSubText || ""}</div> */}
+        <div className={styles.subSubText}>{subSubText || ""}</div>
       </div>
     </div>
   );

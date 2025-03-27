@@ -74,13 +74,12 @@
             "serviceNeedId": "Service Need",
             "serviceNeedName": "Summary",
             "date": "Date",
+            "date_localSite": "Date (site local time)",
             "serviceNeedStatus": "Status",
             "username": "Username",
             "salesCenter": "Sales Center",
             "timezone": "Timezone",
             "siteLocalTime": "Site local time"
-
-
         }
     },
     "alarms": {
@@ -146,4 +145,6 @@
         "show": "View",
         "more": "more",
         "back": "Back"
-    }}
+    }
+}
+    

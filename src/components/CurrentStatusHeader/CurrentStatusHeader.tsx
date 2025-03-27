@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import SubsectionHeader from "../SubsectionHeader/SubsectionHeader";
 import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import styles from "./CurrentStatusHeader.module.css";
-import { capitalizeFirstLetter, onlyYear, parseWarranty, yesOrNo } from "../../helpers";
+import { capitalizeFirstLetter, dayMonthTime, onlyYear, parseWarranty, yesOrNo } from "../../helpers";
 import moment from 'moment-timezone'
 import { colorCodingMappingType, equipmentDataType, stateColormapping, stateType } from "../../types/equipment";
 import { useTranslation } from "react-i18next";
@@ -104,7 +104,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
           { !stateInfo ? <LoadingIndicator/> : 
               <StatusIndicator  text={stateInfo?.state_str || "-" } 
                                 subText={parseDate(stateInfo)} 
-                                subSubText={`${stateInfo?.local_site_time} ${t("table.columnNames.siteLocalTime")}`} 
+                                subSubText={`(${dayMonthTime(stateInfo?.local_site_time)} ${t("table.columnNames.siteLocalTime")})`} 
                                 indicatorBollColor={stateToColor(stateInfo?.state, metaData?.asset_CoreSystem__c)}/>
           }
             {/* <StatusIndicator text="Scheduled Maintenace" subtext="Due for inspection"/> */}

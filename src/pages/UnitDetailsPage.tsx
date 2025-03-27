@@ -215,7 +215,7 @@ function UnitDetailsPage() {
         }),
       },
     },
-    { colName: t("table.columnNames.date"), dataKey: "date" },
+    { colName: t("table.columnNames.date_localSite"), dataKey: "date" },
     {
       colName: t("table.columnNames.serviceNeedStatus"),
       dataKey: "serviceNeedStatus",
