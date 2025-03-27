@@ -173,8 +173,8 @@ function UnitDetailsPage() {
 
   const alarmColumns: columnType[] = [
     {
-      colName: t("table.columnNames.dateTime"),
-      dataKey: "created",
+      colName: t("table.columnNames.dateTime_local"),
+      dataKey: "created_local_site_time",
       autocapitalize: true,
     },
     { colName: t("table.columnNames.alarm"), dataKey: "detail" },

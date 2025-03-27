@@ -21,7 +21,7 @@
     "error": {
         "platform": {
             "backendConnection": "Connection with backend not possible, some functions might not work properly",
-            "alternativeBackend": "Alternative backend used! "
+            "alternativeBackend": "Alternative backend used!"
         }
     },
     "kpi": {
@@ -51,6 +51,7 @@
             "siteHealth": "Site health",
             "dataValidation": "Data Quality",
             "dataValidationAccount": "Account Data Quality ",
+            "dateTime_local": "Active (site local time)",
             "dateTime": "Date/time",
             "alarm": "Alarm",
             "duration": "Duration",
@@ -76,7 +77,8 @@
             "serviceNeedStatus": "Status",
             "username": "Username",
             "salesCenter": "Sales Center",
-            "timezone": "Timezone"
+            "timezone": "Timezone",
+            "siteLocalTime": "Site local time"
 
 
         }

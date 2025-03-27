@@ -60,9 +60,13 @@
   font-weight: 700;
   font-family: inherit;
 }
-.parkedSince48 {
+.subText {
   position: relative;
   font-size: var(--font-size-xl);
+}
+.subSubText {
+  position: relative;
+  font-size: var(--font-size-us);
 }
 .duoindicator,
 .statusindicator,
@@ -198,8 +202,11 @@
   .mmu02 {
     font-size: var(--font-size-lgi);
   }
-  .parkedSince48 {
+  .subText {
     font-size: var(--font-size-base);
+  }
+  .subSubText {
+    font-size: var(--font-size-us);
   }
   .statusindicator {
     flex-wrap: wrap;

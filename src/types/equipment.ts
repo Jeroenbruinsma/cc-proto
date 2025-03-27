@@ -31,6 +31,7 @@ export interface stateType {
   category: number;
   state: number;
   state_str: string;
+  local_site_time: Date;
   time: Date;
   state_start?: Date;
 }
@@ -41,9 +42,12 @@ export interface alarm {
   category: number;
   priority: number;
   detail: string;
-  created: Date;
-  acknowledged: null | Date;
-  cleared: null | Date;
+  created_local_site_time: Date;
+  created_utc: Date;
+  acknowledged_local_site_time: null | Date;
+  acknowledged_utc: null | Date;
+  cleared_local_site_time: null | Date;
+  cleared_utc: null | Date;
   duration: number
 }
 

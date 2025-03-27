@@ -4,7 +4,11 @@
   position: relative;
 }
 .charging,
-.parkedSince48 {
+.subText {
+  position: relative;
+  display: inline-block;
+}
+.subSubText {
   position: relative;
   display: inline-block;
 }
@@ -12,8 +16,12 @@
   font-weight: 700;
   min-width: 82px;
 }
-.parkedSince48 {
+.subText {
   font-size: var(--font-size-xl);
+  min-width: 116px;
+}
+.subSubText {
+  font-size: var(--font-size-base);
   min-width: 116px;
 }
 .statusindicator,
@@ -45,7 +53,7 @@
   .charging {
     font-size: var(--font-size-lgi);
   }
-  .parkedSince48 {
+  .subText {
     font-size: var(--font-size-base);
   }
   .statusindicator {
