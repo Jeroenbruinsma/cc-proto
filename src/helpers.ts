@@ -22,11 +22,15 @@ export const onlyYear = (input: string): string => {
   return `${d.getFullYear()}`
 };
 
-export const dayMonthTime = (input: Date): string => {
+export const dayMonthTime = (input: Date, t: (a: string) => string ): string => {
   if (!input) return "";
-  return `${moment(input).format('DD-MMM, HH:MM')}`
+  const d = new Date(input)
+  return `${d.getUTCDate()}-${monthToShort(d.getUTCMonth(), t)}, ${d.getUTCHours()}:${d.getUTCMinutes()}`
 };
 
+export const monthToShort = (month: Number, t: (a: string) => string ): string => {
+  return t(`basics.shortMonths.${month}`)  
+}
 
 export const jsonSerializer = (anything: any): string =>{
   return JSON.stringify(anything)
