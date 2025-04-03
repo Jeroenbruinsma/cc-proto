@@ -104,7 +104,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
           { !stateInfo ? <LoadingIndicator/> : 
               <StatusIndicator  text={stateInfo?.state_str || "-" } 
                                 subText={parseDate(stateInfo)} 
-                                subSubText={`(${dayMonthTime(stateInfo?.local_site_time)} ${t("table.columnNames.siteLocalTime")})`} 
+                                subSubText={`(${dayMonthTime(stateInfo?.local_site_time,t)} ${t("table.columnNames.siteLocalTime")})`} 
                                 indicatorBollColor={stateToColor(stateInfo?.state, metaData?.asset_CoreSystem__c)}/>
           }
             {/* <StatusIndicator text="Scheduled Maintenace" subtext="Due for inspection"/> */}
