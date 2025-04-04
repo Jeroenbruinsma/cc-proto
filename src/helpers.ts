@@ -22,10 +22,14 @@ export const onlyYear = (input: string): string => {
   return `${d.getFullYear()}`
 };
 
+function leadingZero(value: number):string{ 
+  return (value < 10 ? '0' : '') + value;
+}
+
 export const dayMonthTime = (input: Date, t: (a: string) => string ): string => {
   if (!input) return "";
   const d = new Date(input)
-  return `${d.getUTCDate()}-${monthToShort(d.getUTCMonth(), t)}, ${d.getUTCHours()}:${d.getUTCMinutes()}`
+  return `${d.getUTCDate()}-${monthToShort(d.getUTCMonth(), t)}, ${d.getUTCHours()}:${leadingZero(d.getUTCMinutes())}`
 };
 
 export const monthToShort = (month: Number, t: (a: string) => string ): string => {
