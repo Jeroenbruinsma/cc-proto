@@ -25,6 +25,7 @@
         }
     },
     "kpi": {
+        "emptyResult": "KPIs have not been caluclated yet for this Asset. If this is your first time, ensure data is available.",
         "kpi_unit_availability": "Unit availability",
         "kpi_unit_utilisation": "Unit utilization",
         "kpi_unit_in_use": "Unit in use",

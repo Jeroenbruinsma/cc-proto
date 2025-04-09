@@ -312,7 +312,16 @@ function UnitDetailsPage() {
             dropdownOptions={dropdownOptions}
           />
           <KpiBox>
-            {kpiData?.map((kpi, i) => (
+            { !kpiData ? <LoadingIndicator/> :
+               kpiData?.length === 0 ? <div style={{
+                width: "90%",
+                display: "flex",
+                alignItems: "left",
+                justifyContent: "center",
+                flexDirection: "column",
+                margin: "20px"
+              }}><p>{t("kpi.emptyResult")}</p></div> :
+              kpiData?.map((kpi, i) => (
               <MetricBox
                 key={i}
                 metricValue={`${
