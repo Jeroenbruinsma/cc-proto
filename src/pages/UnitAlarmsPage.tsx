@@ -127,7 +127,7 @@ function UnitsAlarmsPage() {
             <SubsectionHeader title={`${t("historicalAlarmList")}`} 
               // button={() => navigate(`/unit/${encodeURIComponent(params?.id)}/historicalAlarms`)}
               // buttonText={t("historicalAlarmsButton")}
-              exportData={`${backendUrl}/equipment/serial-to-alarm?serial=${params?.id}&historical=True&export=True`}
+              exportData={`${backendUrl}/equipment/serial-to-alarm?serial=${params?.id}${params?.id ? `&berthserial=${params?.id.split("/")[0]}` : ""}/0&historical=True&export=True`}
               />
             { !alarmData ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={alarmColumns} tableData={alarmList} onRowClick={onRowClick}/>
