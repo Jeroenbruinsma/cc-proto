@@ -24,10 +24,13 @@ import UsersDetailsPage from "./pages/UsersDetailsPage.tsx";
 import DemoLinksPage from "./pages/DemolinksPage.tsx";
 import UnitsAlarmsPage from "./pages/UnitAlarmsPage.tsx";
 import UnitServiceNeedPage from "./pages/UnitServiceNeedPage.tsx";
+import AuthProvider, { useAuth } from "./AuthProvider.tsx";
+import ProtectedRoute from "./ProtectedRoute.tsx";
 
 function App() {
   
   const [connectionToKiv, set_connectionToKiv ] = useState< Boolean >(false)
+  const {token} = useAuth()
   const {t} = useTranslation()
   const checkKivConnection = async () => {
     try{
@@ -46,28 +49,32 @@ function App() {
   return (
     <>
     <ErrorBoundary>
+    
+      <AuthProvider>
     {!connectionToKiv ? <PlatformMessage msg={t("error.platform.backendConnection")}/> : null}
     {backendUrl != api_ip ? <PlatformMessage msg={t("error.platform.alternativeBackend")}/> : null}
-      <Routes>
-        <Route path="/admin" Component={AdminPage} />
-        <Route path="/demolinks" Component={DemoLinksPage} />
-        <Route path="/nomenclature/:type" Component={NomenclaturePage} />
-        <Route path="/validations" Component={ValidationsTypePage} />
-        <Route path="/validationdetails/:id" Component={ValidationsDetailsPage} />
-        <Route path="/sites/:id" Component={UnitsPage} />
-        <Route path="/sites" Component={Sites} />
-        <Route path="/customers/:id" Component={CustomersDetailPage} />
-        <Route path="/users" Component={UsersPage} />
-        <Route path="/user/:id" Component={UsersDetailsPage} />
-        <Route path="/unit/:id" Component={UnitDetailsPage} />
-        <Route path="/unit/:id/historicalAlarms" Component={UnitsAlarmsPage} />
-        <Route path="/unit/:id/serviceneeds" Component={UnitServiceNeedPage} />
-        <Route path="/kpi/:id" Component={UnitKPIDetailsPage} />
-
-        <Route path="/login" Component={Login} />
-        <Route path="/" Component={Login} />
-        <Route path="*" Component={NotFound}/>
+        <Routes>
+          <Route path="/admin" element={<ProtectedRoute><AdminPage/></ProtectedRoute>} />
+          <Route path="/demolinks" element={<ProtectedRoute><DemoLinksPage/></ProtectedRoute>} />
+          <Route path="/nomenclature/:type" element={<ProtectedRoute><NomenclaturePage/></ProtectedRoute>} />
+          <Route path="/validations" element={<ProtectedRoute><ValidationsTypePage/></ProtectedRoute>} />
+          <Route path="/validationdetails/:id" element={<ProtectedRoute><ValidationsDetailsPage/></ProtectedRoute>} />
+          <Route path="/sites/:id" element={<ProtectedRoute><UnitsPage/></ProtectedRoute>} />
+          <Route path="/sites" element={<ProtectedRoute><Sites/></ProtectedRoute>} />
+          <Route path="/customers/:id" element={<ProtectedRoute><CustomersDetailPage/></ProtectedRoute>} />
+          <Route path="/users" element={<ProtectedRoute><UsersPage/></ProtectedRoute>} />
+          <Route path="/user/:id" element={<ProtectedRoute><UsersDetailsPage/></ProtectedRoute>} />
+          <Route path="/unit/:id" element={<ProtectedRoute><UnitDetailsPage/></ProtectedRoute>} />
+          <Route path="/unit/:id/historicalAlarms" element={<ProtectedRoute><UnitsAlarmsPage/></ProtectedRoute>} />
+          <Route path="/unit/:id/serviceneeds" element={<ProtectedRoute><UnitServiceNeedPage/></ProtectedRoute>} />
+          <Route path="/kpi/:id" element={<ProtectedRoute><UnitKPIDetailsPage/></ProtectedRoute>} />
+          
+          {/* Unauthenticated routees */}
+          <Route path="/login" element={<Login/>} />
+          <Route path="/" element={<Login/>} />
+          <Route path="*" element={<NotFound/>}/>
       </Routes>
+      </AuthProvider>
     </ErrorBoundary>
     </>
   );

@@ -97,3 +97,48 @@
   width: 90%;
   margin-bottom: 50px;
 }
+.inputBox,
+.labeltext {
+  align-self: stretch;
+  position: relative;
+}
+.inputBox {
+  flex: 1;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-gainsboro);
+  max-width: 100%;
+  color: black;
+  text-align: right;
+}
+.inputBackground,
+.textfieldLabel,
+.usernameField {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.inputBackground {
+  align-self: stretch;
+  height: 58px;
+  flex-direction: row;
+}
+.textfieldLabel,
+.usernameField {
+  box-sizing: border-box;
+}
+.textfieldLabel {
+  flex: 1;
+  flex-direction: column;
+  padding: var(--padding-4xs) 0 0;
+  gap: var(--gap-6xs);
+}
+.usernameField {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 var(--padding-4xs) 0 var(--padding-5xs);
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

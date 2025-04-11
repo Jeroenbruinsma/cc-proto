@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import styles from "./TopHeader.module.css";
-import { useNavigate } from "react-router-dom";
 import Logo from '../../assets/cavotec-logo-galaxy.svg'
+import { useAuth } from "../../AuthProvider";
 
 export type TopHeaderType = {
   className?: string;
@@ -9,7 +9,7 @@ export type TopHeaderType = {
 };
 
 const TopHeader: FunctionComponent<TopHeaderType> = ({ className = "", showImage = false }) => {
-  const navigate = useNavigate()
+  const { onLogout } = useAuth();
   return (
     <section className={[styles.topheader, className].join(" ")}>
       <div className={styles.homeiconv2Parent} >
@@ -28,7 +28,7 @@ const TopHeader: FunctionComponent<TopHeaderType> = ({ className = "", showImage
             loading="lazy"
             alt=""
             src="/profileicon.svg"
-            onClick={() => navigate("/login")}
+            onClick={() => onLogout()}
           />
         </div>
       </div>
