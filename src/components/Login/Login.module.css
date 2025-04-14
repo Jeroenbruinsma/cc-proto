@@ -142,3 +142,9 @@
   color: var(--color-black);
   font-family: var(--font-inter);
 }
+.error{
+  color: var(--color-firebrick);
+  width: 100%;
+  text-align: right;
+  margin: 2px 0px;
+}

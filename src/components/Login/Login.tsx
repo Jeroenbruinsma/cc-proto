@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { backendUrl, firstPageAfterLogin } from "../../config";
 import axios from "axios";
 import { useAuth } from "../../AuthProvider";
+import { useTranslation } from "react-i18next";
 
 export type LoginType = {
   className?: string;
@@ -14,6 +15,8 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
   const [email, set_email ] = useState<string>("")
   const [password, set_password ] = useState<string>("")
   const { token, onLogin } = useAuth();
+  const [ errorCode, set_errorCode ] = useState<undefined|number>(undefined);
+  const { t } = useTranslation()
   const navigate = useNavigate()
 
   const loginLogic =  useCallback( async () => {
@@ -26,8 +29,11 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
         onLogin(res?.data?.token)
   
       }
-    } catch (err) {
+    } catch (err:any) {
       console.log("err", err);
+      if(err?.response?.data?.msg){
+        set_errorCode(err.response?.data?.msg)
+      }
     }
   }, [email, password])
 
@@ -35,7 +41,13 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
     if(token){
       navigate(firstPageAfterLogin)
     }
+    const localStorageToken = localStorage.getItem("token")
+    if(localStorageToken){
+      onLogin(localStorageToken)
+    }
   },[])
+
+  useEffect(()=>{set_errorCode(undefined)},[email,password])
  
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -69,6 +81,7 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
           </div>
         </div>
       </div>
+      {errorCode ? <p className={styles.error}>{t(`login.error.${errorCode}`)}</p> : null}
         <div className={styles.insightsLink}>
           <div className={styles.link}>
             <div className={styles.clickMe}>Reset password</div>

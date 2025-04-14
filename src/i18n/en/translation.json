@@ -160,6 +160,17 @@
             "10": "Nov",
             "11": "Dec"
         }
+    },
+    "login": {
+        "error": {
+            "wrong_content_type": "Server error",
+            "missing_email": "Email missing",
+            "invalid_email": "Invalid email format",
+            "missing_password": "Password missing",
+            "password_short": "Password is too short",
+            "server_not_properly_configured": "Server error",
+            "wrong_credentials": "These credentrials do not belong to a Cavotec Connect account"
+        } 
     }
 }
     
