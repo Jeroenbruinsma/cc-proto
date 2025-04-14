@@ -320,7 +320,7 @@ function UnitDetailsPage() {
                 justifyContent: "center",
                 flexDirection: "column",
                 margin: "20px"
-              }}><p>{t("kpi.emptyResult")}</p></div> :
+              }}><p>{t("kpi.emptyResult")}</p ></div> :
               kpiData?.map((kpi, i) => (
               <MetricBox
                 key={i}
