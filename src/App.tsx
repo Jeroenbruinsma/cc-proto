@@ -26,7 +26,6 @@ import UnitsAlarmsPage from "./pages/UnitAlarmsPage.tsx";
 import UnitServiceNeedPage from "./pages/UnitServiceNeedPage.tsx";
 import AuthProvider from "./AuthProvider.tsx";
 import ProtectedRoute from "./ProtectedRoute.tsx";
-import Session from "./pages/Session.tsx";
 
 function App() {
   
@@ -68,7 +67,6 @@ function App() {
           <Route path="/unit/:id/historicalAlarms" element={<ProtectedRoute><UnitsAlarmsPage/></ProtectedRoute>} />
           <Route path="/unit/:id/serviceneeds" element={<ProtectedRoute><UnitServiceNeedPage/></ProtectedRoute>} />
           <Route path="/kpi/:id" element={<ProtectedRoute><UnitKPIDetailsPage/></ProtectedRoute>} />
-          <Route path="/session" element={<Session/>} />
           
           {/* Unauthenticated routees */}
           <Route path="/login" element={<Login/>} />

@@ -170,7 +170,10 @@
             "password_short": "Password is too short",
             "server_not_properly_configured": "Server error",
             "wrong_credentials": "These credentrials do not belong to a Cavotec Connect account"
-        } 
+        },
+        "session": {
+            "expired": "Your session has expired, please login again"
+        }
     }
 }
     
