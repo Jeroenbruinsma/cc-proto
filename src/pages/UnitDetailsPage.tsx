@@ -117,8 +117,7 @@ function UnitDetailsPage() {
 
   const getKpiData = async (eqpmentId: string) => {
     try {
-      const url = `/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`;
-      const res = await get(url);
+      const res = await get(`/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`);
 
       if (res?.data?.length > 0) {
         //Hack to remove miscalculated kpi's
