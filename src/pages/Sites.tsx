@@ -5,26 +5,24 @@ import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
 import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
 import { site } from "../types/sites";
-import axios from "axios";
-import { backendUrl } from "../config";
 import {onRowClick} from "../components/Table/TableRow"
 import { useNavigate } from "react-router-dom";
 import { columnType } from "../types/table";
 import { emptyDash, yesOrNo } from "../helpers";
 import DataQualityCell from "../components/Table/DataQualityCell";
+import { useAuth } from "../AuthProvider";
 
 
 const SitesPage: FunctionComponent = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const {get} =  useAuth()
 
   const [sites, set_sites] = useState<undefined | site[] >(undefined)
   const getSites = async () => {
     try{
-      const url = `${backendUrl}/sites`
-      const res = await axios.get(url)
+      const res = await get("/sites")
       if(res?.data){
-        // set_sites(res?.data.map( (d:any) => { return {...d, cc__siteHealth: "-" }}))
         set_sites(res?.data.map( (d:any) => { return {...d, cc__siteHealth: "-" }}).sort(sorting_on_dc))
       }else{
         set_sites(undefined)

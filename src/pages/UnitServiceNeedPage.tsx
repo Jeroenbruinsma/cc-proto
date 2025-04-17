@@ -2,9 +2,7 @@ import TopHeader from '../components/TopHeader/TopHeader'
 import CurrentStatusHeader from '../components/CurrentStatusHeader/CurrentStatusHeader'
 import { useNavigate, useParams } from 'react-router-dom'
 import { createElement, useEffect, useState } from 'react'
-import axios from 'axios'
 import { equipmentDataType, stateType } from '../types/equipment'
-import { backendUrl } from '../config'
 import SubsectionHeader from '../components/SubsectionHeader/SubsectionHeader'
 import Table from '../components/Table/Table'
 import { useTranslation } from 'react-i18next'
@@ -14,6 +12,7 @@ import LoadingIndicator from '../components/LoadingIndicator/LoadingIndicator'
 import QM from "..//components/AlarmExplanation/questionMark.svg";
 import InPageNav from '../components/InpageNav/InPageNav'
 import { serviceNeedsType } from '../types/serviceNeeds'
+import { useAuth } from '../AuthProvider'
 
 
 function UnitServiceNeedPage() {
@@ -23,11 +22,11 @@ function UnitServiceNeedPage() {
   const [metaData, set_metaData ] = useState<equipmentDataType| undefined >(undefined)
   const [stateData ] = useState<stateType| undefined >(undefined)
   const [serviceNeedData, set_serviceNeedData ] = useState<serviceNeedsType[]| undefined >(undefined)
+  const { get } = useAuth()
 
   const getMetaData = async (eqpmentId:string) => {
     try{
-      const url = `${backendUrl}/equipment/meta?serial=${eqpmentId}`
-      const res = await axios.get(url)
+      const res = await get(`/equipment/meta?serial=${eqpmentId}`)
       set_metaData(res?.data?.data)
     }
     catch(err){

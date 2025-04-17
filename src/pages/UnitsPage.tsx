@@ -1,8 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import TopHeader from "../components/TopHeader/TopHeader";
 import { useNavigate, useParams } from "react-router-dom";
-import { backendUrl } from "../config";
-import axios from "axios";
 import { columnType } from "../types/table";
 import { useTranslation } from "react-i18next";
 import Table from "../components/Table/Table";
@@ -13,6 +11,7 @@ import { unit } from "../types/unit";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import DataQualityCell from "../components/Table/DataQualityCell";
 import { emptyDash } from "../helpers";
+import { useAuth } from "../AuthProvider";
 
 
 const UnitsPage: FunctionComponent = () => {
@@ -20,10 +19,11 @@ const UnitsPage: FunctionComponent = () => {
   const params = useParams()
   const {t} = useTranslation()
   const [units, set_units] = useState<undefined | unit[] >(undefined)
+  const {get} =  useAuth()
+
   const getUnitsFromSite = async (sitename:string) => {
     try{
-      const url = `${backendUrl}/units/${encodeURIComponent(sitename)}`
-      const res = await axios.get(url)
+      const res = await get(`/units/${encodeURIComponent(sitename)}`)
       
       if(res?.data){
         set_units(res?.data.map( (d:any) => { return {...d, cc__status: "-" }}))

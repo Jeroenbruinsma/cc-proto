@@ -4,22 +4,23 @@ import Table from "../components/Table/Table";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
 import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
-import axios from "axios";
-import { backendUrl } from "../config";
 import {onRowClick} from "../components/Table/TableRow"
 import { columnType } from "../types/table";
 import { user } from "../types/user";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthProvider";
 
 
 const UsersPage: FunctionComponent = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [sites, set_sites] = useState<undefined | user[] >(undefined)
+  const { get } = useAuth()
   const getCustomers = async () => {
     try{
-      const url = `${backendUrl}/users`
-      const res = await axios.get(url)
+      const url = `/users`
+      //@ts-ignore
+      const res = await get(url)
       if(res?.data){
         set_sites(res?.data)
       }else{

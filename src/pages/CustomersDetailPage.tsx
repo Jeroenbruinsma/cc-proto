@@ -1,8 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import TopHeader from "../components/TopHeader/TopHeader";
 import { useNavigate, useParams } from "react-router-dom";
-import { backendUrl } from "../config";
-import axios from "axios";
 import { columnType } from "../types/table";
 import { useTranslation } from "react-i18next";
 import Table from "../components/Table/Table";
@@ -12,6 +10,7 @@ import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { unit } from "../types/unit";
 import {customer} from "../types/sites"
 import DataQualityCell from "../components/Table/DataQualityCell";
+import { useAuth } from "../AuthProvider";
 
 const CustomersDetailPage: FunctionComponent = () => {
   const navigate = useNavigate()
@@ -19,11 +18,13 @@ const CustomersDetailPage: FunctionComponent = () => {
   const {t} = useTranslation()
   const [units, set_units] = useState<undefined | unit[] >(undefined)
   const [customer, set_customer] = useState<undefined | customer >(undefined)
+  const {get} = useAuth()
   
   const getUnitsFromSite = async (accountId:string) => {
     try{
-      const url = `${backendUrl}/customers/units/${accountId}`
-      const res = await axios.get(url)
+      const url = `/customers/units/${accountId}`
+      //@ts-ignore
+      const res = await get(url)
       if(res?.data){
         set_units(res?.data.map( (d:any) => { return {...d, cc__status: "-" }}))
       }else{
@@ -36,8 +37,9 @@ const CustomersDetailPage: FunctionComponent = () => {
   }
   const getCustomerInfo = async (accountId:string) => {
     try{
-      const url = `${backendUrl}/customers/${accountId}`
-      const res = await axios.get(url)
+      const url = `/customers/${accountId}`
+      //@ts-ignore
+      const res = await get(url)
       if(res?.data){
        set_customer(res.data)
       }else{

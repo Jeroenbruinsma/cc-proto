@@ -2,7 +2,6 @@ import TopHeader from '../components/TopHeader/TopHeader'
 import CurrentStatusHeader from '../components/CurrentStatusHeader/CurrentStatusHeader'
 import { useNavigate, useParams } from 'react-router-dom'
 import { createElement, useEffect, useState } from 'react'
-import axios from 'axios'
 import { alarm, equipmentDataType, stateType } from '../types/equipment'
 import { backendUrl } from '../config'
 import SubsectionHeader from '../components/SubsectionHeader/SubsectionHeader'
@@ -15,6 +14,7 @@ import LoadingIndicator from '../components/LoadingIndicator/LoadingIndicator'
 // import InfoBox from '../components/InfoBox/InfoBox'
 import QM from "..//components/AlarmExplanation/questionMark.svg";
 import InPageNav from '../components/InpageNav/InPageNav'
+import { useAuth } from '../AuthProvider'
 
 
 function UnitsAlarmsPage() {
@@ -25,13 +25,13 @@ function UnitsAlarmsPage() {
   const [stateData ] = useState<stateType| undefined >(undefined)
   const [alarmData, set_AlarmData ] = useState<alarm[]| undefined >(undefined)
   const [berthAlarmData, set_berthAlarmData ] = useState<alarm[]| undefined >(undefined)
+  const {get} = useAuth()
 
   const [showBerthAlarms] =  useState(true)
 
   const getMetaData = async (eqpmentId:string) => {
     try{
-      const url = `${backendUrl}/equipment/meta?serial=${eqpmentId}`
-      const res = await axios.get(url)
+      const res = await get( `/equipment/meta?serial=${eqpmentId}`)
       set_metaData(res?.data?.data)
     }
     catch(err){
@@ -41,8 +41,7 @@ function UnitsAlarmsPage() {
  
   const getAlarmData = async (eqpmentId:string) => {
     try{
-      const url = `${backendUrl}/equipment/serial-to-alarm?serial=${eqpmentId}&historical=True`
-      const res = await axios.get(url)
+      const res = await get(`/equipment/serial-to-alarm?serial=${eqpmentId}&historical=True`)
 
       if(res?.data?.data?.length > 0){
         set_AlarmData(res?.data?.data)
@@ -57,9 +56,7 @@ function UnitsAlarmsPage() {
   }
   const getBerthAlarmData = async (eqpmentId:string) => {
     try{
-      // console.log("equipmentId", eqpmentId , `${eqpmentId.split("/")[0]}/0`)
-      const url = `${backendUrl}/equipment/serial-to-alarm?serial=${`${eqpmentId.split("/")[0]}/0`}&historical=True`
-      const res = await axios.get(url)
+      const res = await get(`/equipment/serial-to-alarm?serial=${`${eqpmentId.split("/")[0]}/0`}&historical=True`)
 
       if(res?.data?.data?.length > 0){
         set_berthAlarmData(res?.data?.data)

@@ -4,14 +4,13 @@ import Table, { noOnRowClick } from "../components/Table/Table";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
 import TableRow from "../components/Table/TableRow";
-import axios from "axios";
-import { backendUrl } from "../config";
 import { useParams, useSearchParams } from "react-router-dom";
 import { columnType } from "../types/table";
 import { passedOrFailed, yesOrNo } from "../helpers";
 import { validation } from "../types/validations";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import InfoBox from "../components/InfoBox/InfoBox";
+import { useAuth } from "../AuthProvider";
 
 
 const ValidationsDetailsPage: FunctionComponent = () => {
@@ -20,12 +19,12 @@ const ValidationsDetailsPage: FunctionComponent = () => {
   const [searchParams] = useSearchParams();
   const navigationReason =  searchParams.get("reason")
   const filter =  searchParams.get("filter")
+  const {get} = useAuth()
   
   const [validationObject, set_validationObject] = useState<undefined | validation >(undefined)
   const getCustomers = async (type: string) => {
     try{
-      const url = `${backendUrl}/validator/details/${type}`
-      const res = await axios.get(url)
+      const res = await get(`/validator/details/${type}`)
       if(res?.data ){
         set_validationObject(res?.data)
       }else{

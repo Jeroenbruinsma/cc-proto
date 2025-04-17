@@ -4,11 +4,10 @@ import Table, { noOnRowClick } from "../components/Table/Table";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
 import TableRow from "../components/Table/TableRow";
-import axios from "axios";
-import { backendUrl } from "../config";
 import { useParams } from "react-router-dom";
 import { columnType, keyValue } from "../types/table";
 import { user } from "../types/user";
+import { useAuth } from "../AuthProvider";
 
 
 const UsersDetailsPage: FunctionComponent = () => {
@@ -16,11 +15,11 @@ const UsersDetailsPage: FunctionComponent = () => {
   const params = useParams()
   
   const [user, set_user] = useState<undefined | user >(undefined)
-  
+  const {get} =  useAuth()
   const getUser = async (id: string) => {
     try{
-      const url = `${backendUrl}/users/${id}`
-      const res = await axios.get(url)
+      // @ts-ignore
+      const res = await get(`/users/${id}`)
       if(res?.data ){
         set_user(res?.data)
       }else{

@@ -2,9 +2,8 @@ import TopHeader from "../components/TopHeader/TopHeader";
 import CurrentStatusHeader from "../components/CurrentStatusHeader/CurrentStatusHeader";
 import { useNavigate, useParams } from "react-router-dom";
 import { createElement, useEffect, useState } from "react";
-import axios from "axios";
 import { alarm, equipmentDataType, stateType } from "../types/equipment";
-import { backendUrl, rowItemsNeededForShowMoreButton } from "../config";
+import { rowItemsNeededForShowMoreButton } from "../config";
 import KpiBox from "../components/KpiBox/KpiBox";
 import MetricBox from "../components/MetricBox/MetricBox";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
@@ -17,6 +16,7 @@ import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 // import InfoBox from '../components/InfoBox/InfoBox'
 import QM from "..//components/AlarmExplanation/questionMark.svg";
 import { serviceNeedsType } from "../types/serviceNeeds";
+import { useAuth } from "../AuthProvider";
 
 interface hacked_kpi extends kpi {
   kpi_secondResult?: number;
@@ -42,11 +42,11 @@ function UnitDetailsPage() {
   const periodOptions = ["1D", "7D", "30D", "1Y"]; // make api call?
   const dropdownOptions = periodOptions.map((o) => t(`kpi.period.${o}`));
   const [showBerthAlarms, set_showBerthAlarms] = useState(true);
+  const {get} = useAuth();
 
   const getMetaData = async (eqpmentId: string) => {
     try {
-      const url = `${backendUrl}/equipment/meta?serial=${eqpmentId}`;
-      const res = await axios.get(url);
+      const res = await get(`/equipment/meta?serial=${eqpmentId}`);
       set_metaData(res?.data?.data);
     } catch (err) {
       console.log("err", err);
@@ -54,8 +54,7 @@ function UnitDetailsPage() {
   };
   const getLastState = async (eqpmentId: string) => {
     try {
-      const url = `${backendUrl}/equipment/serial-to-state?serial=${eqpmentId}`;
-      const res = await axios.get(url);
+      const res = await get(`/equipment/serial-to-state?serial=${eqpmentId}`);
       if (res?.data?.states?.length > 0) {
         set_stateData(res?.data?.states[0]);
       } else {
@@ -67,8 +66,7 @@ function UnitDetailsPage() {
   };
   const getAlarmData = async (eqpmentId: string) => {
     try {
-      const url = `${backendUrl}/equipment/serial-to-alarm?serial=${eqpmentId}`;
-      const res = await axios.get(url);
+      const res = await get(`/equipment/serial-to-alarm?serial=${eqpmentId}`);
 
       if (res?.data?.data?.length > 0) {
         set_AlarmData(res?.data?.data);
@@ -82,10 +80,9 @@ function UnitDetailsPage() {
   };
   const getBerthAlarmData = async (eqpmentId: string) => {
     try {
-      const url = `${backendUrl}/equipment/serial-to-alarm?serial=${`${
+      const res = await get(`/equipment/serial-to-alarm?serial=${`${
         eqpmentId.split("/")[0]
-      }/0`}`;
-      const res = await axios.get(url);
+      }/0`}`);
 
       if (res?.data?.data?.length > 0) {
         set_berthAlarmData(res?.data?.data);
@@ -120,8 +117,8 @@ function UnitDetailsPage() {
 
   const getKpiData = async (eqpmentId: string) => {
     try {
-      const url = `${backendUrl}/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`;
-      const res = await axios.get(url);
+      const url = `/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`;
+      const res = await get(url);
 
       if (res?.data?.length > 0) {
         //Hack to remove miscalculated kpi's
