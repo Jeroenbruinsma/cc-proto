@@ -22,7 +22,7 @@ export type SubsectionHeaderType = {
   button?: () => void 
   buttonText?: string
   onClick?: () => void
-  exportData?: string
+  exportData?: string | undefined
   setRange?: boolean
 };
 
