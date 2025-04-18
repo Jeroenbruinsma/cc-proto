@@ -24,10 +24,9 @@ function UnitsAlarmsPage() {
   const [metaData, set_metaData ] = useState<equipmentDataType| undefined >(undefined)
   const [stateData ] = useState<stateType| undefined >(undefined)
   const [alarmData, set_AlarmData ] = useState<alarm[]| undefined >(undefined)
-  const [berthAlarmData, set_berthAlarmData ] = useState<alarm[]| undefined >(undefined)
+  const [downloadToken, set_downloadToken] = useState<undefined | string>(undefined);
   const {get} = useAuth()
 
-  const [showBerthAlarms] =  useState(true)
 
   const getMetaData = async (eqpmentId:string) => {
     try{
@@ -41,8 +40,10 @@ function UnitsAlarmsPage() {
  
   const getAlarmData = async (eqpmentId:string) => {
     try{
-      const res = await get(`/equipment/serial-to-alarm?serial=${eqpmentId}&historical=True`)
-
+      const res = await get(`/equipment/serial-to-alarm?serial=${eqpmentId}&historical=True&berthserial=${eqpmentId.split("/")[0]}/0`)
+      if(res?.data?.downloadToken){
+        set_downloadToken(res?.data?.downloadToken)
+      }
       if(res?.data?.data?.length > 0){
         set_AlarmData(res?.data?.data)
       }else{
@@ -54,29 +55,11 @@ function UnitsAlarmsPage() {
       set_AlarmData(undefined)
     }
   }
-  const getBerthAlarmData = async (eqpmentId:string) => {
-    try{
-      const res = await get(`/equipment/serial-to-alarm?serial=${`${eqpmentId.split("/")[0]}/0`}&historical=True`)
-
-      if(res?.data?.data?.length > 0){
-        set_berthAlarmData(res?.data?.data)
-      }else{
-        set_berthAlarmData([])
-      }
-    }
-    catch(err){
-      console.log("err",err)
-      set_berthAlarmData(undefined)
-    }
-  }
-
-
 
   useEffect(()=>{
     if(params.id ) {
       getMetaData(params.id)
       getAlarmData(params.id)
-      getBerthAlarmData(params.id)
     }
   },[params.id,])
 
@@ -84,7 +67,6 @@ function UnitsAlarmsPage() {
       const intervalId = setInterval(() => {
         if(params.id ) {
           getAlarmData(params.id)
-          getBerthAlarmData(params.id)
         }
       }, 60000);
   
@@ -105,12 +87,10 @@ function UnitsAlarmsPage() {
     const onRowClick:onRowClickConfig = {
       onClick: (e:any) => console.log("Click not supported, alarm UUID:",e ),
       dataKey: "uuid",
-
     }
 
 
-  const concat = (...arrays : any) => [].concat(...arrays.filter(Array.isArray));
-  const alarmList =  showBerthAlarms ? concat(berthAlarmData, alarmData) : alarmData
+  const alarmList =  alarmData
   return (  
     <>
       <TopHeader/>
@@ -124,7 +104,7 @@ function UnitsAlarmsPage() {
             <SubsectionHeader title={`${t("historicalAlarmList")}`} 
               // button={() => navigate(`/unit/${encodeURIComponent(params?.id)}/historicalAlarms`)}
               // buttonText={t("historicalAlarmsButton")}
-              exportData={`${backendUrl}/equipment/serial-to-alarm?serial=${params?.id}${params?.id ? `&berthserial=${params?.id.split("/")[0]}` : ""}/0&historical=True&export=True`}
+              exportData={downloadToken ? `${backendUrl}/download?token=${downloadToken}` : undefined} //serial=${params?.id}${params?.id ? `&berthserial=${params?.id.split("/")[0]}` : ""}/0&historical=True&export=True`}
               />
             { !alarmData ? <LoadingIndicator/> : 
             <Table tableRowElement={TableRow} tableColumns={alarmColumns} tableData={alarmList} onRowClick={onRowClick}/>
