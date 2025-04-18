@@ -26,6 +26,8 @@ function UnitsAlarmsPage() {
   const [alarmData, set_AlarmData ] = useState<alarm[]| undefined >(undefined)
   const [downloadToken, set_downloadToken] = useState<undefined | string>(undefined);
   const {get} = useAuth()
+  const [offset] = useState(0)
+  const [limit] = useState(100)
 
 
   const getMetaData = async (eqpmentId:string) => {
@@ -40,7 +42,7 @@ function UnitsAlarmsPage() {
  
   const getAlarmData = async (eqpmentId:string) => {
     try{
-      const res = await get(`/equipment/serial-to-alarm?serial=${eqpmentId}&historical=True&berthserial=${eqpmentId.split("/")[0]}/0`)
+      const res = await get(`/equipment/serial-to-alarm?serial=${eqpmentId}&historical=True&berthserial=${eqpmentId.split("/")[0]}/0&offset=${offset}&limit=${limit}`)
       if(res?.data?.downloadToken){
         set_downloadToken(res?.data?.downloadToken)
       }
