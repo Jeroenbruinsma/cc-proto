@@ -50,9 +50,8 @@ type AuthProviderProps = {
 };
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  console.log("AuthProvider render");
   const navigate = useNavigate();
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState<string | undefined>(localStorage.getItem("token") || undefined);
 
   const apiClient = axios.create({
     baseURL: backendUrl || "",
@@ -61,8 +60,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       "x-access-token": `${token}`,
     },
   });
-
   const _get = async (endpoint: availableGetEndpoints) => {
+    if(!token){
+      throw new Error("Token is not set. Please log in.");
+    }
     try {
       const response = await apiClient.get(endpoint);
       return response;
@@ -82,6 +83,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     data = {},
     config = {}
   ) => {
+    if(!token){
+      throw new Error("Token is not set. Please log in.");
+    }
     try {
       const response = await apiClient.post(endpoint, data, config);
       return response;
@@ -109,7 +113,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const handleSessionTimeout = () => {
-    console.log("handleLogout");
     setToken("");
     localStorage.removeItem("token");
     navigate("/login?sessionExpired=true");
