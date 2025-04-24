@@ -11,7 +11,7 @@ import Table from "../components/Table/Table";
 import { useTranslation } from "react-i18next";
 import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
 import { columnType } from "../types/table";
-import { alarmPrioParser, durationParser } from "../helpers";
+import { alarmPrioParser, dayMonthTime, durationParser } from "../helpers";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 // import InfoBox from '../components/InfoBox/InfoBox'
 import QM from "..//components/AlarmExplanation/questionMark.svg";
@@ -306,6 +306,7 @@ function UnitDetailsPage() {
             selectedOption={selectedOption}
             set_showOptionDropdown={set_showOptionDropdown}
             dropdownOptions={dropdownOptions}
+            middleText={kpiData?.[0]?.calculated_since_site_local ? `updated ${dayMonthTime(kpiData?.[0]?.calculated_since_site_local, t)} unil ${dayMonthTime(kpiData?.[0]?.calculated_till_site_local, t)} site local time` : undefined}
           />
           <KpiBox>
             { !kpiData ? <LoadingIndicator/> :

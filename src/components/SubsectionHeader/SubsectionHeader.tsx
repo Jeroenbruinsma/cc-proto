@@ -24,6 +24,7 @@ export type SubsectionHeaderType = {
   onClick?: () => void;
   exportData?: string | undefined;
   setRange?: boolean;
+  middleText?: string;
 };
 
 const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
@@ -43,6 +44,7 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
   onClick,
   exportData,
   setRange,
+  middleText
 }) => {
   // const [selectedPeriod, set_selectedPeriod] =  useState(0)
   // const [showPeriodDropdown, set_showPeriodDropdown] =  useState(false)
@@ -63,6 +65,12 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
         >
           {title}
         </b>
+        {middleText? 
+          <div className={styles.middleTextHolder}>
+            <p className={styles.middleText}>{middleText} </p>
+          </div>
+           : null
+        }
         {set_showOptionDropdown ? (
           <div className={styles.periodDropdownParent}>
             <div

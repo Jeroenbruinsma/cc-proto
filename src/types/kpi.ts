@@ -7,4 +7,6 @@ interface kpi {
     kpi_result: number
     kpi_unit: "%"
     kpi_calculation_id: string
+    calculated_since_site_local: Date
+    calculated_till_site_local: Date
   }
