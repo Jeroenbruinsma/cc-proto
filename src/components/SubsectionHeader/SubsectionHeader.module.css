@@ -87,12 +87,17 @@
   gap: var(--gap-3xs);
   font-size: var(--font-size-base);
   color: var(--color-dimgray);
+  align-items: center;
 }
+
 .titleplussince {
   align-self: stretch;
   justify-content: space-between;
   padding: var(--padding-9xs) 0;
   gap: var(--gap-xl);
+}
+.periodDropdownParent {
+  position: relative; /* Ensure the parent container is positioned */
 }
 .periodDropdown{
   border-style: solid;
@@ -102,7 +107,7 @@
   background-color: white;
   bottom: -42px;
   right: 54px;
-  position: absolute;
+  position: absolute; /* Position relative to the parent */
 }
 .perodDropdownList{
   list-style-image: url(/polygon-1.svg);
@@ -143,5 +148,51 @@
   margin: 0px;
   font-size: var(--font-size-smi);
   font-family: var(--font-inter);
+}
+
+.periodDropdownParent {
+  position: relative; /* Ensure the parent container is positioned */
+}
+
+.periodDropdown {
+  position: absolute; 
+  top: 66px; 
+  left: 0; 
+  border-style: solid;
+  border-color: var(--color-steelblue);
+  padding: 0.5em 1em; 
+  z-index: 3;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  height: 142px;
+  box-sizing: border-box; 
+  border-width: 3px; 
+}
+
+.periodDropdown ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; /* Remove default list styling */
+}
+
+.periodDropdown li {
+  padding: 0.3em 1em;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  color: var(--color-dimgray);
+}
+
+.periodDropdown li:hover {
+  background-color: var(--color-steelblue);
+  color: white;
+}
+
+@media screen and (max-width: 450px) {
+  .periodDropdown {
+    left: 0; /* Adjust for smaller screens */
+    right: auto;
+    bottom: auto;
+    top: 100%; /* Position below the parent */
+  }
 }
 
