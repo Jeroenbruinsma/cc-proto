@@ -57,6 +57,13 @@ export const emptyDash = (text: string, t: any) => {
   return text
 }
 
+export const emptyDashObject = (text: string, t: any) => {
+  if(typeof(text) === "object") return t("basics.dash")
+  if(text === "") return t("basics.dash")
+  if(text === "null") return t("basics.dash")
+  return text
+}
+
 export const alarmPrioParser: cellDataParserFunctions = (priority: number, t: TFunction): string => {
   if (priority === 0) return t("alarms.priorities.diagnostic");
   if (priority === 1) return t("alarms.priorities.low");

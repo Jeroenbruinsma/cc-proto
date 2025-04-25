@@ -10,7 +10,7 @@ import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { unit } from "../types/unit";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import DataQualityCell from "../components/Table/DataQualityCell";
-import { emptyDash } from "../helpers";
+import { emptyDash, emptyDashObject } from "../helpers";
 import { useAuth } from "../AuthProvider";
 
 
@@ -40,11 +40,10 @@ const UnitsPage: FunctionComponent = () => {
       getUnitsFromSite(params?.id)
     }
   }, [params?.id])
-  
   const columns: columnType[] = [
     { colName: t("table.columnNames.serialNo"), dataKey: "asset_SerialNumber",  parsers: [emptyDash] },
     { colName: t("table.columnNames.equipmentName"), dataKey: "asset_Name"}, 
-    { colName: t("table.columnNames.berthName"), dataKey: "asset_Berth"},
+    { colName: t("table.columnNames.berthName"), dataKey: "asset_Berth" ,parsers: [emptyDashObject] },
     { colName: t("table.columnNames.equipmentType"), dataKey: "cc__status" },
     { colName: t("table.columnNames.status"), dataKey: "cc__status"},
     { colName: t("table.columnNames.dataValidation"), dataKey: "cc__data_validation_passed" , cellElement: DataQualityCell }
