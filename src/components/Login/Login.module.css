@@ -147,4 +147,5 @@
   width: 100%;
   text-align: right;
   margin: 2px 0px;
+  font-size: var(--font-size-smi);
 }

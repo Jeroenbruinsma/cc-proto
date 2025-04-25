@@ -123,6 +123,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
                 <MetaElement topic={t("table.columnNames.siteName")} value={metaData?.asset_SiteLocation__c || "-"} />
                 <MetaElement topic={t("table.columnNames.operator")} value={metaData?.["account_Name"] || "-"} />
                 <MetaElement topic={t("table.columnNames.country")} value={capitalizeFirstLetter(metaData?.asset_EndUserCountry__c || "-")} />
+                <MetaElement topic={t("table.columnNames.berthName")} value={capitalizeFirstLetter(metaData?.asset_Berth || "-")} />
                 </table>
               }
             </div>

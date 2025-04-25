@@ -80,7 +80,8 @@
             "username": "Username",
             "salesCenter": "Sales Center",
             "timezone": "Timezone",
-            "siteLocalTime": "Site local time"
+            "siteLocalTime": "Site local time",
+            "berthName": "Berth name"
         }
     },
     "alarms": {
@@ -169,7 +170,7 @@
             "missing_password": "Password missing",
             "password_short": "Password is too short",
             "server_not_properly_configured": "Server error",
-            "wrong_credentials": "These credentrials do not belong to a Cavotec Connect account"
+            "wrong_credentials": "These credentials do not belong to a Cavotec Connect account"
         },
         "session": {
             "expired": "Your session has expired, please login again"

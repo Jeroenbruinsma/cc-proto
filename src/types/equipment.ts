@@ -10,6 +10,7 @@ export interface equipmentDataType {
   asset_SerialNumber: string;
   asset_PartNumber__c: string;
   asset_Name: string;
+  asset_Berth: string;
   account_Name: string;
   asset_WarrantyStartingDate__c: string;
   asset_EndDateOfServiceAgreement__c: string;

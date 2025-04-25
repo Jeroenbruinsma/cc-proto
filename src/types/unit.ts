@@ -6,6 +6,7 @@ export interface unit{
     asset_EndUserCountry__c: string 
     asset_Id: string 
     asset_Name: string 
+    asset_Berth: string 
     asset_SerialNumber: string 
     asset_ServiceAgreement__c: string 
     asset_SiteLocation__c: string 

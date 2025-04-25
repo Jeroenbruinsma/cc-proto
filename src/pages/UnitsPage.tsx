@@ -43,7 +43,8 @@ const UnitsPage: FunctionComponent = () => {
   
   const columns: columnType[] = [
     { colName: t("table.columnNames.serialNo"), dataKey: "asset_SerialNumber",  parsers: [emptyDash] },
-    { colName: t("table.columnNames.equipmentName"), dataKey: "asset_Name"},
+    { colName: t("table.columnNames.equipmentName"), dataKey: "asset_Name"}, 
+    { colName: t("table.columnNames.berthName"), dataKey: "asset_Berth"},
     { colName: t("table.columnNames.equipmentType"), dataKey: "cc__status" },
     { colName: t("table.columnNames.status"), dataKey: "cc__status"},
     { colName: t("table.columnNames.dataValidation"), dataKey: "cc__data_validation_passed" , cellElement: DataQualityCell }
@@ -58,6 +59,7 @@ const UnitsPage: FunctionComponent = () => {
     },    
     dataKey: "asset_SerialNumber",
   }
+  console.log("units", units)
   return (
     <>
       <TopHeader showImage={true} />

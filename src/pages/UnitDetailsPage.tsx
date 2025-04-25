@@ -306,7 +306,7 @@ function UnitDetailsPage() {
             selectedOption={selectedOption}
             set_showOptionDropdown={set_showOptionDropdown}
             dropdownOptions={dropdownOptions}
-            middleText={kpiData?.[0]?.calculated_since_site_local ? `updated ${dayMonthTime(kpiData?.[0]?.calculated_since_site_local, t)} unil ${dayMonthTime(kpiData?.[0]?.calculated_till_site_local, t)} site local time` : undefined}
+            middleText={kpiData?.[0]?.calculated_since_site_local ? `updated since ${dayMonthTime(kpiData?.[0]?.calculated_since_site_local, t)} until ${dayMonthTime(kpiData?.[0]?.calculated_till_site_local, t)} site local time` : undefined}
           />
           <KpiBox>
             { !kpiData ? <LoadingIndicator/> :
