@@ -3,6 +3,8 @@
   position: relative;
   display: inline-block;
   max-width: 100%;
+  min-width: 7em;
+  margin: auto;
 }
 .shName:hover{
   color: var(--color-steelblue)
@@ -202,6 +204,7 @@
   flex-direction: column;
   width: 100%;
   padding: 0 0 0 var(--padding-37xl);
+  /* max-width: 40em; */
 }
 .middleText{
   color: var(--color-dimgray);
@@ -209,4 +212,9 @@
   font-family: var(--font-inter);
   width: 100%;
   text-align: center;
+}
+@media screen and (max-width: 800px) {
+  .middleTextHolder{
+    display: none;
+  }
 }

@@ -31,6 +31,11 @@ export const dayMonthTime = (input: Date, t: (a: string) => string ): string => 
   const d = new Date(input)
   return `${d.getUTCDate()}-${monthToShort(d.getUTCMonth(), t)}, ${d.getUTCHours()}:${leadingZero(d.getUTCMinutes())}`
 };
+export const dayMonthTimeYear = (input: Date, t: (a: string) => string ): string => {
+  if (!input) return "";
+  const d = new Date(input)
+  return `${d.getUTCDate()}-${monthToShort(d.getUTCMonth(), t)}-${d.getUTCFullYear()}, ${d.getUTCHours()}:${leadingZero(d.getUTCMinutes())}`
+};
 
 export const monthToShort = (month: Number, t: (a: string) => string ): string => {
   return t(`basics.shortMonths.${month}`)  
