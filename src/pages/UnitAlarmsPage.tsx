@@ -80,7 +80,7 @@ function UnitsAlarmsPage() {
 
 
   const alarmColumns:columnType[] = [
-      { colName: t("table.columnNames.dateTime_local"), dataKey: "created_local_site_time", autocapitalize: true },
+      { colName: t("table.columnNames.dateTime_local"), dataKey: "created_local_site_time", autocapitalize: false },
       { colName: t("table.columnNames.alarm"), dataKey: "detail"},
       { colName: t("table.columnNames.priority"), dataKey: "priority" , parsers: [ alarmPrioParser], headerIcon: {onClick: ()=> navigate("/nomenclature/alarms"), icon: createElement(QM, {fill:"gray", width: "20px", style: {marginLeft: "10px"} })} },
       { colName: t("table.columnNames.duration"), dataKey: "duration", parsers: [ durationParser]   }

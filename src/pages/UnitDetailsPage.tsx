@@ -171,7 +171,7 @@ function UnitDetailsPage() {
     {
       colName: t("table.columnNames.dateTime_local"),
       dataKey: "created_local_site_time",
-      autocapitalize: true,
+      autocapitalize: false,
     },
     { colName: t("table.columnNames.alarm"), dataKey: "detail" },
     {
