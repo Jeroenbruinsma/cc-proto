@@ -15,24 +15,28 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
   const [email, set_email ] = useState<string>("")
   const [password, set_password ] = useState<string>("")
   const { token, onLogin } = useAuth();
-  const [ errorCode, set_errorCode ] = useState<undefined|number>(undefined);
+  const [ errorCode, set_errorCode ] = useState<undefined|string>(undefined);
   const { t } = useTranslation()
   const navigate = useNavigate()
 
-  const loginLogic =  useCallback( async () => {
+  const loginLogic = useCallback(async () => {
     try {
-      
       const url = `${backendUrl}/login`;
-      const body = {email, password}
-      const res = await axios.post(url, body ) 
-      if(res?.data?.token){
-        onLogin(res?.data?.token)
-  
+      const body = { email, password };
+      const config = {
+        timeout: 3000,
+      };
+      const res = await axios.post(url, body, config);
+      if (res?.data?.token) {
+        onLogin(res?.data?.token);
       }
-    } catch (err:any) {
-      console.log("err", err);
-      if(err?.response?.data?.msg){
-        set_errorCode(err.response?.data?.msg)
+    } catch (err: any) {
+      if (err?.code === 'ERR_NETWORK') {
+        set_errorCode("no_server_connection_possible");
+      } else if (err?.code === 'ECONNABORTED') {
+        set_errorCode("no_server_connection_possible");
+      } else if (err?.response?.data?.msg) {
+        set_errorCode(err.response?.data?.msg);
       }
     }
   }, [email, password])
@@ -48,7 +52,6 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
   },[])
 
   useEffect(()=>{set_errorCode(undefined)},[email,password])
- 
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
       <img className={styles.logo} src="/cavotec_logo.png"/>
