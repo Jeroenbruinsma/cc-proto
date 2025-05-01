@@ -43,7 +43,7 @@ const TableRow: FunctionComponent<TableRowType> = ({
         {columns.map((c,i) => {
           // parsers below is weird, only the first parser is applied
           const value = c?.parsers ? c?.parsers?.[0](rowData?.[c?.dataKey], t) : rowData?.[c.dataKey]
-          return <td onClick={() => onRowClick?.onClick( { dataKey: rowData?.[onRowClick.dataKey], columns, rowData})} key={i}>{React.createElement(c?.cellElement ? c?.cellElement : TableCellStandard, {dataKey: c?.dataKey, value, rowData })}</td>
+          return <td onClick={() => onRowClick?.onClick( { dataKey: rowData?.[onRowClick.dataKey], columns, rowData})} key={i}>{React.createElement(c?.cellElement ? c?.cellElement : TableCellStandard, {dataKey: c?.dataKey, value, rowData, autocapitalize: c?.autocapitalize })}</td>
         })}
       </tr>
     </>
