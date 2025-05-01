@@ -56,6 +56,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
     {colorName: "indicatorBlue", colorHex: "#3F48CC"},
     {colorName: "indicatorGray", colorHex: "#7F7F7F"},
     {colorName: "indicatorYellow", colorHex: "#FFC90E"},
+    {colorName: "indicatorGold", colorHex: "#FFCC00"},
     {colorName: "indicatorRed", colorHex: "#FF0000"}
   ]
   
@@ -69,12 +70,11 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
     {stateNumber: 10, stateName: "Parking", stateColor: "indicatorYellow", equipmentType: "AutomatedMooring"},
     {stateNumber: 11, stateName: "Parked", stateColor: "indicatorGray", equipmentType: "AutomatedMooring"},
     
-    {stateNumber: 0, stateName: "Idle", stateColor: "indicatorGray", equipmentType: "ShorePower"},
-    {stateNumber: 0, stateName: "Preposition", stateColor: "indicatorYellow", equipmentType: "ShorePower"},
-    {stateNumber: 0, stateName: "Connected", stateColor: "indicatorBlue", equipmentType: "ShorePower"},
-    {stateNumber: 0, stateName: "Charging", stateColor: "indicatorGreen", equipmentType: "ShorePower"},
-    {stateNumber: 0, stateName: "Alarm", stateColor: "indicatorRed", equipmentType: "ShorePower"},
-    {stateNumber: 0, stateName: "Fault", stateColor: "indicatorRed", equipmentType: "ShorePower"},
+    {stateNumber: 0, stateName: "Parked-Offline", stateColor: "indicatorGray", equipmentType: "ShorePower"},
+    {stateNumber: 1, stateName: "PARKED WITH BATTERY CHARGING", stateColor: "indicatorYellow", equipmentType: "ShorePower"},
+    {stateNumber: 2, stateName: "TROLLEY MOVING / HV CABLE HANDLING (DISCONNECTED)", stateColor: "indicatorGold", equipmentType: "ShorePower"},
+    {stateNumber: 3, stateName: "HV CABLE CONNECTED (WITH PILOTS OPEN)", stateColor: "indicatorRed", equipmentType: "ShorePower"},
+    {stateNumber: 4, stateName: "HV CABLE CONNECTED (WITH PILOTS CLOSED) ", stateColor: "indicatorRed", equipmentType: "ShorePower"},
 
     {stateNumber: 9999, stateName: "Not onboarded", stateColor: "indicatorGray", equipmentType: "ShorePower"},
     {stateNumber: 9999, stateName: "Not onboarded", stateColor: "indicatorGray", equipmentType: "AutomatedMooring"}
@@ -82,6 +82,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   
 
   const stateToColor = (state:number | undefined, eqp: coreSystemType | undefined ) : string => {
+    console.log(":eqp", state ,eqp)
     if(!state && !eqp) return colors.filter(c => c.colorName === "indicatorRed")?.[0]?.colorHex 
     const color = stateColorMapping.filter(cm => state === cm.stateNumber  && eqp === cm.equipmentType)
     return colors.filter(c => c.colorName === color?.[0]?.stateColor)?.[0]?.colorHex ||

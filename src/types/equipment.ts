@@ -52,7 +52,7 @@ export interface alarm {
   duration: number
 }
 
-export type colorCodingType = "indicatorGreen" | "indicatorBlue" | "indicatorGray" | "indicatorYellow" | "indicatorRed"
+export type colorCodingType = "indicatorGreen" | "indicatorBlue" | "indicatorGray" | "indicatorYellow" | "indicatorRed" | "indicatorGold"
 
 export type colorCodingMappingType = {colorName: colorCodingType, colorHex: string}
 
