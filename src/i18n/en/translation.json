@@ -51,7 +51,7 @@
             "dataConsent": "Data consent",
             "siteHealth": "Site health",
             "dataValidation": "Data Quality",
-            "dataValidationAccount": "Account Data Quality ",
+            "dataValidationAccount": "Site Data Quality ",
             "dateTime_local": "Active (site local time)",
             "dateTime": "Date/time",
             "alarm": "Alarm",
