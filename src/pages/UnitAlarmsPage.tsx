@@ -51,6 +51,11 @@ function UnitsAlarmsPage() {
       }
       return f;
     });
+    // if all filters are set, close the filter dropdown
+    if(b.filter(f => !f.applied).length === 0){
+      return set_showFilterDropdown(false); 
+    }
+
     if (params.id) {
       getAlarmData(params.id, b);
     }
