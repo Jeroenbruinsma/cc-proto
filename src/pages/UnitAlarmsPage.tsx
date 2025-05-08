@@ -54,6 +54,7 @@ function UnitsAlarmsPage() {
     if (params.id) {
       getAlarmData(params.id, b);
     }
+    set_showFilterDropdown(false);
   };
 
   const filterOptionsRef = useRef(filterOptions);
