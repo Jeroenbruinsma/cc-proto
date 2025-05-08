@@ -12,6 +12,9 @@
   height: 4em;
   font-size: large;
 }
+.tableFilter{
+  height: 0px;
+}
 
 .tableBody tr{
     border-style: solid;
@@ -53,4 +56,155 @@
 }
 .showMoreArrow{
   color: var(--color-steelblue);
+}
+/* ------------------------- */
+.sinceDropdownInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-11xs-5) 0 0;
+}
+.months {
+  flex: 1;
+  position: relative;
+}
+.sinceDropdown{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.sinceDropdown {
+  width: 211px;
+  justify-content: flex-start;
+  padding: 0 0 0 var(--padding-37xl);
+  box-sizing: border-box;
+  gap: var(--gap-3xs);
+  font-size: var(--font-size-base);
+  color: var(--color-dimgray);
+  align-items: center;
+}
+
+.periodDropdownParent {
+  position: relative; /* Ensure the parent container is positioned */
+}
+.periodDropdown{
+  border-style: solid;
+  padding: 0em 1em 0em 1em;
+  border-color: var(--color-steelblue);
+  z-index: 3;
+  background-color: white;
+  bottom: -42px;
+  right: 54px;
+  position: absolute; /* Position relative to the parent */
+}
+.perodDropdownList{
+  list-style-image: url(/polygon-1.svg);
+}
+.toggleHolder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.toggleText{
+  color: var(--color-dimgray);
+  background-color: #dedfe1;
+  padding: 6px 20px 6px 20px;
+  border-radius: 10px;
+  margin: 0px;
+  font-size: var(--font-size-smi);
+  font-family: var(--font-inter);
+}
+.toggleTextHolder{
+  margin: 0px 10px 0px;
+}
+
+.btnTextHolder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.btnText:hover{
+  background-color:var(--color-steelblue);
+}
+.btnText{
+  color: var(--color-white);
+  background-color: var(--color-dimgray);
+  padding: 6px 20px 6px 20px;
+  border-radius: 10px;
+  margin: 0px;
+  font-size: var(--font-size-smi);
+  font-family: var(--font-inter);
+}
+
+.periodDropdownParent {
+  position: relative; /* Ensure the parent container is positioned */
+}
+
+.periodDropdown {
+  position: absolute; 
+  top: -20px; 
+  left: 0; 
+  border-style: solid;
+  border-color: var(--color-steelblue);
+  padding: 0.5em 1em; 
+  z-index: 3;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  height: 175px;
+  box-sizing: border-box; 
+  border-width: 3px; 
+}
+
+.periodDropdown ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; /* Remove default list styling */
+}
+
+.periodDropdown li {
+  padding: 0.3em 1em;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  color: var(--color-dimgray);
+}
+
+.periodDropdown li:hover {
+  background-color: var(--color-steelblue);
+  color: white;
+}
+
+@media screen and (max-width: 450px) {
+  .periodDropdown {
+    left: 0; 
+    right: auto;
+    bottom: auto;
+    top: 100%; 
+  }
+}
+.middleTextHolder{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 0 0 var(--padding-37xl);
+  /* max-width: 40em; */
+}
+.middleText{
+  color: var(--color-dimgray);
+  font-size: var(--font-size-base);
+  font-family: var(--font-inter);
+  width: 100%;
+  text-align: center;
+}
+@media screen and (max-width: 800px) {
+  .middleTextHolder{
+    display: none;
+  }
+}
+.tableFilterRow{
+  height: 0px;
 }

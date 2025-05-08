@@ -21,8 +21,19 @@ export interface columnType{
     dataKey:  dataKeyType
     autocapitalize?: boolean
     headerIcon?: headerIconType
+    filter?: tableFilter
   }
-
+export interface tableFilter{
+  set_filterOptions: (i:number, b:filterOption[]) => void
+  filterOptions: filterOption[]
+  showFilterDropdown: boolean
+  set_showFilterDropdown: (showFilterDropdown: boolean) => void
+}
+export interface filterOption {
+  filterText: string
+  applied: boolean
+  dataKey: dataKeyType
+}
 export interface headerIconType {
   onClick: () => void
   icon: JSX.Element
