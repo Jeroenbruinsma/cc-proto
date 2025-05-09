@@ -335,6 +335,7 @@ function UnitDetailsPage() {
                     : undefined
                 }
                 className=""
+                onMetricBoxContainerClick={() => navigate(`/unit/${encodeURIComponent(params?.id || "" )}/kpi/${kpi.kpi_name}`)}
               />
             ))}
           </KpiBox>

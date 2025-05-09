@@ -1,13 +1,12 @@
 import TopHeader from "../components/TopHeader/TopHeader";
 import CurrentStatusHeader from "../components/CurrentStatusHeader/CurrentStatusHeader";
 import { useNavigate, useParams } from "react-router-dom";
-import {  useEffect, useState } from "react";
-import { alarm, equipmentDataType, stateType } from "../types/equipment";
+import { useEffect, useState } from "react";
+import { equipmentDataType, stateType } from "../types/equipment";
 import KpiBox from "../components/KpiBox/KpiBox";
 import MetricBox from "../components/MetricBox/MetricBox";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
-import { onRowClickConfig } from "../components/Table/TableRow";
 import { dayMonthTimeYear } from "../helpers";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 // import InfoBox from '../components/InfoBox/InfoBox'
@@ -27,17 +26,13 @@ function UnitKpiDetailsPage() {
     undefined
   );
   const [stateData, set_stateData] = useState<stateType | undefined>(undefined);
-  const [alarmData, set_AlarmData] = useState<alarm[] | undefined>(undefined);
-  const [berthAlarmData, set_berthAlarmData] = useState<alarm[] | undefined>(
-    undefined
-  );
   const [kpiData, set_kpiData] = useState<hacked_kpi[] | undefined>(undefined);
+  const [historicalKpiData, set_historicalKpiData] = useState<hacked_kpi[] | undefined>(undefined);
 
   const [selectedOption, set_selectedOption] = useState(1);
   const [showOptionDropdown, set_showOptionDropdown] = useState(false);
   const periodOptions = ["1D", "7D", "30D", "1Y"]; // make api call?
   const dropdownOptions = periodOptions.map((o) => t(`kpi.period.${o}`));
-  const [showBerthAlarms, set_showBerthAlarms] = useState(true);
   const {get} = useAuth();
 
   const getMetaData = async (eqpmentId: string) => {
@@ -60,36 +55,6 @@ function UnitKpiDetailsPage() {
       console.log("err", err);
     }
   };
-  const getAlarmData = async (eqpmentId: string) => {
-    try {
-      const res = await get(`/equipment/serial-to-alarm?serial=${eqpmentId}`);
-
-      if (res?.data?.data?.length > 0) {
-        set_AlarmData(res?.data?.data);
-      } else {
-        set_AlarmData([]);
-      }
-    } catch (err) {
-      console.log("err", err);
-      set_AlarmData(undefined);
-    }
-  };
-  const getBerthAlarmData = async (eqpmentId: string) => {
-    try {
-      const res = await get(`/equipment/serial-to-alarm?serial=${`${
-        eqpmentId.split("/")[0]
-      }/0`}`);
-
-      if (res?.data?.data?.length > 0) {
-        set_berthAlarmData(res?.data?.data);
-      } else {
-        set_berthAlarmData([]);
-      }
-    } catch (err) {
-      console.log("err", err);
-      set_berthAlarmData(undefined);
-    }
-  };
 
   const hack_double_kpi_box = (kpis: kpi[]): hacked_kpi[] => {
     const data = kpis.filter(
@@ -110,7 +75,6 @@ function UnitKpiDetailsPage() {
     };
     return [...data, doublebox];
   };
-
   const getKpiData = async (eqpmentId: string) => {
     try {
       const res = await get(`/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`);
@@ -127,6 +91,21 @@ function UnitKpiDetailsPage() {
       set_kpiData(undefined);
     }
   };
+  const getHistoricalKpiData = async (eqpmentId: string, kpiType: string) => {
+    try {
+      const res = await get(`/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}&historical=True&kpi_type=${kpiType}&limit=100`);
+
+      if (res?.data?.length > 0) {
+        set_historicalKpiData(res?.data);
+      } 
+      else {
+        set_historicalKpiData(undefined);
+      }
+    } catch (err) {
+      console.log("err", err);
+      set_kpiData(undefined);
+    }
+  };
   useEffect(() => {
     if (params.id) {
       getMetaData(params.id);
@@ -135,17 +114,16 @@ function UnitKpiDetailsPage() {
   }, [params.id]);
 
   useEffect(() => {
-    if (params.id) {
+    if (params.id && params?.kpiid) {
       getKpiData(params.id);
+      getHistoricalKpiData(params.id, params?.kpiid);
     }
-  }, [params.id, selectedOption]);
+  }, [params, selectedOption]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (params.id) {
         getLastState(params.id);
-        getAlarmData(params.id);
-        getBerthAlarmData(params.id);
       }
     }, 60000);
 
@@ -155,10 +133,6 @@ function UnitKpiDetailsPage() {
   }, [params.id]);
 
 
-  const onRowClick: onRowClickConfig = {
-    onClick: (e: any) => console.log("Click not supported, alarm UUID:", e),
-    dataKey: "uuid",
-  };
   return (
     <>
       <TopHeader />
@@ -185,15 +159,30 @@ function UnitKpiDetailsPage() {
             flexDirection: "column",
           }}
         >
+        <SubsectionHeader
+          title={` ${t("KPIStatistics")} - ${t(`kpi.${params?.kpiid}`)}`}
+          since
+          showOptionDropdown={showOptionDropdown}
+          set_selectedOption={set_selectedOption}
+          selectedOption={selectedOption}
+          set_showOptionDropdown={set_showOptionDropdown}
+          dropdownOptions={dropdownOptions}
+      />
+          { historicalKpiData ? 
           <LineChart
-            xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+            xAxis={[
+              { scaleType: "utc",
+                data: historicalKpiData?.map((hd, i) =>  new Date(hd?.calculated_at).getTime() ) ,
+              }
+              ]}
             series={[
               {
-                data: [2, 5.5, 2, 8.5, 1.5, 5],
+                data: historicalKpiData?.map(hd => hd.kpi_result),
               },
             ]}
-            height={300}
+            height={400}
           />
+        : <LoadingIndicator/> }
 
           <SubsectionHeader
             title={t("KPIStatistics")}
@@ -232,6 +221,7 @@ function UnitKpiDetailsPage() {
                     : undefined
                 }
                 className=""
+                onMetricBoxContainerClick={() => navigate(`/unit/${encodeURIComponent(params?.id || "" )}/kpi/${kpi.kpi_name}`)}
               />
             ))}
           </KpiBox>
