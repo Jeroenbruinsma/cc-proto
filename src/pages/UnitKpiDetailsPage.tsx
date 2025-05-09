@@ -12,7 +12,7 @@ import { dayMonthTimeYear } from "../helpers";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 // import InfoBox from '../components/InfoBox/InfoBox'
 import { useAuth } from "../AuthProvider";
-// import { LineChart } from '@mui/x-charts/LineChart';
+import { LineChart } from '@mui/x-charts/LineChart';
 
 interface hacked_kpi extends kpi {
   kpi_secondResult?: number;
@@ -185,15 +185,15 @@ function UnitKpiDetailsPage() {
             flexDirection: "column",
           }}
         >
-          {/* <LineChart
-  xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
-  series={[
-    {
-      data: [2, 5.5, 2, 8.5, 1.5, 5],
-    },
-  ]}
-  height={300}
-/> */}
+          <LineChart
+            xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+            series={[
+              {
+                data: [2, 5.5, 2, 8.5, 1.5, 5],
+              },
+            ]}
+            height={300}
+          />
 
           <SubsectionHeader
             title={t("KPIStatistics")}

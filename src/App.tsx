@@ -66,7 +66,7 @@ function App() {
           <Route path="/unit/:id" element={<ProtectedRoute><UnitDetailsPage/></ProtectedRoute>} />
           <Route path="/unit/:id/historicalAlarms" element={<ProtectedRoute><UnitsAlarmsPage/></ProtectedRoute>} />
           <Route path="/unit/:id/serviceneeds" element={<ProtectedRoute><UnitServiceNeedPage/></ProtectedRoute>} />
-          <Route path="/kpi/:id" element={<ProtectedRoute><UnitKPIDetailsPage/></ProtectedRoute>} />
+          <Route path="/unit/:id/kpi/:kpiid" element={<ProtectedRoute><UnitKPIDetailsPage/></ProtectedRoute>} />
           
           {/* Unauthenticated routees */}
           <Route path="/login" element={<Login/>} />
