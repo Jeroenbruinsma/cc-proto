@@ -23,7 +23,6 @@ export interface equipmentDataType {
 export type warranttStatus = "warranty_active" | "warranty_expired"
 export interface statesResponseType {
   succes: boolean;
-  unlocode: string;
   states: stateType[];
 }
 export interface stateType {
