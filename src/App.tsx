@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login.tsx";
 import Sites from "./pages/Sites.tsx";
 import UnitDetailsPage from "./pages/UnitDetailsPage.tsx";
-import UnitKPIDetailsPage from "./pages/UnitDetailsPage.tsx";
+import UnitKPIDetailsPage from "./pages/UnitKpiDetailsPage.tsx";
 import './i18n/config';
 import UnitsPage from "./pages/UnitsPage.tsx";
 import axios from "axios";
