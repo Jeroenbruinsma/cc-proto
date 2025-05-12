@@ -11,7 +11,7 @@ import { dayMonthTimeYear } from "../helpers";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 // import InfoBox from '../components/InfoBox/InfoBox'
 import { useAuth } from "../AuthProvider";
-import { LineChart } from '@mui/x-charts/LineChart';
+import { LineChart, lineElementClasses } from '@mui/x-charts/LineChart';
 
 interface hacked_kpi extends kpi {
   kpi_secondResult?: number;
@@ -132,7 +132,23 @@ function UnitKpiDetailsPage() {
     };
   }, [params.id]);
 
+  const formatDate = (dateToFormat: string) => {
+    const date = new Date(dateToFormat);
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  
+    const dayName = days[date.getDay()];
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+  
+    return `${dayName}, ${day} ${month} ${year}`;
+  };
 
+  const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format;
   return (
     <>
       <TopHeader />
@@ -170,15 +186,29 @@ function UnitKpiDetailsPage() {
       />
           { historicalKpiData ? 
           <LineChart
+          sx={{
+            [`& .${lineElementClasses.root}`]: {
+              strokeWidth: 1,
+              
+            },
+            
+          }}
             xAxis={[
-              { scaleType: "utc",
+              { 
+                label: 'Date',
+                scaleType: "utc",
                 data: historicalKpiData?.map((hd, i) =>  new Date(hd?.calculated_at).getTime() ) ,
+                valueFormatter: formatDate
               }
               ]}
             series={[
               {
                 data: historicalKpiData?.map(hd => hd.kpi_result),
-              },
+                valueFormatter: (v) => (v === null ? '' : currencyFormatter(v)),
+                label: `${historicalKpiData?.[0]?.kpi_unit}`,
+                color: "#0091D3",
+                showMark: true
+             },
             ]}
             height={400}
           />
