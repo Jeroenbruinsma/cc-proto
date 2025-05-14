@@ -11,7 +11,7 @@ import { dayMonthTimeYear } from "../helpers";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 // import InfoBox from '../components/InfoBox/InfoBox'
 import { useAuth } from "../AuthProvider";
-import { LineChart, lineElementClasses } from '@mui/x-charts/LineChart';
+import { LineChart } from '@mui/x-charts/LineChart';
 
 interface hacked_kpi extends kpi {
   kpi_secondResult?: number;
@@ -30,7 +30,6 @@ function UnitKpiDetailsPage() {
   const [historicalKpiData, set_historicalKpiData] = useState<hacked_kpi[] | undefined>(undefined);
 
   const [selectedOption, set_selectedOption] = useState(1);
-  const [showOptionDropdown, set_showOptionDropdown] = useState(false);
   const periodOptions = ["1D", "7D", "30D", "1Y"]; // make api call?
   const dropdownOptions = periodOptions.map((o) => t(`kpi.period.${o}`));
   const {get} = useAuth();
@@ -145,10 +144,7 @@ function UnitKpiDetailsPage() {
     return `${dayName}, ${day} ${month} ${year}`;
   };
 
-  const currencyFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format;
+  
   return (
     <>
       <TopHeader />
@@ -178,21 +174,22 @@ function UnitKpiDetailsPage() {
         <SubsectionHeader
           title={` ${t("KPIStatistics")} - ${t(`kpi.${params?.kpiid}`)}`}
           since
-          showOptionDropdown={showOptionDropdown}
           set_selectedOption={set_selectedOption}
           selectedOption={selectedOption}
-          set_showOptionDropdown={set_showOptionDropdown}
           dropdownOptions={dropdownOptions}
       />
           { historicalKpiData ? 
           <LineChart
-          sx={{
-            [`& .${lineElementClasses.root}`]: {
-              strokeWidth: 1,
-              
-            },
-            
-          }}
+            sx={{
+                "& .MuiMarkElement-root": {
+                    r: 2,
+                }
+            }}
+                yAxis={[
+                  {
+                    label: `${t(`kpi.${params?.kpiid}`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}]`
+                  }
+                ]}
             xAxis={[
               { 
                 label: 'Date',
@@ -204,8 +201,8 @@ function UnitKpiDetailsPage() {
             series={[
               {
                 data: historicalKpiData?.map(hd => hd.kpi_result),
-                valueFormatter: (v) => (v === null ? '' : currencyFormatter(v)),
-                label: `${historicalKpiData?.[0]?.kpi_unit}`,
+                valueFormatter: (v) => (v === null ? '' : `${v}%`),
+                label: `${t(`kpi.${params?.kpiid}`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}]`,
                 color: "#0091D3",
                 showMark: true
              },
@@ -217,10 +214,8 @@ function UnitKpiDetailsPage() {
           <SubsectionHeader
             title={t("KPIStatistics")}
             since
-            showOptionDropdown={showOptionDropdown}
             set_selectedOption={set_selectedOption}
             selectedOption={selectedOption}
-            set_showOptionDropdown={set_showOptionDropdown}
             dropdownOptions={dropdownOptions}
             middleText={kpiData?.[0]?.calculated_since_site_local ? `updated since ${dayMonthTimeYear(kpiData?.[0]?.calculated_since_site_local, t)} until ${dayMonthTimeYear(kpiData?.[0]?.calculated_till_site_local, t)} site local time` : undefined}
           />
