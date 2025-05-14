@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import styles from "./SubsectionHeader.module.css";
 import Toggle from "react-toggle";
 import ExportIcon from "./IconExport.svg";
@@ -12,8 +12,6 @@ export type SubsectionHeaderType = {
   since?: boolean;
   selectedOption?: number;
   set_selectedOption?: (x: number) => void;
-  set_showOptionDropdown?: (x: boolean) => void;
-  showOptionDropdown?: boolean;
   set_showOptionToggle?: (x: boolean) => void;
   optionToggleName?: string;
   set_toggleChecked?: (x: boolean) => void;
@@ -31,10 +29,8 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
   className = "",
   title,
   center = false,
-  showOptionDropdown,
   set_selectedOption,
   selectedOption,
-  set_showOptionDropdown,
   dropdownOptions,
   optionToggleName,
   set_toggleChecked,
@@ -46,11 +42,7 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
   setRange,
   middleText
 }) => {
-  // const [selectedPeriod, set_selectedPeriod] =  useState(0)
-  // const [showPeriodDropdown, set_showPeriodDropdown] =  useState(false)
-  // const {t} = useTranslation()
-  // const periodOptions = ["7D","30D","12M"] // make api call?
-  // const periodText = periodOptions.map(o => t(`kpi.period.${o}`))
+  const [ showOptionDropdown, set_showOptionDropdown ] = useState(false)
   const handleOptionClick = (i: number) => {
     set_selectedOption && set_selectedOption(i);
     set_showOptionDropdown && set_showOptionDropdown(false);

@@ -38,7 +38,6 @@ function UnitDetailsPage() {
   const [kpiData, set_kpiData] = useState<hacked_kpi[] | undefined>(undefined);
 
   const [selectedOption, set_selectedOption] = useState(1);
-  const [showOptionDropdown, set_showOptionDropdown] = useState(false);
   const periodOptions = ["1D", "7D", "30D", "1Y"]; // make api call?
   const dropdownOptions = periodOptions.map((o) => t(`kpi.period.${o}`));
   const [showBerthAlarms, set_showBerthAlarms] = useState(true);
@@ -301,10 +300,8 @@ function UnitDetailsPage() {
           <SubsectionHeader
             title={t("KPIStatistics")}
             since
-            showOptionDropdown={showOptionDropdown}
             set_selectedOption={set_selectedOption}
             selectedOption={selectedOption}
-            set_showOptionDropdown={set_showOptionDropdown}
             dropdownOptions={dropdownOptions}
             middleText={kpiData?.[0]?.calculated_since_site_local ? `updated since ${dayMonthTimeYear(kpiData?.[0]?.calculated_since_site_local, t)} until ${dayMonthTimeYear(kpiData?.[0]?.calculated_till_site_local, t)} site local time` : undefined}
           />
