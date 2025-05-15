@@ -1,29 +1,24 @@
 import TopHeader from "../components/TopHeader/TopHeader";
 import CurrentStatusHeader from "../components/CurrentStatusHeader/CurrentStatusHeader";
 import { useNavigate, useParams } from "react-router-dom";
-import { createElement, useEffect, useState } from "react";
-import { alarm, equipmentDataType, stateType } from "../types/equipment";
-import { rowItemsNeededForShowMoreButton } from "../config";
+import { useEffect, useState } from "react";
+import { equipmentDataType, stateType } from "../types/equipment";
 import KpiBox from "../components/KpiBox/KpiBox";
 import MetricBox from "../components/MetricBox/MetricBox";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
-import Table from "../components/Table/Table";
 import { useTranslation } from "react-i18next";
-import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
-import { columnType } from "../types/table";
-import { alarmPrioParser, dayMonthTimeYear, durationParser } from "../helpers";
+import { dayMonthTimeYear } from "../helpers";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 // import InfoBox from '../components/InfoBox/InfoBox'
-import QM from "..//components/AlarmExplanation/questionMark.svg";
-import { serviceNeedsType } from "../types/serviceNeeds";
 import { useAuth } from "../AuthProvider";
+import { LineChart } from '@mui/x-charts/LineChart';
 
 interface hacked_kpi extends kpi {
   kpi_secondResult?: number;
   kpi_secondUnit?: string;
 }
 
-function UnitDetailsPage() {
+function UnitKpiDetailsPage() {
   const { t } = useTranslation();
   const params = useParams();
   const navigate = useNavigate();
@@ -31,16 +26,12 @@ function UnitDetailsPage() {
     undefined
   );
   const [stateData, set_stateData] = useState<stateType | undefined>(undefined);
-  const [alarmData, set_AlarmData] = useState<alarm[] | undefined>(undefined);
-  const [berthAlarmData, set_berthAlarmData] = useState<alarm[] | undefined>(
-    undefined
-  );
   const [kpiData, set_kpiData] = useState<hacked_kpi[] | undefined>(undefined);
+  const [historicalKpiData, set_historicalKpiData] = useState<hacked_kpi[] | undefined>(undefined);
 
   const [selectedOption, set_selectedOption] = useState(1);
   const periodOptions = ["1D", "7D", "30D", "1Y"]; // make api call?
   const dropdownOptions = periodOptions.map((o) => t(`kpi.period.${o}`));
-  const [showBerthAlarms, set_showBerthAlarms] = useState(true);
   const {get} = useAuth();
 
   const getMetaData = async (eqpmentId: string) => {
@@ -63,36 +54,6 @@ function UnitDetailsPage() {
       console.log("err", err);
     }
   };
-  const getAlarmData = async (eqpmentId: string) => {
-    try {
-      const res = await get(`/equipment/serial-to-alarm?serial=${eqpmentId}`);
-
-      if (res?.data?.data?.length > 0) {
-        set_AlarmData(res?.data?.data);
-      } else {
-        set_AlarmData([]);
-      }
-    } catch (err) {
-      console.log("err", err);
-      set_AlarmData(undefined);
-    }
-  };
-  const getBerthAlarmData = async (eqpmentId: string) => {
-    try {
-      const res = await get(`/equipment/serial-to-alarm?serial=${`${
-        eqpmentId.split("/")[0]
-      }/0`}`);
-
-      if (res?.data?.data?.length > 0) {
-        set_berthAlarmData(res?.data?.data);
-      } else {
-        set_berthAlarmData([]);
-      }
-    } catch (err) {
-      console.log("err", err);
-      set_berthAlarmData(undefined);
-    }
-  };
 
   const hack_double_kpi_box = (kpis: kpi[]): hacked_kpi[] => {
     const data = kpis.filter(
@@ -113,7 +74,6 @@ function UnitDetailsPage() {
     };
     return [...data, doublebox];
   };
-
   const getKpiData = async (eqpmentId: string) => {
     try {
       const res = await get(`/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`);
@@ -130,27 +90,39 @@ function UnitDetailsPage() {
       set_kpiData(undefined);
     }
   };
+  const getHistoricalKpiData = async (eqpmentId: string, kpiType: string) => {
+    try {
+      const res = await get(`/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}&historical=True&kpi_type=${kpiType}&limit=100`);
+
+      if (res?.data?.length > 0) {
+        set_historicalKpiData(res?.data);
+      } 
+      else {
+        set_historicalKpiData(undefined);
+      }
+    } catch (err) {
+      console.log("err", err);
+      set_kpiData(undefined);
+    }
+  };
   useEffect(() => {
     if (params.id) {
       getMetaData(params.id);
       getLastState(params.id);
-      getAlarmData(params.id);
-      getBerthAlarmData(params.id);
     }
   }, [params.id]);
 
   useEffect(() => {
-    if (params.id) {
+    if (params.id && params?.kpiid) {
       getKpiData(params.id);
+      getHistoricalKpiData(params.id, params?.kpiid);
     }
-  }, [params.id, selectedOption]);
+  }, [params, selectedOption]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (params.id) {
         getLastState(params.id);
-        getAlarmData(params.id);
-        getBerthAlarmData(params.id);
       }
     }, 60000);
 
@@ -159,73 +131,20 @@ function UnitDetailsPage() {
     };
   }, [params.id]);
 
-  const dummyServiceNeed: serviceNeedsType = {
-    serviceNeedId: "-",
-    serviceNeedName: "-",
-    date: "-",
-    serviceNeedStatus: "-",
+  const formatDate = (dateToFormat: string) => {
+    const date = new Date(dateToFormat);
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  
+    const dayName = days[date.getDay()];
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+  
+    return `${dayName}, ${day} ${month} ${year}`;
   };
 
-  const alarmColumns: columnType[] = [
-    {
-      colName: t("table.columnNames.dateTime_local"),
-      dataKey: "created_local_site_time",
-      autocapitalize: false,
-    },
-    { colName: t("table.columnNames.alarm"), dataKey: "detail" },
-    {
-      colName: t("table.columnNames.priority"),
-      dataKey: "priority",
-      parsers: [alarmPrioParser],
-      headerIcon: {
-        onClick: () => navigate("/nomenclature/alarms"),
-        icon: createElement(QM, {
-          fill: "gray",
-          width: "20px",
-          style: { marginLeft: "10px" },
-        }),
-      },
-    },
-    {
-      colName: t("table.columnNames.duration"),
-      dataKey: "duration",
-      parsers: [durationParser],
-    },
-  ];
-  const serviceNeedsColumns: columnType[] = [
-    {
-      colName: t("table.columnNames.serviceNeedId"),
-      dataKey: "serviceNeedId",
-      autocapitalize: true,
-    },
-    {
-      colName: t("table.columnNames.serviceNeedName"),
-      dataKey: "serviceNeedName",
-      headerIcon: {
-        onClick: () => navigate("/nomenclature/serviceneeds"),
-        icon: createElement(QM, {
-          fill: "gray",
-          width: "20px",
-          style: { marginLeft: "10px" },
-        }),
-      },
-    },
-    { colName: t("table.columnNames.date_localSite"), dataKey: "date" },
-    {
-      colName: t("table.columnNames.serviceNeedStatus"),
-      dataKey: "serviceNeedStatus",
-    },
-  ];
 
-  const onRowClick: onRowClickConfig = {
-    onClick: (e: any) => console.log("Click not supported, alarm UUID:", e),
-    dataKey: "uuid",
-  };
-
-  const concat = (...arrays: any) => [].concat(...arrays.filter(Array.isArray));
-  const alarmList = showBerthAlarms
-    ? concat(berthAlarmData, alarmData)
-    : alarmData;
   return (
     <>
       <TopHeader />
@@ -252,51 +171,44 @@ function UnitDetailsPage() {
             flexDirection: "column",
           }}
         >
-
-          <SubsectionHeader title={t("serviceNeedsList")} onClick={ () => navigate(`/unit/${encodeURIComponent(params?.id || "" )}/serviceneeds`)}/>
-          {!dummyServiceNeed ? (
-            <LoadingIndicator />
-          ) : (
-            <Table
-              tableRowElement={TableRow}
-              tableColumns={serviceNeedsColumns}
-              tableData={[dummyServiceNeed]}
-              onRowClick={onRowClick}
-              showMoreOnClick={ () =>navigate(`/unit/${encodeURIComponent(params?.id || "" )}/serviceneeds`)}
-              limit={rowItemsNeededForShowMoreButton} 
-            />
-          )}
-          <SubsectionHeader
-            title={`${t("activeAlarmList")}`}
-            optionToggleName={`${t("activeAlarmBerthToggle")}`}
-            toggleChecked={showBerthAlarms}
-            set_toggleChecked={set_showBerthAlarms}
-            button={() =>
-              navigate(
-                `/unit/${encodeURIComponent(params?.id || "")}/historicalAlarms`
-              )
-            }
-            buttonText={t("historicalAlarmsButton")}
-            onClick={ () => navigate(`/unit/${encodeURIComponent(params?.id || "" )}/historicalAlarms`)}
-          />
-          {!alarmData ? (
-            <LoadingIndicator />
-          ) : (
-            <Table
-              tableRowElement={TableRow}
-              tableColumns={alarmColumns}
-              tableData={alarmList}
-              onRowClick={onRowClick}
-              showMoreOnClick={() =>
-                navigate(
-                  `/unit/${encodeURIComponent(
-                    params?.id || ""
-                  )}/historicalAlarms`
-                )
+        <SubsectionHeader
+          title={` ${t("KPIStatistics")} - ${t(`kpi.${params?.kpiid}`)}`}
+          since
+          set_selectedOption={set_selectedOption}
+          selectedOption={selectedOption}
+          dropdownOptions={dropdownOptions}
+      />
+          { historicalKpiData ? 
+          <LineChart
+            sx={{
+                "& .MuiMarkElement-root": {
+                    r: 2,
+                }
+            }}
+                yAxis={[
+                  {
+                    label: `${t(`kpi.${params?.kpiid}`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}]`
+                  }
+                ]}
+            xAxis={[
+              { 
+                label: 'Date',
+                scaleType: "utc",
+                data: historicalKpiData?.map(hd => new Date(hd.calculated_at)),
+                valueFormatter: formatDate
               }
-              limit={rowItemsNeededForShowMoreButton} 
-            />
-          )}
+              ]}
+            series={[
+              {
+                data: historicalKpiData?.map(hd => hd.kpi_result),
+                label: `${t(`kpi.${params?.kpiid}`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}] ${dropdownOptions[selectedOption]}`,
+                color: "#0091D3",
+                showMark: true
+             },
+            ]}
+            height={400}
+          />
+        : <LoadingIndicator/> }
           <SubsectionHeader
             title={t("KPIStatistics")}
             since
@@ -342,4 +254,4 @@ function UnitDetailsPage() {
   );
 }
 
-export default UnitDetailsPage;
+export default UnitKpiDetailsPage;

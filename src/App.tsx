@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login.tsx";
 import Sites from "./pages/Sites.tsx";
 import UnitDetailsPage from "./pages/UnitDetailsPage.tsx";
-import UnitKPIDetailsPage from "./pages/UnitDetailsPage.tsx";
+import UnitKPIDetailsPage from "./pages/UnitKpiDetailsPage.tsx";
 import './i18n/config';
 import UnitsPage from "./pages/UnitsPage.tsx";
 import axios from "axios";
@@ -66,7 +66,7 @@ function App() {
           <Route path="/unit/:id" element={<ProtectedRoute><UnitDetailsPage/></ProtectedRoute>} />
           <Route path="/unit/:id/historicalAlarms" element={<ProtectedRoute><UnitsAlarmsPage/></ProtectedRoute>} />
           <Route path="/unit/:id/serviceneeds" element={<ProtectedRoute><UnitServiceNeedPage/></ProtectedRoute>} />
-          <Route path="/kpi/:id" element={<ProtectedRoute><UnitKPIDetailsPage/></ProtectedRoute>} />
+          <Route path="/unit/:id/kpi/:kpiid" element={<ProtectedRoute><UnitKPIDetailsPage/></ProtectedRoute>} />
           
           {/* Unauthenticated routees */}
           <Route path="/login" element={<Login/>} />
