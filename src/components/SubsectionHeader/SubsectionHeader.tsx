@@ -63,7 +63,7 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
           </div>
            : null
         }
-        {set_showOptionDropdown ? (
+        {dropdownOptions ? (
           <div className={styles.periodDropdownParent}>
             <div
               className={styles.sinceDropdown}
