@@ -82,7 +82,6 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   
 
   const stateToColor = (state:number | undefined, eqp: coreSystemType | undefined ) : string => {
-    console.log(":eqp", state ,eqp)
     if(!state && !eqp) return colors.filter(c => c.colorName === "indicatorRed")?.[0]?.colorHex 
     const color = stateColorMapping.filter(cm => state === cm.stateNumber  && eqp === cm.equipmentType)
     return colors.filter(c => c.colorName === color?.[0]?.stateColor)?.[0]?.colorHex ||
