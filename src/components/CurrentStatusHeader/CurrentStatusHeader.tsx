@@ -56,7 +56,7 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
     {colorName: "indicatorBlue", colorHex: "#3F48CC"},
     {colorName: "indicatorGray", colorHex: "#7F7F7F"},
     {colorName: "indicatorYellow", colorHex: "#FFC90E"},
-    {colorName: "indicatorGold", colorHex: "#FFCC00"},
+    {colorName: "indicatorGold", colorHex: "#FFA500"},
     {colorName: "indicatorRed", colorHex: "#FF0000"}
   ]
   
