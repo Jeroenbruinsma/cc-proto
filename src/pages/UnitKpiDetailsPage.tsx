@@ -144,7 +144,7 @@ function UnitKpiDetailsPage() {
     return `${dayName}, ${day} ${month} ${year}`;
   };
 
-  
+
   return (
     <>
       <TopHeader />
@@ -194,15 +194,14 @@ function UnitKpiDetailsPage() {
               { 
                 label: 'Date',
                 scaleType: "utc",
-                data: historicalKpiData?.map((hd, i) =>  new Date(hd?.calculated_at).getTime() ) ,
+                data: historicalKpiData?.map(hd => new Date(hd.calculated_at)),
                 valueFormatter: formatDate
               }
               ]}
             series={[
               {
                 data: historicalKpiData?.map(hd => hd.kpi_result),
-                valueFormatter: (v) => (v === null ? '' : `${v}%`),
-                label: `${t(`kpi.${params?.kpiid}`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}]`,
+                label: `${t(`kpi.${params?.kpiid}`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}] ${dropdownOptions[selectedOption]}`,
                 color: "#0091D3",
                 showMark: true
              },
@@ -210,7 +209,6 @@ function UnitKpiDetailsPage() {
             height={400}
           />
         : <LoadingIndicator/> }
-
           <SubsectionHeader
             title={t("KPIStatistics")}
             since
