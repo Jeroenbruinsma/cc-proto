@@ -57,12 +57,14 @@ function UnitsAlarmsPage() {
     }
 
     if (params.id) {
+      set_AlarmData(undefined)
       getAlarmData(params.id, b);
     }
     set_showFilterDropdown(false);
   };
 
   const filterOptionsRef = useRef(filterOptions);
+
 
   useEffect(() => {
     filterOptionsRef.current = filterOptions;
