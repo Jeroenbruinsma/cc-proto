@@ -97,6 +97,7 @@
   justify-content: space-between;
   padding: var(--padding-9xs) 0;
   gap: var(--gap-xl);
+  padding-top: 22px;
 }
 .periodDropdownParent {
   position: relative; /* Ensure the parent container is positioned */
