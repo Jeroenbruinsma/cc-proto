@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { backendUrl, firstPageAfterLogin } from "../../config";
 import axios from "axios";
 import { useAuth } from "../../AuthProvider";
+import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
 
 export type LoginType = {
@@ -31,6 +32,7 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
         onLogin(res?.data?.token);
       }
     } catch (err: any) {
+      Sentry.captureException(err);
       if (err?.code === 'ERR_NETWORK') {
         set_errorCode("no_server_connection_possible");
       } else if (err?.code === 'ECONNABORTED') {

@@ -11,6 +11,7 @@ import { validation } from "../types/validations";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import InfoBox from "../components/InfoBox/InfoBox";
 import { useAuth } from "../AuthProvider";
+import * as Sentry from "@sentry/react";
 
 
 const ValidationsDetailsPage: FunctionComponent = () => {
@@ -32,6 +33,7 @@ const ValidationsDetailsPage: FunctionComponent = () => {
       }
     }
     catch(err){
+      Sentry.captureException(err)
       console.log("err",err)
     }
   }

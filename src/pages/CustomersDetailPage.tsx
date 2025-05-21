@@ -11,6 +11,7 @@ import { unit } from "../types/unit";
 import {customer} from "../types/sites"
 import DataQualityCell from "../components/Table/DataQualityCell";
 import { useAuth } from "../AuthProvider";
+import * as Sentry from "@sentry/react";
 
 const CustomersDetailPage: FunctionComponent = () => {
   const navigate = useNavigate()
@@ -32,6 +33,7 @@ const CustomersDetailPage: FunctionComponent = () => {
       }
     }
     catch(err){
+      Sentry.captureException(err)
       console.log("err",err)
     }
   }
@@ -47,6 +49,7 @@ const CustomersDetailPage: FunctionComponent = () => {
       }
     }
     catch(err){
+      Sentry.captureException(err)
       console.log("err",err)
     }
   }

@@ -13,6 +13,7 @@ import QM from "..//components/AlarmExplanation/questionMark.svg";
 import InPageNav from '../components/InpageNav/InPageNav'
 import { serviceNeedsType } from '../types/serviceNeeds'
 import { useAuth } from '../AuthProvider'
+import * as Sentry from '@sentry/react'
 
 
 function UnitServiceNeedPage() {
@@ -30,6 +31,7 @@ function UnitServiceNeedPage() {
       set_metaData(res?.data?.data)
     }
     catch(err){
+      Sentry.captureException(err)
       console.log("err",err)
     }
   }
@@ -46,6 +48,7 @@ function UnitServiceNeedPage() {
     //   }
     // }
     // catch(err){
+    //   Sentry.captureException(err)
     //   console.log("err",err)
     //   set_AlarmData(undefined)
     // }

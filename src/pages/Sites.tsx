@@ -11,6 +11,7 @@ import { columnType } from "../types/table";
 import { emptyDash, yesOrNo } from "../helpers";
 import DataQualityCell from "../components/Table/DataQualityCell";
 import { useAuth } from "../AuthProvider";
+import * as Sentry from "@sentry/react";
 
 
 const SitesPage: FunctionComponent = () => {
@@ -29,6 +30,7 @@ const SitesPage: FunctionComponent = () => {
       }
     }
     catch(err){
+      Sentry.captureException(err)
       console.log("err",err)
     }
   }

@@ -12,6 +12,7 @@ import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import DataQualityCell from "../components/Table/DataQualityCell";
 import { emptyDash, emptyDashObject } from "../helpers";
 import { useAuth } from "../AuthProvider";
+import * as Sentry from "@sentry/react";
 
 
 const UnitsPage: FunctionComponent = () => {
@@ -32,6 +33,7 @@ const UnitsPage: FunctionComponent = () => {
       }
     }
     catch(err){
+      Sentry.captureException(err)
       console.log("err",err)
     }
   }

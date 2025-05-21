@@ -17,6 +17,7 @@ import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import QM from "..//components/AlarmExplanation/questionMark.svg";
 import { serviceNeedsType } from "../types/serviceNeeds";
 import { useAuth } from "../AuthProvider";
+import * as Sentry from "@sentry/react";
 
 interface hacked_kpi extends kpi {
   kpi_secondResult?: number;
@@ -48,6 +49,7 @@ function UnitDetailsPage() {
       const res = await get(`/equipment/meta?serial=${eqpmentId}`);
       set_metaData(res?.data?.data);
     } catch (err) {
+      Sentry.captureException(err)
       console.log("err", err);
     }
   };
@@ -60,6 +62,7 @@ function UnitDetailsPage() {
         set_stateData(undefined);
       }
     } catch (err) {
+      Sentry.captureException(err)
       console.log("err", err);
     }
   };
@@ -73,6 +76,7 @@ function UnitDetailsPage() {
         set_AlarmData([]);
       }
     } catch (err) {
+      Sentry.captureException(err)
       console.log("err", err);
       set_AlarmData(undefined);
     }
@@ -89,6 +93,7 @@ function UnitDetailsPage() {
         set_berthAlarmData([]);
       }
     } catch (err) {
+      Sentry.captureException(err)
       console.log("err", err);
       set_berthAlarmData(undefined);
     }
@@ -126,6 +131,7 @@ function UnitDetailsPage() {
         set_kpiData([]);
       }
     } catch (err) {
+      Sentry.captureException(err)
       console.log("err", err);
       set_kpiData(undefined);
     }

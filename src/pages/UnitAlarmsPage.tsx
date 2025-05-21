@@ -13,6 +13,7 @@ import { alarmPrioParser, durationParser } from "../helpers";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import InPageNav from "../components/InpageNav/InPageNav";
 import { useAuth } from "../AuthProvider";
+import * as Sentry from "@sentry/react";
 
 function UnitsAlarmsPage() {
   const { t } = useTranslation();
@@ -37,6 +38,7 @@ function UnitsAlarmsPage() {
       const res = await get(`/equipment/meta?serial=${eqpmentId}`);
       set_metaData(res?.data?.data);
     } catch (err) {
+      Sentry.captureException(err)
       console.log("err", err);
     }
   };
@@ -105,6 +107,7 @@ function UnitsAlarmsPage() {
         set_AlarmData([]);
       }
     } catch (err) {
+      Sentry.captureException(err)
       console.log("err", err);
       set_AlarmData(undefined);
     }

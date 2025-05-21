@@ -9,6 +9,7 @@ import { columnType } from "../types/table";
 import { user } from "../types/user";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
+import * as Sentry from "@sentry/react";
 
 
 const UsersPage: FunctionComponent = () => {
@@ -28,6 +29,7 @@ const UsersPage: FunctionComponent = () => {
       }
     }
     catch(err){
+      Sentry.captureException(err)
       console.log("err",err)
     }
   }

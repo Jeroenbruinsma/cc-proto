@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { columnType, keyValue } from "../types/table";
 import { user } from "../types/user";
 import { useAuth } from "../AuthProvider";
+import * as Sentry from "@sentry/react";
 
 
 const UsersDetailsPage: FunctionComponent = () => {
@@ -27,6 +28,7 @@ const UsersDetailsPage: FunctionComponent = () => {
       }
     }
     catch(err){
+      Sentry.captureException(err)
       console.log("err",err)
     }
   }

@@ -8,6 +8,8 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.1.0",
     "@mui/x-charts": "^8.3.0",
+    "@sentry/react": "^9.22.0",
+    "@sentry/vite-plugin": "^3.4.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import * as Sentry from "@sentry/react";
 import { useNavigate } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import { backendUrl } from "./config";
@@ -72,6 +73,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         console.error("Token expired or unauthorized. Redirecting to login...");
         handleSessionTimeout(); // Clear token and redirect to login
       } else {
+        Sentry.captureException(error);
         console.error("An error occurred while making a GET request:", error);
       }
       throw error; // Re-throw the error for further handling if needed
@@ -95,6 +97,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         handleSessionTimeout(); // Clear token and redirect to login
       } else {
         console.error("An error occurred while making a POST request:", error);
+        Sentry.captureException(error);
       }
       throw error; // Re-throw the error for further handling if needed
     }

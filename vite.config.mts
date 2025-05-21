@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
@@ -6,8 +7,12 @@ import svgr from "vite-plugin-svgr";
 export default defineConfig({
   build: {
     outDir: "build",
+    sourcemap: true
   },
-  plugins: [react(),svgr({
+  plugins: [react(), svgr({
     include: '**/*.svg'
+  }), sentryVitePlugin({
+    org: "cavotec",
+    project: "cc-proto"
   })],
 });

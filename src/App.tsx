@@ -9,6 +9,7 @@ import './i18n/config';
 import UnitsPage from "./pages/UnitsPage.tsx";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import * as Sentry from "@sentry/react";
 import PlatformMessage from "./components/PlatformMessage/PlatformMessage.tsx";
 import { useTranslation } from "react-i18next";
 import { api_ip, backendUrl } from "./config.ts";
@@ -39,7 +40,7 @@ function App() {
     }
     catch(err){
       console.log("err",err)
-      set_connectionToKiv(false)
+      Sentry.captureException(err)
     }
   }
   useEffect(()=>{
