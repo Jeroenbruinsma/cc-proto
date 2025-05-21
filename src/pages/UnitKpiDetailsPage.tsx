@@ -119,6 +119,8 @@ function UnitKpiDetailsPage() {
 
   useEffect(() => {
     if (params.id && params?.kpiid) {
+      set_kpiData(undefined);
+      set_historicalKpiData(undefined);
       getKpiData(params.id);
       getHistoricalKpiData(params.id, params?.kpiid);
     }
