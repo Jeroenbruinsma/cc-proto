@@ -10,7 +10,7 @@ import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import Table from "../components/Table/Table";
 import { useTranslation } from "react-i18next";
 import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
-import { columnType } from "../types/table";
+import { columnType, filterOption } from "../types/table";
 import { alarmPrioParser, dayMonthTimeYear, durationParser } from "../helpers";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 // import InfoBox from '../components/InfoBox/InfoBox'
@@ -42,6 +42,9 @@ function UnitDetailsPage() {
   const periodOptions = ["1D", "7D", "30D", "1Y"]; // make api call?
   const dropdownOptions = periodOptions.map((o) => t(`kpi.period.${o}`));
   const [showBerthAlarms, set_showBerthAlarms] = useState(true);
+
+  const [filterOptions, set_filterOptions] = useState<filterOption[]>([]);
+  const [showFilterDropdown, set_showFilterDropdown] = useState<boolean>(false);
   const {get} = useAuth();
 
   const getMetaData = async (eqpmentId: string) => {
@@ -66,26 +69,49 @@ function UnitDetailsPage() {
       console.log("err", err);
     }
   };
-  const getAlarmData = async (eqpmentId: string) => {
-    try {
-      const res = await get(`/equipment/serial-to-alarm?serial=${eqpmentId}`);
 
-      if (res?.data?.data?.length > 0) {
-        set_AlarmData(res?.data?.data);
-      } else {
-        set_AlarmData([]);
+   const getAlarmData = async (
+      eqpmentId: string,
+      filterOptions?: filterOption[] | undefined
+    ) => {
+      try {
+        let filterQuery = "";
+        if (filterOptions) {
+          filterQuery = filterOptions
+            ?.filter((f: filterOption) => f.applied)
+            ?.map((f: filterOption) => `${f.dataKey}=${f.filterText}`)
+            ?.join(";");
+        }
+
+        const res = await get(
+          `/equipment/serial-to-alarm?serial=${eqpmentId}${filterQuery ? `&filter=${filterQuery}` : ""}`
+        );
+
+        if (res?.data?.data?.length > 0) {
+          set_AlarmData(res?.data?.data);
+          set_filterOptions(res?.data?.filterOptions);
+        } else {
+          set_AlarmData([]);
+        }
+      } catch (err) {
+        Sentry.captureException(err)
+        console.log("err", err);
+        set_AlarmData(undefined);
       }
-    } catch (err) {
-      Sentry.captureException(err)
-      console.log("err", err);
-      set_AlarmData(undefined);
-    }
-  };
-  const getBerthAlarmData = async (eqpmentId: string) => {
+    };
+  const getBerthAlarmData = async (eqpmentId: string,
+    filterOptions?: filterOption[] | undefined
+  ) => {
     try {
+      let filterQuery = "";
+        if (filterOptions) {
+          filterQuery = filterOptions
+            ?.filter((f: filterOption) => f.applied)
+            ?.map((f: filterOption) => `${f.dataKey}=${f.filterText}`)
+            ?.join(";");
+        }
       const res = await get(`/equipment/serial-to-alarm?serial=${`${
-        eqpmentId.split("/")[0]
-      }/0`}`);
+        eqpmentId.split("/")[0]}/0`}${filterQuery ? `&filter=${filterQuery}` : ""}`);
 
       if (res?.data?.data?.length > 0) {
         set_berthAlarmData(res?.data?.data);
@@ -172,6 +198,28 @@ function UnitDetailsPage() {
     serviceNeedStatus: "-",
   };
 
+  const setFilter = (a: number): void => {
+    const b = filterOptions?.map((f: filterOption, i: number) => {
+      if (i === a) {
+        return {
+          ...f,
+          applied: !f.applied,
+        };
+      }
+      return f;
+    });
+    // if all filters are set, close the filter dropdown
+    if(b.filter(f => !f.applied).length === 0){
+      return set_showFilterDropdown(false); 
+    }
+
+    if (params.id) {
+      set_AlarmData(undefined)
+      getAlarmData(params.id, b);
+      getBerthAlarmData(params.id, b);
+    }
+    set_showFilterDropdown(false);
+  };
   const alarmColumns: columnType[] = [
     {
       colName: t("table.columnNames.dateTime_local"),
@@ -179,17 +227,28 @@ function UnitDetailsPage() {
       autocapitalize: false,
     },
     { colName: t("table.columnNames.alarm"), dataKey: "detail" },
+    // {
+    //   colName: t("table.columnNames.priority"),
+    //   dataKey: "priority",
+    //   parsers: [alarmPrioParser],
+    //   headerIcon: {
+    //     onClick: () => navigate("/nomenclature/alarms"),
+    //     icon: createElement(QM, {
+    //       fill: "gray",
+    //       width: "20px",
+    //       style: { marginLeft: "10px" },
+    //     }),
+    //   },
+    // },
     {
       colName: t("table.columnNames.priority"),
       dataKey: "priority",
       parsers: [alarmPrioParser],
-      headerIcon: {
-        onClick: () => navigate("/nomenclature/alarms"),
-        icon: createElement(QM, {
-          fill: "gray",
-          width: "20px",
-          style: { marginLeft: "10px" },
-        }),
+      filter: {
+        filterOptions: filterOptions,
+        set_filterOptions: setFilter,
+        showFilterDropdown: showFilterDropdown,
+        set_showFilterDropdown: set_showFilterDropdown,
       },
     },
     {
@@ -222,6 +281,7 @@ function UnitDetailsPage() {
       dataKey: "serviceNeedStatus",
     },
   ];
+ 
 
   const onRowClick: onRowClickConfig = {
     onClick: (e: any) => console.log("Click not supported, alarm UUID:", e),
@@ -232,6 +292,8 @@ function UnitDetailsPage() {
   const alarmList = showBerthAlarms
     ? concat(berthAlarmData, alarmData)
     : alarmData;
+
+    console.log("filterOptions", filterOptions);
   return (
     <>
       <TopHeader />

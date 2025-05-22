@@ -43,7 +43,7 @@ function UnitsAlarmsPage() {
     }
   };
 
-  const setFilter = (a: any): void => {
+  const setFilter = (a: number): void => {
     const b = filterOptions?.map((f: filterOption, i: number) => {
       if (i === a) {
         return {
