@@ -86,10 +86,11 @@ function UnitDetailsPage() {
         const res = await get(
           `/equipment/serial-to-alarm?serial=${eqpmentId}${filterQuery ? `&filter=${filterQuery}` : ""}`
         );
-
+        if (res?.data?.filterOptions?.length > 0) {
+          set_filterOptions(res?.data?.filterOptions);
+        }
         if (res?.data?.data?.length > 0) {
           set_AlarmData(res?.data?.data);
-          set_filterOptions(res?.data?.filterOptions);
         } else {
           set_AlarmData([]);
         }

@@ -102,9 +102,11 @@ function UnitsAlarmsPage() {
       if (res?.data?.downloadToken) {
         set_downloadToken(res?.data?.downloadToken);
       }
+      if (res?.data?.filterOptions?.length > 0) {
+        set_filterOptions(res?.data?.filterOptions);
+      }
       if (res?.data?.data?.length > 0) {
         set_AlarmData(res?.data?.data);
-        set_filterOptions(res?.data?.filterOptions);
       } else {
         set_AlarmData([]);
       }
