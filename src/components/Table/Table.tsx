@@ -151,6 +151,7 @@ const Table: FunctionComponent<TableType> = ({
                                     checked={
                                       !c?.filter?.filterOptions?.[i]?.applied
                                     }
+                                    readOnly
                                   />
                                   <label htmlFor={`checkbox-${i}`}>
                                     {pt?.filterText}
