@@ -15,7 +15,9 @@
 .tableFilter{
   height: 0px;
 }
-
+.headerItem{
+  margin: 5px
+}
 .tableBody tr{
     border-style: solid;
     border-top: none;

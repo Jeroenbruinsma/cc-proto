@@ -227,19 +227,6 @@ function UnitDetailsPage() {
       autocapitalize: false,
     },
     { colName: t("table.columnNames.alarm"), dataKey: "detail" },
-    // {
-    //   colName: t("table.columnNames.priority"),
-    //   dataKey: "priority",
-    //   parsers: [alarmPrioParser],
-    //   headerIcon: {
-    //     onClick: () => navigate("/nomenclature/alarms"),
-    //     icon: createElement(QM, {
-    //       fill: "gray",
-    //       width: "20px",
-    //       style: { marginLeft: "10px" },
-    //     }),
-    //   },
-    // },
     {
       colName: t("table.columnNames.priority"),
       dataKey: "priority",
@@ -249,6 +236,13 @@ function UnitDetailsPage() {
         set_filterOptions: setFilter,
         showFilterDropdown: showFilterDropdown,
         set_showFilterDropdown: set_showFilterDropdown,
+      },
+      headerIcon: {
+        onClick: () => navigate("/nomenclature/alarms"),
+        icon: createElement(QM, {
+          fill: "gray",
+          width: "20px",
+        }),
       },
     },
     {

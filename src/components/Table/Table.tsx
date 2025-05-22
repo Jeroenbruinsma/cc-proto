@@ -65,23 +65,33 @@ const Table: FunctionComponent<TableType> = ({
         <thead className={styles.tableHead}>
           <tr className={styles.tableRow}>
             {tableColumns.map((c, i) => {
-              //@ts-ignore
-              // return <th key={i} scope="col" className={styles.tableHeader} onClick={c?.filter?.onClick} >{c.colName} {c?.headerIcon?.icon}</th>
               if (c?.filter) {
                 return (
                   <th
                     key={i}
                     scope="col"
                     className={styles.tableHeader}
-                    onClick={() =>
-                      c?.filter?.set_showFilterDropdown(
-                        !c?.filter?.showFilterDropdown
-                      )
-                    }
                   >
-                    {c.colName}{" "}
-                    {/* @ts-ignore */}
-                    <Filter fill="gray" width="15px" height="15px" />
+                    {c?.headerIcon?.icon ?
+                       <>
+                        <span   className={styles.headerItem}
+                                onClick={c?.headerIcon?.onClick}>{c?.headerIcon?.icon}</span>
+                        {c.colName}
+                        <span   className={styles.headerItem}
+                                onClick={() => c?.filter?.set_showFilterDropdown( !c?.filter?.showFilterDropdown )}>
+                          {/* @ts-ignore */}
+                          <Filter fill="gray" width="15px" height="15px" />
+                        </span >
+                       </> : 
+                       <>
+                        {c.colName}
+                        <span className={styles.headerItem}
+                              onClick={() => c?.filter?.set_showFilterDropdown( !c?.filter?.showFilterDropdown )}>
+                          {/* @ts-ignore */}
+                          <Filter fill="gray" width="15px" height="15px" />
+                        </span >
+                      </>
+                    }
                   </th>
                 );
               }

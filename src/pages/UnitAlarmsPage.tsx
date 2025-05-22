@@ -1,7 +1,7 @@
 import TopHeader from "../components/TopHeader/TopHeader";
 import CurrentStatusHeader from "../components/CurrentStatusHeader/CurrentStatusHeader";
-import { useParams } from "react-router-dom";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { createElement, useCallback, useEffect, useRef, useState } from "react";
 import { alarm, equipmentDataType, stateType } from "../types/equipment";
 import { backendUrl } from "../config";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
@@ -14,10 +14,12 @@ import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 import InPageNav from "../components/InpageNav/InPageNav";
 import { useAuth } from "../AuthProvider";
 import * as Sentry from "@sentry/react";
+import QM from "..//components/AlarmExplanation/questionMark.svg";
 
 function UnitsAlarmsPage() {
   const { t } = useTranslation();
   const params = useParams();
+  const navigate = useNavigate();
   const [metaData, set_metaData] = useState<equipmentDataType | undefined>(
     undefined
   );
@@ -148,6 +150,13 @@ function UnitsAlarmsPage() {
         showFilterDropdown: showFilterDropdown,
         set_showFilterDropdown: set_showFilterDropdown,
       },
+      headerIcon: {
+              onClick: () => navigate("/nomenclature/alarms"),
+              icon: createElement(QM, {
+                fill: "gray",
+                width: "20px",
+              }),
+            },
     },
     {
       colName: t("table.columnNames.duration"),
