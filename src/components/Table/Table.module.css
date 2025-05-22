@@ -210,3 +210,18 @@
 .tableFilterRow{
   height: 0px;
 }
+.gray{
+  background-color: #808080;
+}
+.magenta{
+  background-color: #916AAD;
+}
+.yellow{
+  background-color: #F5E11B;
+}
+.orange{
+  background-color: #EC8629;
+}
+.red{
+  background-color: #E22028;
+}

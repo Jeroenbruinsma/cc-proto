@@ -49,7 +49,15 @@ export interface alarm {
   cleared_local_site_time: null | Date;
   cleared_utc: null | Date;
   duration: number
+  rowColor?: alarmColorCodingType
 }
+
+export interface alarmColorCodingType {
+  colorName: alarmColorCoding
+  priority: number
+}
+
+export type alarmColorCoding = "gray" | "magenta" | "yellow" | "orange" | "red" 
 
 export type colorCodingType = "indicatorGreen" | "indicatorBlue" | "indicatorGray" | "indicatorYellow" | "indicatorRed" | "indicatorGold"
 

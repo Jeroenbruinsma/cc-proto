@@ -18,6 +18,7 @@ import QM from "..//components/AlarmExplanation/questionMark.svg";
 import { serviceNeedsType } from "../types/serviceNeeds";
 import { useAuth } from "../AuthProvider";
 import * as Sentry from "@sentry/react";
+import { alarmColorParser } from "../components/AlarmExplanation/alarms";
 
 interface hacked_kpi extends kpi {
   kpi_secondResult?: number;
@@ -358,6 +359,7 @@ function UnitDetailsPage() {
                 )
               }
               limit={rowItemsNeededForShowMoreButton} 
+              rowColorParser={alarmColorParser}
             />
           )}
           <SubsectionHeader

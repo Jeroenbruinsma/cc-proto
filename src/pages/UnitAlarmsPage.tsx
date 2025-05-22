@@ -15,6 +15,7 @@ import InPageNav from "../components/InpageNav/InPageNav";
 import { useAuth } from "../AuthProvider";
 import * as Sentry from "@sentry/react";
 import QM from "..//components/AlarmExplanation/questionMark.svg";
+import { alarmColorParser } from "../components/AlarmExplanation/alarms";
 
 function UnitsAlarmsPage() {
   const { t } = useTranslation();
@@ -218,6 +219,7 @@ function UnitsAlarmsPage() {
               tableColumns={alarmColumns}
               tableData={alarmList}
               onRowClick={onRowClick}
+              rowColorParser={alarmColorParser}
             />
           )}
         </div>
