@@ -56,8 +56,8 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
   useEffect(()=>{set_errorCode(undefined)},[email,password])
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-      <img className={styles.logo} src="/cavotec_logo.png"/>
         <div className={[styles.login, className].join(" ")}>
+        <img className={styles.logo} src="/cavotec_logo.png"/>
         <h1 className={styles.cavotecConnectInsights}>
           Cavotec Connect Insights
         </h1>

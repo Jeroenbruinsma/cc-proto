@@ -1,17 +1,25 @@
-import ImageContainer from "../components/ImageContainer/ImageContainer";
 import LoginFormContainer from "../components/LoginFormContainer/LoginFormContainer";
-import left from "../assets/login_side_left.png";
-import right from "../assets/login_side_right.png";
+import background from "../assets/background.png";
 import { useSearchParams } from "react-router-dom";
 
 export default function LoginPage() {
   const [searchParams] = useSearchParams();
-  console.log("eee",searchParams.get("sessionExpired"))
   return (
     <div style={{ display: "flex", alignItems: "center",  justifyContent: "center", height: "100vh"}}>
-      <ImageContainer image={left} />
+      <img
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+        loading="lazy"
+        alt=""
+        src={background}
+      />
       <LoginFormContainer sessionExpired={ searchParams.get("sessionExpired") === "true"? true : false}/>
-      <ImageContainer image={right} />
     </div>
   );
 }
