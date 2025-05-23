@@ -24,7 +24,7 @@ const SitesPage: FunctionComponent = () => {
     try{
       const res = await get("/sites")
       if(res?.data){
-        set_sites(res?.data.map( (d:any) => { return {...d, cc__siteHealth: "-" }}).sort(sorting_on_dc))
+        set_sites(res?.data.map( (d:any) => { return {...d, cc__siteHealth: "-" }}))
       }else{
         set_sites(undefined)
       }
@@ -33,9 +33,6 @@ const SitesPage: FunctionComponent = () => {
       Sentry.captureException(err)
       console.log("err",err)
     }
-  }
-  const sorting_on_dc = ( a:any, b:any)  => {
-    return b?.cc__dataConsent - a?.cc__dataConsent
   }
   useEffect(()=> {
     getSites()
@@ -59,7 +56,7 @@ const SitesPage: FunctionComponent = () => {
   ,
     dataKey: "asset_SiteLocation__c",
   }
-
+  console.log("sites", sites)
   return (
     <>
       <TopHeader showImage={true} />
