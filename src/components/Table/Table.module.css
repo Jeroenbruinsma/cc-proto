@@ -210,18 +210,22 @@
 .tableFilterRow{
   height: 0px;
 }
-.gray{
-  background-color: #808080;
+.gray {
+  background-color: rgba(128, 128, 128, 0.5);
 }
-.magenta{
-  background-color: #916AAD;
+
+.magenta {
+  background-color: rgba(145, 106, 173, 0.5);
 }
-.yellow{
-  background-color: #F5E11B;
+
+.yellow {
+  background-color: rgba(245, 225, 27, 0.5);
 }
-.orange{
-  background-color: #EC8629;
+
+.orange {
+  background-color: rgba(236, 134, 41, 0.5);
 }
-.red{
-  background-color: #E22028;
+
+.red {
+  background-color: rgba(226, 32, 40, 0.5);
 }
