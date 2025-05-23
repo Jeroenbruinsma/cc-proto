@@ -10,9 +10,10 @@ import { useTranslation } from "react-i18next";
 export type LoginType = {
   className?: string;
   onClose?: () => void;
+  children?: React.ReactNode;
 };
 
-const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
+const Login: FunctionComponent<LoginType> = ({ className = "", children }) => {
   const [email, set_email ] = useState<string>("")
   const [password, set_password ] = useState<string>("")
   const { token, onLogin } = useAuth();
@@ -97,6 +98,7 @@ const Login: FunctionComponent<LoginType> = ({ className = "" }) => {
             <div className={styles.buttontext} >Login</div>
           </button>
         </div>
+            {children}
       </div>
     </div>
   );

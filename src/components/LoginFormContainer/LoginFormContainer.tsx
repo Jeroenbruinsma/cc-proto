@@ -15,10 +15,11 @@ const LoginFormContainer: FunctionComponent<LoginFormContainerType> = ({
   const {t} = useTranslation()
   return (
     <div className={[styles.loginFormContainer, className].join(" ")}>
-      <Login />
+      <Login>
       { sessionExpired ? <div className={styles.loginFormErrors}>
         <p className={styles.loginFormErrorsText}> {t("login.session.expired")}</p>
       </div> :null}
+      </Login>
     </div>
   );
 };
