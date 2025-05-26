@@ -90,7 +90,6 @@
                 "low" : "Low" ,
                 "medium" : "Medium" ,
                 "high" : "High",
-                "urgent": "Urgent",
                 "critical": "Critical"
            }, 
            "descriptions": {
@@ -98,7 +97,6 @@
             "low" : "Minor issue or notification with little to no impact on immediate operations. Can be addressed at a convenient time." ,
             "medium" : "Moderate issue with no immediate impact on safety or operations. Should be resolved in a reasonable timeframe." ,
             "high" : "Important asset condition affecting operations but not immediately threatening safety or causing severe damage. Should be addressed soon." ,
-            "urgent": "Important issue on asset that could escalate to critical if not addressed promptly. Needs swift response.",
             "critical": "Immediate threat to safety, environment, or significant asset damage. Requires immediate action."
            } 
         

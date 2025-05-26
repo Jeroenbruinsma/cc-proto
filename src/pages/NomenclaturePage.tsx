@@ -5,30 +5,25 @@ import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import { useTranslation } from "react-i18next";
 import TableRow from "../components/Table/TableRow";
 import { columnType } from "../types/table";
-import { alarmExplanation, serviceNeedExplanation } from "../components/AlarmExplanation/alarms";
-import { useParams, useSearchParams } from "react-router-dom";
+import { alarmColorParser, alarmExplanation, serviceNeedExplanation } from "../components/AlarmExplanation/alarms";
+import { useParams } from "react-router-dom";
 import { capitalizeFirstLetterParser } from "../helpers";
+import { alarmColorCoding } from "../types/equipment";
 
 const NomenclaturePage: FunctionComponent = () => {
   const { t } = useTranslation()
   type paramsType = { type: "alarms" | "serviceneeds" }
   const params = useParams<paramsType>()
-  const [searchParams] = useSearchParams();
-  const alarmSeverity =  searchParams.get("alarmSeverity")
 
-  const translateParser = (txt:any):string =>{
-    return t(txt)
-  } 
-
-  const rowColorParser = (a:any): "highlite" | undefined => {
-    if(a?.cc__alarmSeverity === alarmSeverity){
-      return "highlite"
-    }
-  }
+  const translateParser = (txt:any):string => t(txt)
+  const rowColorParser = (a:any): alarmColorCoding | "highlite" | undefined => alarmColorParser(a) 
+  
+  
   const columns: columnType[] = [
     { colName: t("table.columnNames.priority"), dataKey: "cc__severity", parsers:[capitalizeFirstLetterParser]},
     { colName: t("table.columnNames.alarmDescription"), dataKey: "cc__severityDescriptionTranslationKey", parsers: [translateParser]}
   ]
+  
   const table = params?.type === "alarms" ? alarmExplanation : serviceNeedExplanation
   const title = params?.type === "alarms" ? "nomenclatureOverview" : "serviceNeedOverview"
   return (
