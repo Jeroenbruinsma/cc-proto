@@ -53,7 +53,6 @@ const SitesPage: FunctionComponent = () => {
   ,
     dataKey: "asset_SiteLocation__c",
   }
-  console.log("sites", sites)
   return (
     <>
       <TopHeader showImage={true} />
