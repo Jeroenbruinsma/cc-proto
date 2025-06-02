@@ -42,7 +42,7 @@ function UnitDetailsPage() {
   const [selectedOption, set_selectedOption] = useState(1);
   const periodOptions = ["1D", "7D", "30D", "1Y"]; // make api call?
   const dropdownOptions = periodOptions.map((o) => t(`kpi.period.${o}`));
-  const [showBerthAlarms, set_showBerthAlarms] = useState(true);
+  const [showBerthAlarms, set_showBerthAlarms] = useState(false);
 
   const [filterOptions, set_filterOptions] = useState<filterOption[]>([]);
   const [showFilterDropdown, set_showFilterDropdown] = useState<boolean>(false);
