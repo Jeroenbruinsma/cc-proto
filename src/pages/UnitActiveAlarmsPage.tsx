@@ -3,29 +3,22 @@ import CurrentStatusHeader from "../components/CurrentStatusHeader/CurrentStatus
 import { useNavigate, useParams } from "react-router-dom";
 import { createElement, useEffect, useState } from "react";
 import { alarm, equipmentDataType, stateType } from "../types/equipment";
-import { rowItemsNeededForShowMoreButton } from "../config";
-import KpiBox from "../components/KpiBox/KpiBox";
-import MetricBox from "../components/MetricBox/MetricBox";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
 import Table from "../components/Table/Table";
 import { useTranslation } from "react-i18next";
 import TableRow, { onRowClickConfig } from "../components/Table/TableRow";
 import { columnType, filterOption } from "../types/table";
-import { alarmPrioParser, dayMonthTimeYear, durationParser } from "../helpers";
+import { alarmPrioParser, durationParser } from "../helpers";
 import LoadingIndicator from "../components/LoadingIndicator/LoadingIndicator";
 // import InfoBox from '../components/InfoBox/InfoBox'
 import QM from "..//components/AlarmExplanation/questionMark.svg";
-import { serviceNeedsType } from "../types/serviceNeeds";
 import { useAuth } from "../AuthProvider";
 import * as Sentry from "@sentry/react";
 import { alarmColorParser } from "../components/AlarmExplanation/alarms";
+import InPageNav from "../components/InpageNav/InPageNav";
 
-interface hacked_kpi extends kpi {
-  kpi_secondResult?: number;
-  kpi_secondUnit?: string;
-}
 
-function UnitDetailsPage() {
+function UnitActiveAlarmsPage() {
   const { t } = useTranslation();
   const params = useParams();
   const navigate = useNavigate();
@@ -37,11 +30,7 @@ function UnitDetailsPage() {
   const [berthAlarmData, set_berthAlarmData] = useState<alarm[] | undefined>(
     undefined
   );
-  const [kpiData, set_kpiData] = useState<hacked_kpi[] | undefined>(undefined);
 
-  const [selectedOption, set_selectedOption] = useState(1);
-  const periodOptions = ["1D", "7D", "30D", "1Y"]; // make api call?
-  const dropdownOptions = periodOptions.map((o) => t(`kpi.period.${o}`));
   const [showBerthAlarms, set_showBerthAlarms] = useState(false);
 
   const [filterOptions, set_filterOptions] = useState<filterOption[]>([]);
@@ -127,43 +116,7 @@ function UnitDetailsPage() {
     }
   };
 
-  const hack_double_kpi_box = (kpis: kpi[]): hacked_kpi[] => {
-    const data = kpis.filter(
-      (k) =>
-        k?.kpi_name != "kpi_unit_in_use" &&
-        k?.kpi_name != "kpi_unit_utilisation"
-    );
-    const unitUtil = kpis.filter(
-      (k) => k?.kpi_name === "kpi_unit_utilisation"
-    )[0];
-    const unitInUse = kpis.filter((k) => k?.kpi_name === "kpi_unit_in_use")[0];
-    // We need both unitUtil and UnitInUse for a double box
-    if (!unitUtil || !unitInUse) return kpis;
-    const doublebox = {
-      ...unitUtil,
-      kpi_secondResult: unitInUse?.kpi_result,
-      kpi_secondUnit: unitInUse?.kpi_unit,
-    };
-    return [...data, doublebox];
-  };
 
-  const getKpiData = async (eqpmentId: string) => {
-    try {
-      const res = await get(`/equipment/serial-to-kpi?serial=${eqpmentId}&period=${periodOptions[selectedOption]}`);
-
-      if (res?.data?.length > 0) {
-        //Hack to remove miscalculated kpi's
-        // set_kpiData(res?.data)
-        set_kpiData(hack_double_kpi_box(res?.data));
-      } else {
-        set_kpiData([]);
-      }
-    } catch (err) {
-      Sentry.captureException(err)
-      console.log("err", err);
-      set_kpiData(undefined);
-    }
-  };
   useEffect(() => {
     if (params.id) {
       getMetaData(params.id);
@@ -173,11 +126,6 @@ function UnitDetailsPage() {
     }
   }, [params.id]);
 
-  useEffect(() => {
-    if (params.id) {
-      getKpiData(params.id);
-    }
-  }, [params.id, selectedOption]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -193,12 +141,6 @@ function UnitDetailsPage() {
     };
   }, [params.id]);
 
-  const dummyServiceNeed: serviceNeedsType = {
-    serviceNeedId: "-",
-    serviceNeedName: "-",
-    date: "-",
-    serviceNeedStatus: "-",
-  };
 
   const setFilter = (a: number): void => {
     const b = filterOptions?.map((f: filterOption, i: number) => {
@@ -253,32 +195,7 @@ function UnitDetailsPage() {
       parsers: [durationParser],
     },
   ];
-  const serviceNeedsColumns: columnType[] = [
-    {
-      colName: t("table.columnNames.serviceNeedId"),
-      dataKey: "serviceNeedId",
-      autocapitalize: true,
-    },
-    {
-      colName: t("table.columnNames.serviceNeedName"),
-      dataKey: "serviceNeedName",
-      headerIcon: {
-        onClick: () => navigate("/nomenclature/serviceneeds"),
-        icon: createElement(QM, {
-          fill: "gray",
-          width: "20px",
-          style: { marginLeft: "10px" },
-        }),
-      },
-    },
-    { colName: t("table.columnNames.date_localSite"), dataKey: "date" },
-    {
-      colName: t("table.columnNames.serviceNeedStatus"),
-      dataKey: "serviceNeedStatus",
-    },
-  ];
  
-
   const onRowClick: onRowClickConfig = {
     onClick: (e: any) => console.log("Click not supported, alarm UUID:", e),
     dataKey: "uuid",
@@ -293,6 +210,7 @@ function UnitDetailsPage() {
     <>
       <TopHeader />
       <CurrentStatusHeader
+        small
         equipmentName={`${metaData?.asset_Name || "-"} `}
         metaData={metaData}
         stateInfo={stateData}
@@ -315,20 +233,7 @@ function UnitDetailsPage() {
             flexDirection: "column",
           }}
         >
-
-          <SubsectionHeader title={t("serviceNeedsList")} onClick={ () => navigate(`/unit/${encodeURIComponent(params?.id || "" )}/serviceneeds`)}/>
-          {!dummyServiceNeed ? (
-            <LoadingIndicator />
-          ) : (
-            <Table
-              tableRowElement={TableRow}
-              tableColumns={serviceNeedsColumns}
-              tableData={[dummyServiceNeed]}
-              onRowClick={onRowClick}
-              showMoreOnClick={ () =>navigate(`/unit/${encodeURIComponent(params?.id || "" )}/serviceneeds`)}
-              limit={rowItemsNeededForShowMoreButton} 
-            />
-          )}
+          <InPageNav />
           <SubsectionHeader
             title={`${t("activeAlarmList")}`}
             optionToggleName={`${t("activeAlarmBerthToggle")}`}
@@ -350,60 +255,13 @@ function UnitDetailsPage() {
               tableColumns={alarmColumns}
               tableData={alarmList}
               onRowClick={onRowClick}
-              showMoreOnClick={() =>
-                navigate(
-                  `/unit/${encodeURIComponent(
-                    params?.id || ""
-                  )}/activeAlarms`
-                )
-              }
-              limit={rowItemsNeededForShowMoreButton} 
               rowColorParser={alarmColorParser}
             />
           )}
-          <SubsectionHeader
-            title={t("KPIStatistics")}
-            since
-            set_selectedOption={set_selectedOption}
-            selectedOption={selectedOption}
-            dropdownOptions={dropdownOptions}
-            middleText={kpiData?.[0]?.calculated_since_site_local ? `updated since ${dayMonthTimeYear(kpiData?.[0]?.calculated_since_site_local, t)} until ${dayMonthTimeYear(kpiData?.[0]?.calculated_till_site_local, t)} site local time` : undefined}
-          />
-          <KpiBox>
-            { !kpiData ? <LoadingIndicator/> :
-               kpiData?.length === 0 ? <div style={{
-                width: "90%",
-                display: "flex",
-                alignItems: "left",
-                justifyContent: "center",
-                flexDirection: "column",
-                margin: "20px"
-              }}><p>{t("kpi.emptyResult")}</p ></div> :
-              kpiData?.map((kpi, i) => (
-              <MetricBox
-                key={i}
-                metricValue={`${
-                  kpi?.kpi_result || kpi?.kpi_result === 0
-                    ? kpi?.kpi_result
-                    : t("basics.dash")
-                } ${t(`kpi.${kpi?.kpi_unit}`)}`}
-                metricName={`${t(`kpi.${kpi.kpi_name}`)}`}
-                secondMetricValue={
-                  kpi?.kpi_secondResult || kpi?.kpi_secondResult === 0
-                    ? `${kpi?.kpi_secondResult} ${t(
-                        `kpi.${kpi?.kpi_secondUnit}`
-                      )}`
-                    : undefined
-                }
-                className=""
-                onMetricBoxContainerClick={() => navigate(`/unit/${encodeURIComponent(params?.id || "" )}/kpi/${kpi.kpi_name}`)}
-              />
-            ))}
-          </KpiBox>
         </div>
       </div>
     </>
   );
 }
 
-export default UnitDetailsPage;
+export default UnitActiveAlarmsPage;

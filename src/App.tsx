@@ -23,10 +23,11 @@ import ErrorBoundary from "./components/ErrorBoundry/ErrorBoundry.tsx";
 import NomenclaturePage from "./pages/NomenclaturePage.tsx";
 import UsersDetailsPage from "./pages/UsersDetailsPage.tsx";
 import DemoLinksPage from "./pages/DemolinksPage.tsx";
-import UnitsAlarmsPage from "./pages/UnitAlarmsPage.tsx";
+import UnitHistoricalAlarmsPage from "./pages/UnitHistoricalAlarmsPage.tsx";
 import UnitServiceNeedPage from "./pages/UnitServiceNeedPage.tsx";
 import AuthProvider from "./AuthProvider.tsx";
 import ProtectedRoute from "./ProtectedRoute.tsx";
+import UnitActiveAlarmsPage from "./pages/UnitActiveAlarmsPage.tsx";
 
 function App() {
   
@@ -65,7 +66,8 @@ function App() {
           <Route path="/users" element={<ProtectedRoute><UsersPage/></ProtectedRoute>} />
           <Route path="/user/:id" element={<ProtectedRoute><UsersDetailsPage/></ProtectedRoute>} />
           <Route path="/unit/:id" element={<ProtectedRoute><UnitDetailsPage/></ProtectedRoute>} />
-          <Route path="/unit/:id/historicalAlarms" element={<ProtectedRoute><UnitsAlarmsPage/></ProtectedRoute>} />
+          <Route path="/unit/:id/activeAlarms" element={<ProtectedRoute><UnitActiveAlarmsPage/></ProtectedRoute>} />
+          <Route path="/unit/:id/historicalAlarms" element={<ProtectedRoute><UnitHistoricalAlarmsPage/></ProtectedRoute>} />
           <Route path="/unit/:id/serviceneeds" element={<ProtectedRoute><UnitServiceNeedPage/></ProtectedRoute>} />
           <Route path="/unit/:id/kpi/:kpiid" element={<ProtectedRoute><UnitKPIDetailsPage/></ProtectedRoute>} />
           

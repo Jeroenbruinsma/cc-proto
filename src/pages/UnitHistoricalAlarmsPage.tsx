@@ -17,7 +17,7 @@ import * as Sentry from "@sentry/react";
 import QM from "..//components/AlarmExplanation/questionMark.svg";
 import { alarmColorParser } from "../components/AlarmExplanation/alarms";
 
-function UnitsAlarmsPage() {
+function UnitHistoricalAlarmsPage() {
   const { t } = useTranslation();
   const params = useParams();
   const navigate = useNavigate();
@@ -228,4 +228,4 @@ function UnitsAlarmsPage() {
   );
 }
 
-export default UnitsAlarmsPage;
+export default UnitHistoricalAlarmsPage;
