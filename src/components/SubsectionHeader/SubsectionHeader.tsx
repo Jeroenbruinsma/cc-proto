@@ -22,7 +22,9 @@ export type SubsectionHeaderType = {
   onClick?: () => void;
   exportData?: string | undefined;
   setRange?: boolean;
+  topText?: string;
   middleText?: string;
+  lowerText?: string;
 };
 
 const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
@@ -40,7 +42,11 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
   onClick,
   exportData,
   setRange,
-  middleText
+  topText,
+  middleText,
+  lowerText
+
+  ,
 }) => {
   const [ showOptionDropdown, set_showOptionDropdown ] = useState(false)
   const handleOptionClick = (i: number) => {
@@ -52,11 +58,18 @@ const SubsectionHeader: FunctionComponent<SubsectionHeaderType> = ({
       <div className={styles.titleplussince}>
         <b
           style={{ textAlign: center ? "center" : "left" }}
-          className={[styles.sh, onClick ? styles.shName : null].join(" ")}
+          className={[styles.subsectionHeaderTitle, onClick ? styles.subsectionHeaderTitleName : null].join(" ")}
           onClick={onClick}
         >
           {title}
         </b>
+        {lowerText && topText ? 
+          <div className={styles.helperTextHolder}>
+            <p className={styles.helperText}>{topText} </p>
+            <p className={styles.helperText}>{lowerText} </p>
+          </div>
+           : null
+        }
         {middleText? 
           <div className={styles.middleTextHolder}>
             <p className={styles.middleText}>{middleText} </p>

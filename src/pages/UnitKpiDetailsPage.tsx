@@ -197,11 +197,13 @@ function UnitKpiDetailsPage() {
           }}
         >
         <SubsectionHeader
-          title={` ${t("KPIStatistics")} - ${t(`kpi.${params?.kpiid}`)}`}
+          title={` ${t("KPIStatistics")} - ${t(`kpi.${params?.kpiid}.short`)}`}
           since
           set_selectedOption={set_selectedOption}
           selectedOption={selectedOption}
           dropdownOptions={dropdownOptions}
+          topText={` ${t(`kpi.${params?.kpiid}.what`)}`}
+          lowerText={` ${t(`kpi.${params?.kpiid}.how`)}`}
       />
           { historicalKpiData ? 
           <LineChart
@@ -212,7 +214,7 @@ function UnitKpiDetailsPage() {
             }}
                 yAxis={[
                   {
-                    label: `${t(`kpi.${params?.kpiid}`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}]`
+                    label: `${t(`kpi.${params?.kpiid}.short`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}]`
                   }
                 ]}
             xAxis={[
@@ -226,7 +228,7 @@ function UnitKpiDetailsPage() {
             series={[
               {
                 data: historicalKpiData?.map(hd => hd.kpi_result),
-                label: `${t(`kpi.${params?.kpiid}`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}] ${dropdownOptions[selectedOption]}`,
+                label: `${t(`kpi.${params?.kpiid}.short`)} [${t(`kpi.${historicalKpiData?.[0]?.kpi_unit}`)}] ${dropdownOptions[selectedOption]}`,
                 color: "#0091D3",
                 showMark: true
              },
@@ -260,7 +262,7 @@ function UnitKpiDetailsPage() {
                     ? kpi?.kpi_result
                     : t("basics.dash")
                 } ${t(`kpi.${kpi?.kpi_unit}`)}`}
-                metricName={`${t(`kpi.${kpi.kpi_name}`)}`}
+                metricName={`${t(`kpi.${kpi.kpi_name}.short`)}`}
                 secondMetricValue={
                   kpi?.kpi_secondResult || kpi?.kpi_secondResult === 0
                     ? `${kpi?.kpi_secondResult} ${t(
