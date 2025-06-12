@@ -21,6 +21,27 @@ export interface equipmentDataType {
 }
 
 export type warranttStatus = "warranty_active" | "warranty_expired"
+
+export interface functionalResponseStatusType  {
+  success: boolean;
+  data: functionalStatusType 
+}
+export interface functionalStatusType 
+{
+  func_status_id: Number
+  func_status_name: functionalStatusTextType
+}
+export type functionalStatusTextType =  "Functional" |
+                                    "Needs Investigation" |
+                                    "Needs Repair" |
+                                    "Under Maintenance" |
+                                    "Scheduled Maintenance by Cavotec" |
+                                    "Scheduled Maintenance by Customer" |
+                                    "Offline - not onboarded" |
+                                    "Offline - network failure" |
+                                    "Offline - no data consent" |
+                                    "Offline - no SLA/Warranty/Subscription" 
+
 export interface statesResponseType {
   succes: boolean;
   states: stateType[];

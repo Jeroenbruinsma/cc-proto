@@ -2,7 +2,7 @@ import TopHeader from '../components/TopHeader/TopHeader'
 import CurrentStatusHeader from '../components/CurrentStatusHeader/CurrentStatusHeader'
 import { useNavigate, useParams } from 'react-router-dom'
 import { createElement, useEffect, useState } from 'react'
-import { equipmentDataType, stateType } from '../types/equipment'
+import { equipmentDataType, functionalStatusType, stateType } from '../types/equipment'
 import SubsectionHeader from '../components/SubsectionHeader/SubsectionHeader'
 import Table from '../components/Table/Table'
 import { useTranslation } from 'react-i18next'
@@ -21,7 +21,8 @@ function UnitServiceNeedPage() {
   const params = useParams()
   const navigate = useNavigate()
   const [metaData, set_metaData ] = useState<equipmentDataType| undefined >(undefined)
-  const [stateData ] = useState<stateType| undefined >(undefined)
+  const [operationalStateData] = useState<stateType | undefined>(undefined);
+  const [functionalStateData] = useState<functionalStatusType | undefined>(undefined);
   const [serviceNeedData, set_serviceNeedData ] = useState<serviceNeedsType[]| undefined >(undefined)
   const { get } = useAuth()
 
@@ -120,7 +121,13 @@ function UnitServiceNeedPage() {
   return (  
     <>
       <TopHeader/>
-      <CurrentStatusHeader small equipmentName={`${metaData?.asset_Name || "-"} `} metaData={metaData} stateInfo={stateData}/>
+      <CurrentStatusHeader small equipmentName={`${metaData?.asset_Name || "-"} `} 
+          metaData={metaData} 
+          
+          operationalStateInfo={operationalStateData}
+          functionalStateInfo={functionalStateData}
+          
+          />
       <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection:"column"}}>
         	<div style={{width: "90%", display: "flex", alignItems: "left", justifyContent: "center", flexDirection:"column"}}>
           <InPageNav/>

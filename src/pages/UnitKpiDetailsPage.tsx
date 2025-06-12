@@ -2,7 +2,7 @@ import TopHeader from "../components/TopHeader/TopHeader";
 import CurrentStatusHeader from "../components/CurrentStatusHeader/CurrentStatusHeader";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { equipmentDataType, stateType } from "../types/equipment";
+import { equipmentDataType, functionalStatusType, stateType } from "../types/equipment";
 import KpiBox from "../components/KpiBox/KpiBox";
 import MetricBox from "../components/MetricBox/MetricBox";
 import SubsectionHeader from "../components/SubsectionHeader/SubsectionHeader";
@@ -26,7 +26,8 @@ function UnitKpiDetailsPage() {
   const [metaData, set_metaData] = useState<equipmentDataType | undefined>(
     undefined
   );
-  const [stateData, set_stateData] = useState<stateType | undefined>(undefined);
+  const [operationalStateData, set_operationalStateData] = useState<stateType | undefined>(undefined);
+  const [functionalStateData, set_functionalStateData] = useState<functionalStatusType | undefined>(undefined);
   const [kpiData, set_kpiData] = useState<hacked_kpi[] | undefined>(undefined);
   const [historicalKpiData, set_historicalKpiData] = useState<hacked_kpi[] | undefined>(undefined);
 
@@ -44,19 +45,33 @@ function UnitKpiDetailsPage() {
       console.log("err", err);
     }
   };
-  const getLastState = async (eqpmentId: string) => {
-    try {
-      const res = await get(`/equipment/serial-to-state?serial=${eqpmentId}`);
-      if (res?.data?.states?.length > 0) {
-        set_stateData(res?.data?.states[0]);
-      } else {
-        set_stateData(undefined);
+ 
+  const getOperationalState = async (eqpmentId: string) => {
+      try {
+        const res = await get(`/equipment/serial-to-state?serial=${eqpmentId}`);
+        if (res?.data?.states?.length > 0) {
+          set_operationalStateData(res?.data?.states[0]);
+        } else {
+          set_operationalStateData(undefined);
+        }
+      } catch (err) {
+        Sentry.captureException(err)
+        console.log("err", err);
       }
-    } catch (err) {
-      Sentry.captureException(err)
-      console.log("err", err);
-    }
-  };
+    };
+      const getFunctionalState = async (eqpmentId: string) => {
+        try {
+          const res = await get(`/equipment/serial-to-status?serial=${eqpmentId}`);
+          if (res?.data) {
+            set_functionalStateData(res?.data?.data);
+          } else {
+            set_functionalStateData(undefined);
+          }
+        } catch (err) {
+          Sentry.captureException(err)
+          console.log("err", err);
+        }
+      };
 
   const hack_double_kpi_box = (kpis: kpi[]): hacked_kpi[] => {
     const data = kpis.filter(
@@ -113,7 +128,8 @@ function UnitKpiDetailsPage() {
   useEffect(() => {
     if (params.id) {
       getMetaData(params.id);
-      getLastState(params.id);
+      getFunctionalState(params.id);
+      getOperationalState(params.id);
     }
   }, [params.id]);
 
@@ -129,7 +145,8 @@ function UnitKpiDetailsPage() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (params.id) {
-        getLastState(params.id);
+        getFunctionalState(params.id);
+        getOperationalState(params.id);
       }
     }, 60000);
 
@@ -158,7 +175,8 @@ function UnitKpiDetailsPage() {
       <CurrentStatusHeader
         equipmentName={`${metaData?.asset_Name || "-"} `}
         metaData={metaData}
-        stateInfo={stateData}
+        operationalStateInfo={operationalStateData}
+        functionalStateInfo={functionalStateData}
       />
       <div
         style={{

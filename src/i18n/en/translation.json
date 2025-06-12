@@ -24,11 +24,30 @@
             "alternativeBackend": "Alternative backend used!"
         }
     },
+    "functionalStatus": {
+        "Functional" :  "Functional",
+        "Needs Investigation" :  "Needs Investigation",
+        "Needs Repair" :  "Needs Repair",
+        "Under Maintenance" :  "Under Maintenance",
+        "Scheduled Maintenance by Cavotec" :  "Scheduled Maintenance by Cavotec",
+        "Scheduled Maintenance by Customer" :  "Scheduled Maintenance by Customer",
+        "Offline - not onboarded" :  "Offline - not onboarded",
+        "Offline - network failure" :  "Offline - network failure",
+        "Offline - no data consent" :  "Offline - no data consent",
+        "Offline - no SLA/Warranty/Subscription" :  "Offline - no SLA/Warranty/Subscription"
+    },
     "kpi": {
         "emptyResult": "KPIs have not been caluclated yet for this Asset. If this is your first time, ensure data is available.",
-        "kpi_unit_availability": "Unit availability",
-        "kpi_unit_utilisation": "Unit utilization",
-        "kpi_unit_in_use": "Unit in use",
+        "kpi_unit_availability": {
+            "short": "Unit availability",
+            "what" : "The percentage of time the equipment was available and ready to use",
+            "how": "Measures the equipment readiness, excluding maintenance and other downtime periods."
+        },
+        "kpi_unit_utilisation": {
+            "short": "Unit in use",
+            "what": "The percentage of time the equipment was actively in use compared to its total available time",
+            "how": "Measures how effectively the equipment is being used during its available time."
+        },
         "percent": "%",
         "%": "%",
         "": "",

@@ -4,7 +4,7 @@ import StatusIndicator from "../StatusIndicator/StatusIndicator";
 import styles from "./CurrentStatusHeader.module.css";
 import { capitalizeFirstLetter, dayMonthTime, onlyYear, parseWarranty, yesOrNo } from "../../helpers";
 import moment from 'moment-timezone'
-import { colorCodingMappingType, equipmentDataType, stateColormapping, stateType } from "../../types/equipment";
+import { colorCodingMappingType, equipmentDataType, functionalStatusTextType, functionalStatusType, stateColormapping, stateType } from "../../types/equipment";
 import { useTranslation } from "react-i18next";
 import { coreSystemType } from "../../types/sites";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
@@ -14,7 +14,8 @@ export type CurrentStatusHeaderType = {
   className?: string;
   equipmentName: string
   metaData: equipmentDataType | undefined
-  stateInfo: stateType | undefined
+  operationalStateInfo: stateType | undefined
+  functionalStateInfo: functionalStatusType | undefined
   small?: boolean
 };
 
@@ -37,7 +38,8 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
   className = "",
   equipmentName,
   metaData,
-  stateInfo,
+  operationalStateInfo,
+  functionalStateInfo,
   small
 }) => {
   const {t} = useTranslation()
@@ -80,7 +82,26 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
     {stateNumber: 9999, stateName: "Not onboarded", stateColor: "indicatorGray", equipmentType: "AutomatedMooring"}
    ]
   
+   const functionalStateColorMapping = [
+      { stateName: "Functional", stateColor: "indicatorGreen" },
+      { stateName: "Needs Investigation", stateColor: "indicatorYellow" },
+      { stateName: "Needs Repair", stateColor: "indicatorRed" },
+      { stateName: "Under Maintenance", stateColor: "indicatorBlue" },
+      { stateName: "Scheduled Maintenance by Cavotec", stateColor: "indicatorBlue" },
+      { stateName: "Scheduled Maintenance by Customer", stateColor: "indicatorBlue" },
+      { stateName: "Offline - not onboarded", stateColor: "indicatorGray" },
+      { stateName: "Offline - network failure", stateColor: "indicatorGray" },
+      { stateName: "Offline - no data consent", stateColor: "indicatorGray" },
+      { stateName: "Offline - no SLA/Warranty/Subscription", stateColor: "indicatorGray" },
+   ]
 
+
+  const functionalStateToColor = (stateName:functionalStatusTextType | undefined ) : string => {
+    if(!stateName) return colors.filter(c => c.colorName === "indicatorRed")?.[0]?.colorHex 
+    const color = functionalStateColorMapping.filter(cm => stateName === cm.stateName)
+    return colors.filter(c => c.colorName === color?.[0]?.stateColor)?.[0]?.colorHex ||
+    colors.filter(c => c.colorName === "indicatorRed")?.[0]?.colorHex 
+  }
   const stateToColor = (state:number | undefined, eqp: coreSystemType | undefined ) : string => {
     if(!state && !eqp) return colors.filter(c => c.colorName === "indicatorRed")?.[0]?.colorHex 
     const color = stateColorMapping.filter(cm => state === cm.stateNumber  && eqp === cm.equipmentType)
@@ -101,13 +122,17 @@ const CurrentStatusHeader: FunctionComponent<CurrentStatusHeaderType> = ({
         {!small ? <SubsectionHeader title="Current status" /> : null}
         {!small  ? <div className={styles.currentinfo}>
           <div className={styles.duoindicator}>
-          { !stateInfo ? <LoadingIndicator/> : 
-              <StatusIndicator  text={stateInfo?.state_str || "-" } 
-                                subText={parseDate(stateInfo)} 
-                                subSubText={`(${dayMonthTime(stateInfo?.local_site_time,t)} ${t("table.columnNames.siteLocalTime")})`} 
-                                indicatorBollColor={stateToColor(stateInfo?.state, metaData?.asset_CoreSystem__c)}/>
+          { !operationalStateInfo ? <LoadingIndicator/> : 
+              <StatusIndicator  text={operationalStateInfo?.state_str || "-" } 
+                                subText={parseDate(operationalStateInfo)} 
+                                subSubText={`(${dayMonthTime(operationalStateInfo?.local_site_time,t)} ${t("table.columnNames.siteLocalTime")})`} 
+                                indicatorBollColor={stateToColor(operationalStateInfo?.state, metaData?.asset_CoreSystem__c)}/>
           }
-            {/* <StatusIndicator text="Scheduled Maintenace" subtext="Due for inspection"/> */}
+            <StatusIndicator 
+                                text={`${t(`functionalStatus.${functionalStateInfo?.func_status_name}`) || "-"}`}
+                                subText={" "}
+                                indicatorBollColor={functionalStateToColor(functionalStateInfo?.func_status_name)}
+                                />
           </div>
           <div className={styles.metadatainfoboxParent}>
             <div className={styles.metadatainfobox}>

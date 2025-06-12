@@ -7,6 +7,7 @@ import { backendUrl } from "./config";
 type availableGetEndpoints =
   | "health"
   | `${"/equipment/serial-to-state?serial="}${"" | `${string}`}`
+  | `${"/equipment/serial-to-status?serial="}${"" | `${string}`}`
   | `${"/equipment/serial-to-alarm?serial="}${"" | `${string}`}`
   | `${"/equipment/serial-to-kpi?serial="}${"" | `${string}`}`
   | `${"/equipment/meta?serial="}${"" | `${string}`}`
