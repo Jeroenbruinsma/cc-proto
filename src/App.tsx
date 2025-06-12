@@ -15,7 +15,6 @@ import { useTranslation } from "react-i18next";
 import { api_ip, backendUrl } from "./config.ts";
 import NotFound from "./pages/NotFound.tsx";
 import UsersPage from "./pages/Users.tsx";
-import CustomersDetailPage from "./pages/CustomersDetailPage.tsx";
 import ValidationsDetailsPage from "./pages/ValidationsDetailsPage.tsx";
 import AdminPage from "./pages/AdminPage.tsx";
 import ValidationsTypePage from "./pages/ValidationsTypePage.tsx";
@@ -62,7 +61,6 @@ function App() {
           <Route path="/validationdetails/:id" element={<ProtectedRoute><ValidationsDetailsPage/></ProtectedRoute>} />
           <Route path="/sites/:id" element={<ProtectedRoute><UnitsPage/></ProtectedRoute>} />
           <Route path="/sites" element={<ProtectedRoute><Sites/></ProtectedRoute>} />
-          <Route path="/customers/:id" element={<ProtectedRoute><CustomersDetailPage/></ProtectedRoute>} />
           <Route path="/users" element={<ProtectedRoute><UsersPage/></ProtectedRoute>} />
           <Route path="/user/:id" element={<ProtectedRoute><UsersDetailsPage/></ProtectedRoute>} />
           <Route path="/unit/:id" element={<ProtectedRoute><UnitDetailsPage/></ProtectedRoute>} />
