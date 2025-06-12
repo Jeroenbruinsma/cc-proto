@@ -13,6 +13,7 @@ import DataQualityCell from "../components/Table/DataQualityCell";
 import { emptyDash, emptyDashObject } from "../helpers";
 import { useAuth } from "../AuthProvider";
 import * as Sentry from "@sentry/react";
+import DataFunctionalStatusCell from "../components/Table/DataFunctionalStatusCell";
 
 
 const UnitsPage: FunctionComponent = () => {
@@ -27,7 +28,7 @@ const UnitsPage: FunctionComponent = () => {
       const res = await get(`/units/${encodeURIComponent(sitename)}`)
       
       if(res?.data){
-        set_units(res?.data.map( (d:any) => { return {...d, cc__status: "-" }}))
+        set_units(res?.data.map( (d:any) => { return {...d, cc__functional_status: d?.Status || d?.func_status }}))
       }else{
         set_units(undefined)
       }
@@ -46,8 +47,8 @@ const UnitsPage: FunctionComponent = () => {
     { colName: t("table.columnNames.serialNo"), dataKey: "asset_SerialNumber",  parsers: [emptyDash] },
     { colName: t("table.columnNames.equipmentName"), dataKey: "asset_Name"}, 
     { colName: t("table.columnNames.berthName"), dataKey: "asset_Berth" ,parsers: [emptyDashObject] },
-    { colName: t("table.columnNames.equipmentType"), dataKey: "cc__status" },
-    { colName: t("table.columnNames.status"), dataKey: "cc__status"},
+    { colName: t("table.columnNames.equipmentType"), dataKey: "cc__equipmentType" },
+    { colName: t("table.columnNames.status"), dataKey: "cc__functional_status", cellElement: DataFunctionalStatusCell},
     { colName: t("table.columnNames.dataValidation"), dataKey: "cc__data_validation_passed" , cellElement: DataQualityCell }
   ]
 

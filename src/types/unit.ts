@@ -1,3 +1,5 @@
+import { functionalStatusTextType } from "./equipment"
+
 export interface unit{
     'account_Id': string 
     'account_Name': string 
@@ -13,6 +15,7 @@ export interface unit{
     asset_WarrantyEndingDate__c: string 
     asset_WarrantyStartingDate__c: string 
     asset_YearOfInstallation__c: string 
-    cc__status: string
+    cc__equipmentType: string
+    cc__functional_status: functionalStatusTextType
     cc__data_validation_passed: Boolean
 }
