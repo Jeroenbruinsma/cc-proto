@@ -1,4 +1,4 @@
-.sh {
+.subsectionHeaderTitle {
   flex: 1;
   position: relative;
   display: inline-block;
@@ -6,7 +6,7 @@
   min-width: 7em;
   margin: auto;
 }
-.shName:hover{
+.subsectionHeaderTitleName:hover{
   color: var(--color-steelblue)
 }
 .lineframeChild,
@@ -207,6 +207,13 @@
   padding: 0 0 0 var(--padding-37xl);
   /* max-width: 40em; */
 }
+.helperTextHolder{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
+}
 .middleText{
   color: var(--color-dimgray);
   font-size: var(--font-size-base);
@@ -214,8 +221,17 @@
   width: 100%;
   text-align: center;
 }
+.helperText{
+  color: var(--color-dimgray);
+  font-size: var(--font-size-smi);
+  font-family: var(--font-inter);
+  width: 100%;
+  text-align: left;
+  color: var(--color-black);
+  margin: 5px 0px 0px 0px;
+}
 @media screen and (max-width: 800px) {
-  .middleTextHolder{
+  .middleTextHolder, .helperTextHolder{
     display: none;
   }
 }

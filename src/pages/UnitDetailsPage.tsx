@@ -387,7 +387,7 @@ function UnitDetailsPage() {
                     ? kpi?.kpi_result
                     : t("basics.dash")
                 } ${t(`kpi.${kpi?.kpi_unit}`)}`}
-                metricName={`${t(`kpi.${kpi.kpi_name}`)}`}
+                metricName={`${t(`kpi.${kpi.kpi_name}.short`)}`}
                 secondMetricValue={
                   kpi?.kpi_secondResult || kpi?.kpi_secondResult === 0
                     ? `${kpi?.kpi_secondResult} ${t(
